@@ -6,48 +6,48 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 00:44:57 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/28 04:14:19 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/08/28 17:02:18 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void    map_extension(char *map)
+void	map_extension(char *map)
 {
-    char    *extension;
-    int     i;
-    int     j;
+	char	*extension;
+	int		i;
+	int		j;
 
-    i = ft_strlen(map) - 1;
-    j = 0;
-    extension = malloc(sizeof(char) * 5);
-    if (!extension)
-        error("Error: Malloc failure!\n");
-    while (i && map[i] != '.' && map[i])
-        extension[j++] = map[i--];
-    if (map[i] == '.')
-        extension[j++] = map[i];
-    extension[j] = '\0';
-    if (ft_strncmp("buc.", extension, 4))
-    {
-        free(extension);
-        error("Error: Map extension must be .cub!\n");
-    }
-    free(extension);
+	i = ft_strlen(map) - 1;
+	j = 0;
+	extension = malloc(sizeof(char) * 5);
+	if (!extension)
+		error("Error: Malloc failure!\n");
+	while (i && map[i] != '.' && map[i])
+		extension[j++] = map[i--];
+	if (map[i] == '.')
+		extension[j++] = map[i];
+	extension[j] = '\0';
+	if (ft_strncmp("buc.", extension, 4))
+	{
+		free(extension);
+		error("Error: Map extension must be .cub!\n");
+	}
+	free(extension);
 }
 
-char    *map_path(char *map)
+char	*map_path(char *map)
 {
-    int i;
-    int fd;
+	int	i;
+	int	fd;
 
-    i = 0;
-    fd = open(map, O_RDONLY);
-    if (fd == -1 && !access(map, F_OK))
-        error("Error: Permission denied!\n");
-    else if (fd == -1)
-        error("Error: File not found!\n");
-    return (read_map(fd));
+	i = 0;
+	fd = open(map, O_RDONLY);
+	if (fd == -1 && !access(map, F_OK))
+		error("Error: Permission denied!\n");
+	else if (fd == -1)
+		error("Error: File not found!\n");
+	return (read_map(fd));
 }
 
 char	*read_map(int fd)
@@ -57,15 +57,14 @@ char	*read_map(int fd)
 	int		i;
 
 	i = 1;
-    stash = NULL;
+	stash = NULL;
 	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
 		error("Error: Malloc failure!\n");
 	while (i > 0 && !ft_strchr2(stash, '\0'))
 	{
 		i = read(fd, buff, BUFFER_SIZE);
-		if (i < 0 || (i == 0 && !stash)
-			|| (i == 0 && !stash[0]))
+		if (i < 0 || (i == 0 && !stash) || (i == 0 && !stash[0]))
 			return (free(buff), free(stash), NULL);
 		buff[i] = '\0';
 		stash = ft_strjoin(stash, buff);

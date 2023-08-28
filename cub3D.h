@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/28 00:46:17 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/08/28 16:45:51 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	map_extension(char *av);
 char	*map_path(char *map);
 char	*ft_strjoin(char *s1, char *s2);
 char	*read_map(int fd);
-int		ft_strcmp(char *s1, char *s2);
 int		ft_strchr2(char *s, int c);
+char	**ft_split2(char *s, char *c);
+void	free_mem(char **str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:14 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/28 04:14:06 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/08/28 16:45:37 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,14 @@ int	ft_strchr2(char *s, int c)
 		i++;
 	}
 	return (0);
+}
+
+void	free_mem(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free(str);
 }
