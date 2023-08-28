@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/28 04:29:03 by mbachar          ###   ########.fr       */
+/*   Created: 2022/10/08 11:18:02 by mbachar           #+#    #+#             */
+/*   Updated: 2023/08/28 00:42:14 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-void	error(char *str)
+int	ft_strchr(const char *s, int c)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (str[i])
-		write(2, &str[i++], 1);
-	exit(1);
-}
-
-int	main(int ac, char **av)
-{
-	char	**splitted;
-
-	splitted = NULL;
-	if (ac < 2)
-		error("Error: Missing map path!\n");
-	else if (ac > 2)
-		error("Error: Too many arguments!\n");
-	map_extension(av[1]);
-	splitted = ft_split(map_path(av[1]), '\n');
-	int	i = 0;
-	while (splitted[i])
-		printf("====> %s\n", splitted[i++]);
+	j = ft_strlen(s);
+	while (s[i])
+	{
+		if (s[i] == (char) c)
+			return (0);
+		i++;
+	}
+	return (1);
 }

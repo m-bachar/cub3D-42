@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/28 00:46:17 by mbachar          ###   ########.fr       */
+/*   Created: 2022/10/31 13:11:16 by mbachar           #+#    #+#             */
+/*   Updated: 2022/11/16 19:09:48 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <string.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include "./libft/libft.h"
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	unsigned int		i;
+	int					len;
+	char				*ptr;
 
-# define BUFFER_SIZE 1
-
-void	error(char *str);
-void	map_extension(char *av);
-char	*map_path(char *map);
-char	*ft_strjoin(char *s1, char *s2);
-char	*read_map(int fd);
-int		ft_strcmp(char *s1, char *s2);
-int		ft_strchr2(char *s, int c);
-
-#endif
+	if (!s || !f)
+		return (NULL);
+	i = 0;
+	len = ft_strlen(s);
+	ptr = malloc(len * sizeof(char) + 1);
+	if (!ptr)
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		ptr[i] = f(i, s[i]);
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}

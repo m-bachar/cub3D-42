@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/28 00:44:57 by mbachar           #+#    #+#             */
+/*   Updated: 2023/08/28 04:14:19 by mbachar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 void    map_extension(char *map)
@@ -6,16 +18,17 @@ void    map_extension(char *map)
     int     i;
     int     j;
 
-    i = strlen(map) - 1; // ft_strlen
+    i = ft_strlen(map) - 1;
     j = 0;
-    extension = calloc(4, sizeof(char)); // ft_calloc
+    extension = malloc(sizeof(char) * 5);
     if (!extension)
         error("Error: Malloc failure!\n");
-    while (i && map[i] != '.')
+    while (i && map[i] != '.' && map[i])
         extension[j++] = map[i--];
     if (map[i] == '.')
-        extension[j] = map[i];
-    if (strcmp("buc.", extension)) //ft_strcmp
+        extension[j++] = map[i];
+    extension[j] = '\0';
+    if (ft_strncmp("buc.", extension, 4))
     {
         free(extension);
         error("Error: Map extension must be .cub!\n");
@@ -48,7 +61,7 @@ char	*read_map(int fd)
 	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
 		error("Error: Malloc failure!\n");
-	while (i > 0 && !ft_strchr(stash, '\0'))
+	while (i > 0 && !ft_strchr2(stash, '\0'))
 	{
 		i = read(fd, buff, BUFFER_SIZE);
 		if (i < 0 || (i == 0 && !stash)

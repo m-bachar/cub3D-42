@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/28 00:46:17 by mbachar          ###   ########.fr       */
+/*   Created: 2022/10/17 14:34:57 by mbachar           #+#    #+#             */
+/*   Updated: 2022/11/09 21:54:03 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <string.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include "./libft/libft.h"
+void	*ft_memmove(void *dest, const void *src, size_t len)
+{
+	char	*str1;
+	char	*str2;
+	int		i;
 
-# define BUFFER_SIZE 1
-
-void	error(char *str);
-void	map_extension(char *av);
-char	*map_path(char *map);
-char	*ft_strjoin(char *s1, char *s2);
-char	*read_map(int fd);
-int		ft_strcmp(char *s1, char *s2);
-int		ft_strchr2(char *s, int c);
-
-#endif
+	str1 = (char *) src;
+	str2 = (char *) dest;
+	i = (int) len;
+	if (dest > src)
+	{
+		i--;
+		while (i >= 0)
+		{
+			str2[i] = str1[i];
+			i--;
+		}
+	}
+	else
+		ft_memcpy(dest, src, len);
+	return (dest);
+}

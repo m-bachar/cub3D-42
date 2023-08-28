@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/28 04:29:03 by mbachar          ###   ########.fr       */
+/*   Created: 2022/10/10 09:00:59 by mbachar           #+#    #+#             */
+/*   Updated: 2023/08/28 00:18:54 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-void	error(char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
+	int	sign;
+	int	output;
 
 	i = 0;
-	while (str[i])
-		write(2, &str[i++], 1);
-	exit(1);
-}
-
-int	main(int ac, char **av)
-{
-	char	**splitted;
-
-	splitted = NULL;
-	if (ac < 2)
-		error("Error: Missing map path!\n");
-	else if (ac > 2)
-		error("Error: Too many arguments!\n");
-	map_extension(av[1]);
-	splitted = ft_split(map_path(av[1]), '\n');
-	int	i = 0;
-	while (splitted[i])
-		printf("====> %s\n", splitted[i++]);
+	sign = 1;
+	output = 0;
+	while ((str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r')))
+		i++;
+	if (str[i] == '-')
+		sign *= -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		output = output * 10 + (str[i] - 48);
+		i++;
+	}
+	return (output * sign);
 }

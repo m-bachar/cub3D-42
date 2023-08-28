@@ -1,55 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/27 23:32:14 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/28 04:14:06 by mbachar          ###   ########.fr       */
+/*   Created: 2022/10/25 21:37:57 by mbachar           #+#    #+#             */
+/*   Updated: 2022/10/27 23:58:04 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char		*new;
-	int			i;
-	int			j;
+	char	*new;
+	size_t	i;
+	size_t	j;
 
-	if (!s2)
-		error("Error: Malloc failure!\n");
-	if (!s1)
-		s1 = ft_strdup("");
+	if (s1 == 0 || s2 == 0)
+		return (NULL);
 	i = 0;
-	j = 0;
-	new = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	j = ft_strlen(s1);
+	new = malloc((ft_strlen(s1) + ft_strlen(s2)) * sizeof(char) + 1);
 	if (!new)
-		error("Error: Malloc failure!\n");
+		return (NULL);
 	while (s1[i] != '\0')
 	{
 		new[i] = s1[i];
 		i++;
 	}
-	while (s2[j] != '\0')
-		new[i++] = s2[j++];
-	new[i] = '\0';
-	return (free(s1), new);
-}
-
-int	ft_strchr2(char *s, int c)
-{
-	int		i;
-
-	if (!s)
-		return (0);
 	i = 0;
-	while (s[i])
+	while (s2[i] != '\0')
 	{
-		if (s[i] == c)
-			return (1);
+		new[j] = s2[i];
 		i++;
+		j++;
 	}
-	return (0);
+	new[j] = '\0';
+	return (new);
 }
