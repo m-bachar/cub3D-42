@@ -6,7 +6,7 @@
 #    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/08/28 15:50:00 by mbachar          ###   ########.fr        #
+#    Updated: 2023/08/29 18:08:37 by mbachar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,10 @@ CUB3D		= 	cub3D
 LIBFT		=	./libft/libft.a
 SRC			= 	cub3D.c \
 				./parsing/utils.c \
-				./parsing/map.c \
-				./parsing/tools.c
+				./parsing/tools.c \
+				./parsing/map1.c \
+				./parsing/map2.c \
+				./parsing/map3.c
 
 INCLUDE		= 	cub3D.h
 CC			= 	cc
