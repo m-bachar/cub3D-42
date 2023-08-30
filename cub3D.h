@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/29 18:08:07 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/08/30 13:34:34 by benito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	error(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strchr2(char *s, int c);
 void	free_mem(char **str);
-int	    ft_strcmp(char *s1, char *s2);
+int		ft_strcmp(char *s1, char *s2);
 
 		/*	Tools.c			*/
 char	**ft_split2(char *s, char *c);
@@ -49,6 +49,6 @@ void	check_duplicated(char *map);
 void	parse_config(char *config);
 
 		/*	Map3.c			*/
-void    check_perimeter(char **map);
+void	check_perimeter(char **map);
 
 #endif

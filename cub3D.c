@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/29 18:08:23 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/08/30 14:32:27 by benito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 int	main(int ac, char **av)
 {
 	char	**splitted;
-	char	**map;
 	char	**config;
+	char	*mappath;
 	int		i;
+	// char	**map;
 
 	splitted = NULL;
+	config = NULL;
 	i = 0;
 	if (ac < 2)
 		error("Error: Missing map path !\n");
@@ -27,16 +29,19 @@ int	main(int ac, char **av)
 		error("Error: Too many arguments !\n");
 
 	/*	Map1.c	*/
+	mappath = map_path(av[1]);
 	map_extension(av[1]);
-	splitted = ft_split(map_path(av[1]), '\n');
+	splitted = ft_split(mappath, '\n');
 	config = extract_config(splitted);
-	map = extract_map(splitted);
+	// map = extract_map(splitted);
 
 	/*	Map2.c	*/
 	while (config[i])
 		parse_config(config[i++]);
-	check_duplicated(map_path(av[1]));
+	check_duplicated(mappath);
 
 	/*	Map3.c	*/
-	check_perimeter(map);
+	// check_perimeter(map);
+	free_mem(splitted);
+	free(config);
 }

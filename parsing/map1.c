@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 00:44:57 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/29 17:34:16 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/08/30 11:53:03 by benito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ void	map_extension(char *map)
 
 char	*map_path(char *map)
 {
-	int	i;
 	int	fd;
 
-	i = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1 && !access(map, F_OK))
 		error("Error: Permission denied !\n");

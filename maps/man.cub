@@ -1,10 +1,10 @@
-C 137,255,240
+C 137,250,300
 F 30,250,30
 
-NO ./XPM/no.xpm
-SO ./XPM/so.xpm
-EA ./XPM/ea.xpm
-WE ./XPM/we.xpm
+NO ./xpm/no.xpm
+SO ./xpm/so.xpm
+EA ./xpm/ea.xpm
+WE ./xpm/we.xp
 
 111111111111111
 100000100000001

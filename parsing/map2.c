@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 17:34:35 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/29 17:34:38 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/08/30 13:02:33 by benito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	**extract_map(char **splitted)
 		map[j++] = splitted[i++];
 	map[j] = NULL;
 	return (map);
-	// free splitted?
 }
 
 void	count_commas(char *str)
@@ -136,7 +135,7 @@ void	check_xpm_path(char *str, int i)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		error("Error: Unable to access xpm file !\n");
-	// free path?
+	free(path);
 }
 
 void	check_duplicated(char *map)
@@ -158,11 +157,14 @@ void	check_duplicated(char *map)
 		if (!ft_strcmp(splitted[i], splitted[j]) && i != j)
 		{
 			free_mem(splitted);
+			free(map);
 			error("Error: Duplicated components !\n");
 		}
 		else
 			j += 2;
 	}
+	free_mem(splitted);
+	free(map);
 }
 
 void	parse_config(char *config)
