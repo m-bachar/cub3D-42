@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 17:35:11 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/31 04:24:17 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/08/31 16:27:19 by benito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,11 @@ void	space_in_between(char **map)
 	while (map[j])
 	{
 		while (map[j][i])
-		{	
+		{
 			while (map[j][i] && map[j][i] == ' ') // Add whitespaces
 				i++;
 			while (map[j][i] && map[j][i] != ' ') // Add whitespaces
 				i++;
-			
 		}
 		i = 0;
 		j++;

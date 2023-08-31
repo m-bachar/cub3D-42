@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/31 02:15:11 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/08/31 17:00:15 by benito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,18 @@ int	main(int ac, char **av)
 	mappath = map_path(av[1]);
 	map_extension(av[1]);
 	splitted = ft_split(mappath, '\n');
+	while (splitted[i])
+		i++;
+	if (i < 9)
+	{
+		free_mem(splitted);
+		error("Error: Incomplete map !\n");
+	}
 	config = extract_config(splitted);
 	map = extract_map(splitted);
 
 	/*	Map2.c	*/
+	i = 0;
 	while (config[i])
 		parse_config(config[i++]);
 	check_duplicated(mappath);
@@ -43,7 +51,8 @@ int	main(int ac, char **av)
 	/*	Map3.c	*/
 	first_and_last_lines(map);
 	check_perimeter(map);
-	space_in_between(map);
+	// space_in_between(map);
 	free_mem(splitted);
+	free(map);
 	free(config);
 }
