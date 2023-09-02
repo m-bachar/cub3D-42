@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/31 02:15:19 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/02 04:01:25 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 
 # define BUFFER_SIZE 1
 
+typedef struct cub3D
+{
+	char	*c;
+	char	*f;
+	char	*no;
+	char	*so;
+	char	*ea;
+	char	*we;
+}	t_cub3D;
+
 		/*	Utils.c			*/
 void	error(char *str);
 char	*ft_strjoin(char *s1, char *s2);
@@ -36,21 +46,5 @@ char	**ft_split2(char *s, char *c);
 void	map_extension(char *av);
 char	*map_path(char *map);
 char	*read_map(int fd);
-
-		/*	Map2.c	*/
-char	**extract_config(char **splitted);
-char	**extract_map(char **splitted);
-void	count_commas(char *str);
-void	check_rgb_syntax(char *str, int i);
-int		check_value(char *str);
-void	check_rgb_values(char *str, int i);
-void	check_xpm_path(char *str, int i);
-void	check_duplicated(char *map);
-void	parse_config(char *config);
-
-		/*	Map3.c			*/
-void	check_perimeter(char **map);
-void	first_and_last_lines(char **map);
-void	space_in_between(char **map);
 
 #endif

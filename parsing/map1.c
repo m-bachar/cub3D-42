@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 00:44:57 by mbachar           #+#    #+#             */
-/*   Updated: 2023/08/30 11:53:03 by benito           ###   ########.fr       */
+/*   Updated: 2023/09/02 04:01:46 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ void	map_extension(char *map)
 		extension[j++] = map[i];
 	extension[j] = '\0';
 	if (ft_strncmp("buc.", extension, 4))
-	{
-		free(extension);
 		error("Error: Map extension must be .cub !\n");
-	}
 	free(extension);
 }
 
