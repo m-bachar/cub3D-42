@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/03 05:10:24 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/03 06:56:23 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	main(int ac, char **av)
 	config = extract_config(fullmap);
 	map = extract_map(fullmap);
 	parse_config(config);
-	// parse_map(map);
+	empty_line(map); // To be put inside parse_map()
+	parse_map(map);
 	printf("%s\n", map);
 }

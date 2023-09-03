@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/03 05:14:06 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/03 06:48:03 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ void	parse_c_f(char *cf);
 void	check_duplicated(char **config);
 void	parse_position(char *position);
 void	parse_config(char *config);
+
+		/*	Map.c			*/
+void	empty_line(char *map);
 
 		/*	Scene.c			*/
 void	map_extension(char *av);

@@ -6,7 +6,7 @@
 #    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/09/03 04:47:38 by mbachar          ###   ########.fr        #
+#    Updated: 2023/09/03 06:48:42 by mbachar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ CUB3D		= 	cub3D
 LIBFT		=	./libft/libft.a
 SRC			= 	cub3D.c \
 				./parsing/config.c \
+				./parsing/map.c \
 				./parsing/scene.c \
 				./parsing/tools.c \
 				./parsing/tweaked_funcs.c \
