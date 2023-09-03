@@ -66,9 +66,9 @@
     {
       "id": "pointer:pointer",
       "typeName": "pointer",
-      "x": -59.00109778092887,
-      "y": -136.6157532077697,
-      "lastActivityTimestamp": 1693326122411,
+      "x": 573.3469479955584,
+      "y": -114.89069164958516,
+      "lastActivityTimestamp": 1693712622300,
       "meta": {}
     },
     {
@@ -79,9 +79,9 @@
       "typeName": "page"
     },
     {
-      "x": 58.7373318142361,
-      "y": 305.6363247441435,
-      "z": 0.9749606504945895,
+      "x": 25.942297609910383,
+      "y": 626.4466608878664,
+      "z": 1,
       "meta": {},
       "id": "camera:page:DEGFcAIgIY4E5VdPH77b0",
       "typeName": "camera"
@@ -119,8 +119,8 @@
       "screenBounds": {
         "x": 0,
         "y": 0,
-        "w": 958.3333129882812,
-        "h": 1120.833251953125
+        "w": 779.1666259765625,
+        "h": 920.8333129882812
       },
       "zoomBrush": null,
       "isGridMode": false,
@@ -132,29 +132,6 @@
       "id": "instance:instance",
       "currentPageId": "page:DEGFcAIgIY4E5VdPH77b0",
       "typeName": "instance"
-    },
-    {
-      "x": 263.29835638178884,
-      "y": -182.22737873759786,
-      "rotation": 0,
-      "isLocked": false,
-      "opacity": 1,
-      "meta": {},
-      "id": "shape:oGUf88xHg67uSGvVM4hPV",
-      "type": "text",
-      "props": {
-        "color": "red",
-        "size": "m",
-        "w": 200.6809844970703,
-        "text": "Last RGB value !",
-        "font": "draw",
-        "align": "middle",
-        "autoSize": true,
-        "scale": 1
-      },
-      "parentId": "page:DEGFcAIgIY4E5VdPH77b0",
-      "index": "a6",
-      "typeName": "shape"
     }
   ]
 }

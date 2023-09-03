@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/02 04:01:25 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/03 05:14:06 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,30 @@ typedef struct cub3D
 	char	*we;
 }	t_cub3D;
 
-		/*	Utils.c			*/
-void	error(char *str);
-char	*ft_strjoin(char *s1, char *s2);
-int		ft_strchr2(char *s, int c);
-void	free_mem(char **str);
-int		ft_strcmp(char *s1, char *s2);
+		/*	Config.c		*/
+void	check_rgb_values(char **cf);
+void	count_elements(char **config);
+void	parse_c_f(char *cf);
+void	check_duplicated(char **config);
+void	parse_position(char *position);
+void	parse_config(char *config);
+
+		/*	Scene.c			*/
+void	map_extension(char *av);
+char	*map_path(char *map);
+char	*read_map(int fd);
 
 		/*	Tools.c			*/
 char	**ft_split2(char *s, char *c);
 
-		/*	Map1.c			*/
-void	map_extension(char *av);
-char	*map_path(char *map);
-char	*read_map(int fd);
+		/*	Tweaked_funcs.c	*/
+char	*ft_strjoin(char *s1, char *s2);
+int		ft_strchr2(char *s, int c);
+int		ft_strcmp(char *s1, char *s2);
+
+		/*	Utils.c			*/
+void	free_mem(char **str);
+int		doublearray_size(char **array);
+void	error(char *str);
 
 #endif
