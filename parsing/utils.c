@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:14 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/03 00:19:13 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/04 22:46:09 by benito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,27 @@ void	error(char *str)
 	while (str[i])
 		write(2, &str[i++], 1);
 	exit(1);
+}
+
+int	isplayer(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (0);
+	return (1);
+}
+
+int	sizeof_map(char *map)
+{
+	int	i;
+	int	map_size;
+
+	i = 0;
+	map_size = 0;
+	while (map[i])
+	{
+		if (map[i] == '\n')
+			map_size++;
+		i++;
+	}
+	return (map_size);
 }

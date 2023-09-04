@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
+#    By: benito <benito@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/09/03 06:48:42 by mbachar          ###   ########.fr        #
+#    Updated: 2023/09/04 22:54:36 by benito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ LIBFT		=	./libft/libft.a
 SRC			= 	cub3D.c \
 				./parsing/config.c \
 				./parsing/map.c \
+				./parsing/parsing.c \
 				./parsing/scene.c \
 				./parsing/tools.c \
 				./parsing/tweaked_funcs.c \
@@ -23,7 +24,7 @@ SRC			= 	cub3D.c \
 INCLUDE		= 	cub3D.h
 CC			= 	cc
 OBJ			= 	$(SRC:.c=.o)
-CFLAGS		= 	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror #-g -fsanitize=address
 
 all : $(CUB3D)
 

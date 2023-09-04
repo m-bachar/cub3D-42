@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/03 06:48:03 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/04 22:46:17 by benito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,20 @@ void	count_elements(char **config);
 void	parse_c_f(char *cf);
 void	check_duplicated(char **config);
 void	parse_position(char *position);
-void	parse_config(char *config);
 
 		/*	Map.c			*/
 void	empty_line(char *map);
+void	first_last_lines(char **map);
+void	sides(char **map);
+void	find_player(char **map);
+void	check_surrounding(char **map);
+
+		/*	Parsing.c		*/
+char	*extract_config(char *fullmap);
+char	*extract_map(char *fullmap);
+void	parse_config(char *config);
+void	parse_map(char *map);
+void	parsing(char *av);
 
 		/*	Scene.c			*/
 void	map_extension(char *av);
@@ -60,5 +70,7 @@ int		ft_strcmp(char *s1, char *s2);
 void	free_mem(char **str);
 int		doublearray_size(char **array);
 void	error(char *str);
+int		isplayer(char c);
+int		sizeof_map(char *map);
 
 #endif
