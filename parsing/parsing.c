@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:37:14 by benito            #+#    #+#             */
-/*   Updated: 2023/09/04 22:45:30 by benito           ###   ########.fr       */
+/*   Updated: 2023/09/07 23:39:49 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*extract_map(char *fullmap)
 	return (map);
 }
 
-void	parse_config(char *config)
+void	parse_config(char *config, t_cub3D *cub3d)
 {
 	char	**splitted;
 	int		i;
@@ -77,10 +77,10 @@ void	parse_config(char *config)
 			parse_position(splitted[i]);
 		i++;
 	}
-	free_mem(splitted);
+	cub3d->config = splitted;
 }
 
-void	parse_map(char *map)
+void	parse_map(char *map, t_cub3D *cub3d)
 {
 	char	**splitted;
 
@@ -90,21 +90,25 @@ void	parse_map(char *map)
 	sides(splitted);
 	find_player(splitted);
 	check_surrounding(splitted);
-	free_mem(splitted);
+	cub3d->map = splitted;
 }
 
-void	parsing(char *av)
+void	parsing(char *av, t_cub3D *cub3d)
 {
 	char	*fullmap;
 	char	*map;
 	char	*config;
 
 	fullmap = map_path(av);
+	if (!fullmap || !fullmap[0])
+		error("Error: Empty file !\n");
 	map_extension(av);
 	config = extract_config(fullmap);
 	map = extract_map(fullmap);
-	parse_config(config);
-	parse_map(map);
+	if (!config[0] || !map[0])
+		error("Error: Missing map or config !\n");
+	parse_config(config, cub3d);
+	parse_map(map, cub3d);
 	printf("Success !\n");
 	free(map);
 	free(config);

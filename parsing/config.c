@@ -6,7 +6,7 @@
 /*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 00:16:18 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/04 23:23:04 by benito           ###   ########.fr       */
+/*   Updated: 2023/09/06 18:55:34 by benito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 void	check_rgb_values(char **cf)
 {
-	int	i;
 	int	value;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (cf[i])
 	{
+		j = 0;
+		while (cf[i][j])
+		{
+			if (!ft_isdigit(cf[i][j]))
+				error("Error: RGB values must contain only digits !\n");
+			j++;
+		}
 		value = ft_atoi(cf[i]);
 		if (value >= 0 && value <= 255)
 			i++;

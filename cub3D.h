@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/04 22:46:17 by benito           ###   ########.fr       */
+/*   Updated: 2023/09/07 23:40:20 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,19 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <mlx.h>
 # include "./libft/libft.h"
 
 # define BUFFER_SIZE 1
 
 typedef struct cub3D
 {
-	char	*c;
-	char	*f;
-	char	*no;
-	char	*so;
-	char	*ea;
-	char	*we;
+	char	**map;
+	char	**config;
+	void	*mlx;
+	void	*window;
+	int		x;
+	int		y;
 }	t_cub3D;
 
 		/*	Config.c		*/
@@ -49,9 +50,9 @@ void	check_surrounding(char **map);
 		/*	Parsing.c		*/
 char	*extract_config(char *fullmap);
 char	*extract_map(char *fullmap);
-void	parse_config(char *config);
-void	parse_map(char *map);
-void	parsing(char *av);
+void	parse_config(char *config, t_cub3D *cub3d);
+void	parse_map(char *map, t_cub3D *cub3d);
+void	parsing(char *av, t_cub3D *cub3d);
 
 		/*	Scene.c			*/
 void	map_extension(char *av);

@@ -6,7 +6,7 @@
 /*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 05:12:11 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/04 23:57:35 by benito           ###   ########.fr       */
+/*   Updated: 2023/09/06 19:31:48 by benito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	empty_line(char *map)
 		i++;
 	while (map[i])
 	{
-		if (map[i] == '\n' && map[i + 1] == '\n')
+		if (map[i] == '\n' && (map[i + 1] == '\n' || !map[i + 1]))
 			error("Error: Empty line in the map !\n");
 		i++;
 	}

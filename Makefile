@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: benito <benito@student.42.fr>              +#+  +:+       +#+         #
+#    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/09/04 22:54:36 by benito           ###   ########.fr        #
+#    Updated: 2023/09/07 23:26:04 by mbachar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,16 +24,16 @@ SRC			= 	cub3D.c \
 INCLUDE		= 	cub3D.h
 CC			= 	cc
 OBJ			= 	$(SRC:.c=.o)
-CFLAGS		= 	-Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror -g -fsanitize=address
 
 all : $(CUB3D)
 
 %.o : %.c $(INCLUDE)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(CUB3D): $(OBJ)
 	cd ./libft && make
-	$(CC) $(CFLAGS) $(OBJ) -o $(CUB3D) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(CUB3D) $(LIBFT)
 
 clean :
 	cd ./libft && make clean

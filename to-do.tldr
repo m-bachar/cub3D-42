@@ -66,9 +66,9 @@
     {
       "id": "pointer:pointer",
       "typeName": "pointer",
-      "x": 573.3469479955584,
-      "y": -114.89069164958516,
-      "lastActivityTimestamp": 1693712622300,
+      "x": 566.3072701569396,
+      "y": -45.15022661472335,
+      "lastActivityTimestamp": 1694136339131,
       "meta": {}
     },
     {
@@ -79,9 +79,9 @@
       "typeName": "page"
     },
     {
-      "x": 25.942297609910383,
-      "y": 626.4466608878664,
-      "z": 1,
+      "x": 8.198740511000944,
+      "y": 745.6546981270764,
+      "z": 0.9199951171875,
       "meta": {},
       "id": "camera:page:DEGFcAIgIY4E5VdPH77b0",
       "typeName": "camera"
@@ -132,6 +132,167 @@
       "id": "instance:instance",
       "currentPageId": "page:DEGFcAIgIY4E5VdPH77b0",
       "typeName": "instance"
+    },
+    {
+      "x": 43.628036807263015,
+      "y": -173.82572541849643,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "id": "shape:pks04lrACdSpOwWo3w2jg",
+      "type": "text",
+      "props": {
+        "color": "red",
+        "size": "m",
+        "w": 182.64430236816406,
+        "text": "FC 137,250,250\nCF 30,1,200",
+        "font": "draw",
+        "align": "start",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:DEGFcAIgIY4E5VdPH77b0",
+      "index": "a1",
+      "typeName": "shape"
+    },
+    {
+      "x": 122.34125979906224,
+      "y": -368.25934184824484,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "id": "shape:_MNOAimQjc2CZaV3i30FD",
+      "type": "text",
+      "props": {
+        "color": "red",
+        "size": "m",
+        "w": 45.352210998535156,
+        "text": "111\n1W1\n1d1\n111",
+        "font": "draw",
+        "align": "start",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:DEGFcAIgIY4E5VdPH77b0",
+      "index": "a2",
+      "typeName": "shape"
+    },
+    {
+      "x": 139.70512088304662,
+      "y": -594.3606754664089,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "id": "shape:r1spMl7zp_0USUvOd5Xe_",
+      "type": "text",
+      "props": {
+        "color": "red",
+        "size": "m",
+        "w": 44.352210998535156,
+        "text": "111\n1 1\n1 1\n1W1\n111",
+        "font": "draw",
+        "align": "start",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:DEGFcAIgIY4E5VdPH77b0",
+      "index": "a3",
+      "typeName": "shape"
+    },
+    {
+      "x": 19.185608706532946,
+      "y": -645.3751808527614,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "id": "shape:-N3-dj9ZZlAts_RNfGDMf",
+      "type": "text",
+      "props": {
+        "color": "red",
+        "size": "m",
+        "w": 601.5045166015625,
+        "text": "Check if player is surrounded by walls and zeros",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:DEGFcAIgIY4E5VdPH77b0",
+      "index": "a4",
+      "typeName": "shape"
+    },
+    {
+      "x": 24.29989073476319,
+      "y": -410.4455822799621,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "id": "shape:0nZSMkdW7gZINwkV19enD",
+      "type": "text",
+      "props": {
+        "color": "red",
+        "size": "m",
+        "w": 509.132568359375,
+        "text": "Check if there is another char in the map",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:DEGFcAIgIY4E5VdPH77b0",
+      "index": "a5",
+      "typeName": "shape"
+    },
+    {
+      "x": 16.891975950382317,
+      "y": -224.54982026526048,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "id": "shape:DeZYc1577sJRJHtN6TZEk",
+      "type": "text",
+      "props": {
+        "color": "red",
+        "size": "m",
+        "w": 540.9793701171875,
+        "text": "Check if there is another char after C and F",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:DEGFcAIgIY4E5VdPH77b0",
+      "index": "a6",
+      "typeName": "shape"
+    },
+    {
+      "x": 27.88449662024908,
+      "y": -67.37616105553721,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "id": "shape:Kf7f56ocvEZjDKku-5Gyx",
+      "type": "text",
+      "props": {
+        "color": "red",
+        "size": "m",
+        "w": 426.04339599609375,
+        "text": "Check number of commas in config",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:DEGFcAIgIY4E5VdPH77b0",
+      "index": "a7",
+      "typeName": "shape"
     }
   ]
 }
