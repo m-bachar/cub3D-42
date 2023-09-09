@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/07 23:40:20 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/09 18:22:46 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	first_last_lines(char **map);
 void	sides(char **map);
 void	find_player(char **map);
 void	check_surrounding(char **map);
+void	check_map_content(char **map);
 
 		/*	Parsing.c		*/
 char	*extract_config(char *fullmap);

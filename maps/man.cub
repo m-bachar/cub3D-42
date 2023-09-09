@@ -1,6 +1,5 @@
 C 137,250,250
 F 30,250,200
-
 NO ./xpm/no.xpm
 SO ./xpm/so.xpm
 WE ./xpm/so.xpm
@@ -10,6 +9,6 @@ EA ./xpm/so.xpm
 
 111
 101
-111                           1
-1W1
-111
+1111
+110W1
+11111

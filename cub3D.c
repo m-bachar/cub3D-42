@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/08 00:22:24 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/09 19:08:53 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	pixels(t_cub3D *cub3d, int color, int j, int i)
 {
 	int	x;
 
-	cub3d->x = i * 9;
-	cub3d->y = j * 9;
+	cub3d->x = i * 32;
+	cub3d->y = j * 32;
 	x = cub3d->x;
-	while (cub3d->y < (j + 1) * 9)
+	while (cub3d->y < (j + 1) * 32)
 	{
 		cub3d->x = x;
-		while (cub3d->x < (i + 1) * 9)
+		while (cub3d->x < (i + 1) * 32)
 		{
 			mlx_pixel_put(cub3d->mlx, cub3d->window, cub3d->x, cub3d->y, color);
 			cub3d->x++;

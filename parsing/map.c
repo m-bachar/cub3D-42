@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 05:12:11 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/06 19:31:48 by benito           ###   ########.fr       */
+/*   Updated: 2023/09/09 18:22:38 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void	check_surrounding(char **map)
 		while (map[j][i])
 		{
 			if (map[j][i] == '0'
-			&& ((map[j][i + 1] != '1' && map[j][i + 1] != '0'
-				&& isplayer(map[j][i + 1]))
+			&& ((map[j][i + 1] != '1'
+				&& map[j][i + 1] != '0' && isplayer(map[j][i + 1]))
 			|| (map[j][i - 1] != '1' && map[j][i - 1] != '0'
 				&& isplayer(map[j][i - 1]))
 			|| (map[j + 1][i] != '1' && map[j + 1][i] != '0'
@@ -122,6 +122,28 @@ void	check_surrounding(char **map)
 			|| (map[j - 1][i] != '1' && map[j - 1][i] != '0'
 				&& isplayer(map[j - 1][i]))))
 				error("Error: Map must be surrounded by walls !\n");
+			i++;
+		}
+		j++;
+	}
+}
+
+void	check_map_content(char **map)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (map[j])
+	{
+		i = 0;
+		while (map[j][i])
+		{
+			if (map[j][i] != '1' && map[j][i] != '0'
+				&& map[j][i] != 'N' && map[j][i] != 'S'
+				&& map[j][i] != 'W' && map[j][i] != 'E')
+				error(\
+				"Error: A different element has been detected in the map !\n");
 			i++;
 		}
 		j++;

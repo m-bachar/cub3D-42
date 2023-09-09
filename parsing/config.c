@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 00:16:18 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/06 18:55:34 by benito           ###   ########.fr       */
+/*   Updated: 2023/09/09 21:54:03 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,14 @@ void	parse_c_f(char *cf)
 {
 	char	**splitted;
 	int		size;
+	int		i;
 
+	i = 1;
+	while (cf[i] && cf[i] == ' ') // Add whitespaces
+		i++;
+	// Count commas
+	if (cf[i] == 'C' || cf[i] == 'F')
+		error("Error: RGB syntax must comply with (0-255),(0-255),(0-255) !\n");
 	splitted = ft_split2(cf, " CF,"); // Add whitespaces
 	size = doublearray_size(splitted);
 	if (size != 3)
@@ -106,6 +113,8 @@ void	parse_position(char *position)
 	int		fd;
 
 	splitted = ft_split2(position, " "); // Add whitespaces
+	// Check file extension here
+	// Check files content here
 	fd = open(splitted[1], O_RDWR);
 	if (fd == -1 && !access(splitted[1], F_OK))
 	{
