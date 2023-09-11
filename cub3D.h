@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/09 18:22:46 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/11 07:09:00 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ typedef struct cub3D
 	void	*window;
 	int		x;
 	int		y;
+	//ouss
+	int size_player;
+	int turn_directions; // -1 = left , +1 of right (index indiction if we will decrease or increase the angle)
+	int walk_directions; // -1 = baack , +1 of front,  0 stop
+	int rotation_angle; //pi/2 initilizing where player looks for 1st time
+	int speed;//3
+	int rotation_speed;//3*(pi/180) 3 degress per frame 
 }	t_cub3D;
 
 		/*	Config.c		*/

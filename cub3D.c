@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/09 19:08:53 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/11 07:31:16 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,31 @@ void	pixels(t_cub3D *cub3d, int color, int j, int i)
 	}
 }
 
+void draw_player(t_cub3D *cub3d, int color, int i, int j, int radius)
+{
+
+    int center_x = i * 32 + 16;
+    int center_y = j * 32 + 16;
+
+    int x = center_x - radius;
+    int y = center_y - radius;
+
+    while (x <= center_x + radius)
+    {
+        y = center_y - radius;
+        while (y <= center_y + radius)
+        {
+            int dx = x - center_x;
+            int dy = y - center_y;
+            if (dx * dx + dy * dy <= radius * radius)
+            {
+                mlx_pixel_put(cub3d->mlx, cub3d->window, x, y, color);
+            }
+            y++;
+        }
+        x++;
+    }
+}
 int	main(int ac, char **av)
 {
 	t_cub3D	cub3d;
@@ -54,7 +79,10 @@ int	main(int ac, char **av)
 		{
 			if (cub3d.map[j][i] == 'N' || cub3d.map[j][i] == 'S'
 				|| cub3d.map[j][i] == 'W' || cub3d.map[j][i] == 'E')
-				pixels(&cub3d, 0xEB634E, j, i);
+				{
+					pixels(&cub3d, 0xFFFFFF, j, i);
+					draw_player(&cub3d, 0xEB634E, i, j, 5);
+				}
 			else if (cub3d.map[j][i] == ' ' || cub3d.map[j][i] == '1')
 				pixels(&cub3d, 0x808080, j, i);
 			else
