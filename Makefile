@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
+#    By: obouya <obouya@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/09/13 01:57:01 by mbachar          ###   ########.fr        #
+#    Updated: 2023/09/13 23:43:02 by obouya           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,11 @@ SRC			= 	cub3D.c \
 				./parsing/tools.c \
 				./parsing/tweaked_funcs.c \
 				./parsing/utils.c \
-				./movements/movements.c
+				./movements/movements.c\
+				./movements/player.c\
 
 INCLUDE		= 	./headers/cub3D.h
-CC			= 	cc
+CC			= 	cc -Ofast
 OBJ			= 	$(SRC:.c=.o)
 CFLAGS		= 	-Wall -Wextra -Werror -g -fsanitize=address
 

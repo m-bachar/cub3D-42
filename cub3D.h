@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/13 19:49:24 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/13 23:42:01 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void	key(mlx_key_data_t keydata, void *param);
 void	player_position(void);
 void	pixels(int color, int j, int i);
 void	draw_map(void);
-
+//----------------->>mouvements/player.c
+void	draw_player(int color, int i, int j, int radius);
 #endif
