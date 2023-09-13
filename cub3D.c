@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/13 19:53:56 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/13 22:46:40 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	player_position()
 		{
 			if (!isplayer(g_cub3d.map[j][i]))
 			{
-				g_cub3d.xp = i;
-				g_cub3d.yp = j;
+				g_cub3d.xp = i * 32;
+				g_cub3d.yp = j * 32;
 				return ;
 			}
 			i++;
@@ -56,8 +56,8 @@ void	pixels(int color, int j, int i)
 
 void	draw_player(int color, int i, int j, int radius)
 {
-	int center_x = i * 32 + 16;
-	int center_y = j * 32 + 16;
+	int center_x = i;
+	int center_y = j;
 
 	int x = center_x - radius;
 	int y = center_y - radius;
@@ -71,7 +71,7 @@ void	draw_player(int color, int i, int j, int radius)
 			int dy = y - center_y;
 			if (dx * dx + dy * dy <= radius * radius)
 			{
-				mlx_put_pixel(g_cub3d.img, g_cub3d.x, g_cub3d.y, color);
+				mlx_put_pixel(g_cub3d.img, x, y, color);
 			}
 			y++;
 		}
@@ -94,7 +94,8 @@ void	draw_map(void)
 				|| g_cub3d.map[j][i] == 'W' || g_cub3d.map[j][i] == 'E')
 			{
 				pixels(0xFFFFFFFF, j, i);
-				draw_player(0xFF0000FF, i, j, 5);
+				draw_player(0xFF0000FF, g_cub3d.xp, g_cub3d.yp, 8);
+				//printf(" x1 = %d  y1 = %d\n",g_cub3d.xp, g_cub3d.yp);
 			}
 			else if (g_cub3d.map[j][i] == ' ' || g_cub3d.map[j][i] == '1')
 				pixels(0x808080FF, j, i);
@@ -120,6 +121,7 @@ int	main(int ac, char **av)
 	g_cub3d.mlx = mlx_init(1920, 1080, "Cub3D", 1);
 	g_cub3d.img = mlx_new_image(g_cub3d.mlx, 1920, 1080);
 	mlx_image_to_window(g_cub3d.mlx, g_cub3d.img, 0, 0);
+	player_position();
 	draw_map();
 	mlx_key_hook(g_cub3d.mlx, &key, NULL);
 	mlx_loop(g_cub3d.mlx);
