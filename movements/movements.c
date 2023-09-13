@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 02:05:44 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/13 05:46:53 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/13 19:52:06 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	left_arrow(void)
 	printf("X = %d\tNew_X = %d\n", x, new_x);
 	if (new_x < 0)
 		return ;
-	// pixels(0x808080FF, g_cub3d.y, x);
-	pixels(0xFF0000FF, g_cub3d.y, new_x);
+	draw_map();
 }
 
 void	key(mlx_key_data_t keydata, void *param)
@@ -34,7 +33,7 @@ void	key(mlx_key_data_t keydata, void *param)
 		exit(0);
 	if (keydata.key == MLX_KEY_LEFT)
 	{
-		// left_arrow(); It segfaults, dnt use it :)
+		left_arrow(); // It segfaults, dnt use it :)
 		printf("Left arrow key has been pressed !\n");
 	}
 	if (keydata.key == MLX_KEY_RIGHT)

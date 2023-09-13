@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/13 02:44:21 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/13 19:53:56 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	pixels(int color, int j, int i)
 	}
 }
 
-void draw_player(int color, int i, int j, int radius)
+void	draw_player(int color, int i, int j, int radius)
 {
 	int center_x = i * 32 + 16;
 	int center_y = j * 32 + 16;
@@ -78,12 +78,36 @@ void draw_player(int color, int i, int j, int radius)
 		x++;
 	}
 }
-int	main(int ac, char **av)
+
+void	draw_map(void)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	j = 0;
+	while (g_cub3d.map[j])
+	{
+		i = 0;
+		while (g_cub3d.map[j][i])
+		{
+			if (g_cub3d.map[j][i] == 'N' || g_cub3d.map[j][i] == 'S'
+				|| g_cub3d.map[j][i] == 'W' || g_cub3d.map[j][i] == 'E')
+			{
+				pixels(0xFFFFFFFF, j, i);
+				draw_player(0xFF0000FF, i, j, 5);
+			}
+			else if (g_cub3d.map[j][i] == ' ' || g_cub3d.map[j][i] == '1')
+				pixels(0x808080FF, j, i);
+			else
+				pixels(0xFFFFFFFF, j, i);
+			i++;
+		}
+		j++;
+	}
+}
+
+int	main(int ac, char **av)
+{
 	g_cub3d.x = 0;
 	g_cub3d.y = 0;
 	g_cub3d.xp = 0;
@@ -96,25 +120,7 @@ int	main(int ac, char **av)
 	g_cub3d.mlx = mlx_init(1920, 1080, "Cub3D", 1);
 	g_cub3d.img = mlx_new_image(g_cub3d.mlx, 1920, 1080);
 	mlx_image_to_window(g_cub3d.mlx, g_cub3d.img, 0, 0);
-	while (g_cub3d.map[j])
-	{
-		i = 0;
-		while (g_cub3d.map[j][i])
-		{
-			if (g_cub3d.map[j][i] == 'N' || g_cub3d.map[j][i] == 'S'
-				|| g_cub3d.map[j][i] == 'W' || g_cub3d.map[j][i] == 'E')
-			{
-				pixels(0xFF0000FF, j, i);
-				// draw_player(, 0xFF0000FF, i, j, 5);
-			}
-			else if (g_cub3d.map[j][i] == ' ' || g_cub3d.map[j][i] == '1')
-				pixels(0x808080FF, j, i);
-			else
-				pixels(0xFFFFFFFF, j, i);
-			i++;
-		}
-		j++;
-	}
+	draw_map();
 	mlx_key_hook(g_cub3d.mlx, &key, NULL);
 	mlx_loop(g_cub3d.mlx);
 	mlx_terminate(g_cub3d.mlx);

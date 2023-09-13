@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/13 02:42:58 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/13 19:49:24 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int		sizeof_map(char *map);
 void	key(mlx_key_data_t keydata, void *param);
 void	player_position(void);
 void	pixels(int color, int j, int i);
+void	draw_map(void);
 
 #endif
