@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 05:12:11 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/09 18:22:38 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/12 00:11:49 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,8 @@ void	check_map_content(char **map)
 		{
 			if (map[j][i] != '1' && map[j][i] != '0'
 				&& map[j][i] != 'N' && map[j][i] != 'S'
-				&& map[j][i] != 'W' && map[j][i] != 'E')
+				&& map[j][i] != 'W' && map[j][i] != 'E'
+				&& map[j][i] != ' ') // Add whitespaces
 				error(\
 				"Error: A different element has been detected in the map !\n");
 			i++;

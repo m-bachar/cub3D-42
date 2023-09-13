@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/11 07:09:00 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/13 02:42:58 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,32 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <mlx.h>
+# include "./headers/include/MLX42/MLX42.h"
+# include <math.h>
 # include "./libft/libft.h"
 
 # define BUFFER_SIZE 1
 
 typedef struct cub3D
 {
-	char	**map;
-	char	**config;
-	void	*mlx;
-	void	*window;
-	int		x;
-	int		y;
+	char		**map;
+	char		**config;
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	int			x;
+	int			y;
+	int			xp;
+	int			yp;
 	//ouss
-	int size_player;
-	int turn_directions; // -1 = left , +1 of right (index indiction if we will decrease or increase the angle)
-	int walk_directions; // -1 = baack , +1 of front,  0 stop
-	int rotation_angle; //pi/2 initilizing where player looks for 1st time
-	int speed;//3
-	int rotation_speed;//3*(pi/180) 3 degress per frame 
+	int 		size_player;
+	int 		turn_directions; // -1 = left , +1 of right (index indiction if we will decrease or increase the angle)
+	int 		walk_directions; // -1 = baack , +1 of front,  0 stop
+	int 		rotation_angle; //pi/2 initilizing where player looks for 1st time
+	int 		speed;//3
+	int 		rotation_speed;//3*(pi/180) 3 degress per frame 
 }	t_cub3D;
+
+t_cub3D g_cub3d;
 
 		/*	Config.c		*/
 void	check_rgb_values(char **cf);
@@ -58,9 +63,9 @@ void	check_map_content(char **map);
 		/*	Parsing.c		*/
 char	*extract_config(char *fullmap);
 char	*extract_map(char *fullmap);
-void	parse_config(char *config, t_cub3D *cub3d);
-void	parse_map(char *map, t_cub3D *cub3d);
-void	parsing(char *av, t_cub3D *cub3d);
+void	parse_config(char *config);
+void	parse_map(char *map);
+void	parsing(char *av);
 
 		/*	Scene.c			*/
 void	map_extension(char *av);
@@ -81,5 +86,10 @@ int		doublearray_size(char **array);
 void	error(char *str);
 int		isplayer(char c);
 int		sizeof_map(char *map);
+
+		/*	Should be put in a seperate file	*/
+void	key(mlx_key_data_t keydata, void *param);
+void	player_position(void);
+void	pixels(int color, int j, int i);
 
 #endif
