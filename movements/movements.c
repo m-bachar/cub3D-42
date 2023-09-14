@@ -6,51 +6,50 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 02:05:44 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/13 23:49:00 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/15 00:21:36 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	left_arrow(void)
+void	left_arrow(t_cub3D *cub3d)
 {
-	g_cub3d.xp -= 1 * g_cub3d.speed;
-	if (g_cub3d.xp < 0)
+	cub3d->xp -= 1 * cub3d->speed;
+	if (cub3d->xp < 0)
 		return ;
 }
 
-void	right_arrow(void)
+void	right_arrow(t_cub3D *cub3d)
 {
-		mlx_image_to_window(g_cub3d.mlx, g_cub3d.img, 0, 0);
-	g_cub3d.xp += 1 * g_cub3d.speed;
-	if (g_cub3d.xp < 0)
+	cub3d->xp += 1 * cub3d->speed;
+	if (cub3d->xp < 0)
 		return ;
 }
-void	up_arrow(void)
+void	up_arrow(t_cub3D *cub3d)
 {
-	g_cub3d.yp -= 1 * g_cub3d.speed;
-	if (g_cub3d.yp < 0)
+	cub3d->yp -= 1 * cub3d->speed;
+	if (cub3d->yp < 0)
 		return ;
 }
-void	down_arrow(void)
+void	down_arrow(t_cub3D *cub3d)
 {
-	g_cub3d.yp += 1 * g_cub3d.speed;
-	if (g_cub3d.yp < 0)
+	cub3d->yp += 1 * cub3d->speed;
+	if (cub3d->yp < 0)
 		return ;
 }
-
-void	key(mlx_key_data_t keydata, void *param)
+int	key(int keycode, t_cub3D *cub3d)
 {
-	(void)param;
-	if (keydata.key == MLX_KEY_ESCAPE)
+	if (keycode == 53)
 		exit(0);
-	if (keydata.key == MLX_KEY_LEFT)
-		left_arrow(); // It segfaults, dnt use it :)
-	if (keydata.key == MLX_KEY_RIGHT)	
-		right_arrow(); // It segfaults, dnt use it :)
-	if (keydata.key == MLX_KEY_UP)
-		up_arrow(); // It segfaults, dnt use it :)
-	if (keydata.key == MLX_KEY_DOWN)
-		down_arrow(); // It segfaults, dnt use it :)
-	draw_map();
+	if (keycode == 124)
+		right_arrow(cub3d);
+	if (keycode == 123)
+		left_arrow(cub3d);
+	if (keycode == 125)
+		down_arrow(cub3d);
+	if (keycode == 126)
+		up_arrow(cub3d);
+	mlx_clear_window(cub3d->mlx,cub3d->window);
+	draw_map(cub3d);
+	return (0);
 }

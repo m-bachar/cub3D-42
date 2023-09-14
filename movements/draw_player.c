@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 23:39:54 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/13 23:48:33 by obouya           ###   ########.fr       */
+/*   Created: 2023/09/14 23:48:10 by obouya            #+#    #+#             */
+/*   Updated: 2023/09/15 00:31:02 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	draw_player(int color, int i, int j, int radius)
+void draw_player(t_cub3D *cub3d, int color, int i, int j, int radius)
 {
 	int center_x = i;
 	int center_y = j;
@@ -29,11 +29,10 @@ void	draw_player(int color, int i, int j, int radius)
 			int dy = y - center_y;
 			if (dx * dx + dy * dy <= radius * radius)
 			{
-				mlx_put_pixel(g_cub3d.img, x, y, color);
+				mlx_pixel_put(cub3d->mlx, cub3d->window, x, y, color);
 			}
 			y++;
 		}
 		x++;
 	}
 }
-

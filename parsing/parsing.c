@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:37:14 by benito            #+#    #+#             */
-/*   Updated: 2023/09/13 02:41:14 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/09 21:51:36 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*extract_map(char *fullmap)
 	return (map);
 }
 
-void	parse_config(char *config)
+void	parse_config(char *config, t_cub3D *cub3d)
 {
 	char	**splitted;
 	int		i;
@@ -77,10 +77,10 @@ void	parse_config(char *config)
 			parse_position(splitted[i]);
 		i++;
 	}
-	g_cub3d.config = splitted;
+	cub3d->config = splitted;
 }
 
-void	parse_map(char *map)
+void	parse_map(char *map, t_cub3D *cub3d)
 {
 	char	**splitted;
 
@@ -91,10 +91,10 @@ void	parse_map(char *map)
 	find_player(splitted);
 	check_map_content(splitted);
 	check_surrounding(splitted);
-	g_cub3d.map = splitted;
+	cub3d->map = splitted;
 }
 
-void	parsing(char *av)
+void	parsing(char *av, t_cub3D *cub3d)
 {
 	char	*fullmap;
 	char	*map;
@@ -108,8 +108,8 @@ void	parsing(char *av)
 	map = extract_map(fullmap);
 	if (!config[0] || !map[0])
 		error("Error: Missing map or config !\n");
-	parse_config(config);
-	parse_map(map);
+	parse_config(config, cub3d);
+	parse_map(map, cub3d);
 	printf("Success !\n");
 	free(map);
 	free(config);
