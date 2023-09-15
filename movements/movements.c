@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 02:05:44 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/15 02:11:32 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/15 02:18:15 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	key(int keycode, t_cub3D *cub3d)
 	if (keycode == 126)
 		up_arrow(cub3d);
 	mlx_destroy_image(cub3d->mlx, cub3d->img);
-	// mlx_clear_window(cub3d->mlx,cub3d->window);
 	draw_map(cub3d);
 	return (0);
 }

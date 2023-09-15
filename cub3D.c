@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/15 02:13:16 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/15 02:18:06 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	main(int ac, char **av)
 	cub3d.window = mlx_new_window(cub3d.mlx, 1920, 1080, "Cub3D");
 	player_position(&cub3d);
 	draw_map(&cub3d);
-	mlx_key_hook(cub3d.window, &key, &cub3d);
+	mlx_hook(cub3d.window, 2, 1L << 0, key, &cub3d);
 	mlx_loop(cub3d.mlx);
 	free_mem(cub3d.config);
 	free_mem(cub3d.map);
