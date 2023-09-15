@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 23:48:10 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/15 00:31:02 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/15 01:59:05 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void draw_player(t_cub3D *cub3d, int color, int i, int j, int radius)
 			int dy = y - center_y;
 			if (dx * dx + dy * dy <= radius * radius)
 			{
-				mlx_pixel_put(cub3d->mlx, cub3d->window, x, y, color);
+				my_mlx_pixel_put(cub3d, x, y, color);
 			}
 			y++;
 		}

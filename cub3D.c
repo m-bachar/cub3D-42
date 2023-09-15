@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/15 00:31:21 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/15 02:13:16 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	player_position(t_cub3D *cub3d)
 		{
 			if (!isplayer(cub3d->map[j][i]))
 			{
-				cub3d->xp = i*32+16;
-				cub3d->yp = j*32+16;
+				cub3d->xp = i * 32 + 16;
+				cub3d->yp = j * 32 + 16;
 				return ;
 			}
 			i++;
@@ -46,7 +46,7 @@ void	pixels(t_cub3D *cub3d, int color, int j, int i)
 		cub3d->x = x;
 		while (cub3d->x < (i + 1) * 32)
 		{
-			mlx_pixel_put(cub3d->mlx, cub3d->window, cub3d->x, cub3d->y, color);
+			my_mlx_pixel_put(cub3d, cub3d->x, cub3d->y, color);
 			cub3d->x++;
 		}
 		cub3d->y++;
@@ -58,6 +58,9 @@ void	draw_map(t_cub3D *cub3d)
 	int	j;
 
 	j = 0;
+	cub3d->img = mlx_new_image(cub3d->mlx, 1920, 1080);
+	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel, &cub3d->line_length,
+								&cub3d->endian);
 	while (cub3d->map[j])
 	{
 		i = 0;
@@ -83,7 +86,17 @@ void	draw_map(t_cub3D *cub3d)
 		}
 		j++;
 	}
+	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
 }
+
+void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = cub3d->addr + (y * cub3d->line_length + x * (cub3d->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
 int	main(int ac, char **av)
 {
 	t_cub3D	cub3d;
@@ -92,7 +105,7 @@ int	main(int ac, char **av)
 	cub3d.y = 0;
 	cub3d.xp = 0;
 	cub3d.yp = 0;
-	cub3d.speed = 1;
+	cub3d.speed = 10;
 	if (ac < 2)
 		error("Error: Missing map path !\n");
 	else if (ac > 2)

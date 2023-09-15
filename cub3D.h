@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/15 00:21:27 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/15 02:08:51 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,13 @@ typedef struct cub3D
 	int rotation_angle; //pi/2 initilizing where player looks for 1st time
 	int speed;//3
 	int rotation_speed;//3*(pi/180) 3 degress per frame 
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_cub3D;
+
 
 		/*	Config.c		*/
 void	check_rgb_values(char **cf);
@@ -88,4 +94,5 @@ int		sizeof_map(char *map);
 void draw_player(t_cub3D *cub3d, int color, int i, int j, int radius);
 int	key(int keycode, t_cub3D *cub3d);
 void	draw_map(t_cub3D *cub3d);
+void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color);
 #endif
