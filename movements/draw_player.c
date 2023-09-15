@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 23:48:10 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/15 01:59:05 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/15 05:12:37 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void draw_player(t_cub3D *cub3d, int color, int i, int j, int radius)
 {
-	int center_x = i;
-	int center_y = j;
+	int center_x = i + radius;
+	int center_y = j + radius;
 
 	int x = center_x - radius;
 	int y = center_y - radius;

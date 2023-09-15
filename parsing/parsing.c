@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:37:14 by benito            #+#    #+#             */
-/*   Updated: 2023/09/09 21:51:36 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/15 05:56:56 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	parsing(char *av, t_cub3D *cub3d)
 	parse_config(config, cub3d);
 	parse_map(map, cub3d);
 	printf("Success !\n");
-	free(map);
 	free(config);
+	free(map);
 	free(fullmap);
 }

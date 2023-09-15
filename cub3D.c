@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/15 02:18:06 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/15 05:56:49 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	player_position(t_cub3D *cub3d)
 		{
 			if (!isplayer(cub3d->map[j][i]))
 			{
-				cub3d->xp = i * 32 + 16;
-				cub3d->yp = j * 32 + 16;
+				cub3d->xp = i * 32;
+				cub3d->yp = j * 32;
 				return ;
 			}
 			i++;
@@ -105,7 +105,7 @@ int	main(int ac, char **av)
 	cub3d.y = 0;
 	cub3d.xp = 0;
 	cub3d.yp = 0;
-	cub3d.speed = 10;
+	cub3d.speed = 5;
 	if (ac < 2)
 		error("Error: Missing map path !\n");
 	else if (ac > 2)
@@ -115,7 +115,8 @@ int	main(int ac, char **av)
 	cub3d.window = mlx_new_window(cub3d.mlx, 1920, 1080, "Cub3D");
 	player_position(&cub3d);
 	draw_map(&cub3d);
-	mlx_hook(cub3d.window, 2, 1L << 0, key, &cub3d);
+	 printf("x = %d    y = %d\n",cub3d.xp,cub3d.yp);
+	mlx_hook(cub3d.window, 2, 1L << 0, &key, &cub3d);
 	mlx_loop(cub3d.mlx);
 	free_mem(cub3d.config);
 	free_mem(cub3d.map);

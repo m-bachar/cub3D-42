@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/15 02:08:51 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/15 04:46:59 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@
 # include "./libft/libft.h"
 
 # define BUFFER_SIZE 1
+typedef struct global_variable
+{
+	char *map_str;
+	char **map1;
+}	t_global;
 
+t_global	g_global;
 typedef struct cub3D
 {
 	char	**map;
@@ -46,7 +52,6 @@ typedef struct cub3D
 	int		line_length;
 	int		endian;
 }	t_cub3D;
-
 
 		/*	Config.c		*/
 void	check_rgb_values(char **cf);
@@ -95,4 +100,8 @@ void draw_player(t_cub3D *cub3d, int color, int i, int j, int radius);
 int	key(int keycode, t_cub3D *cub3d);
 void	draw_map(t_cub3D *cub3d);
 void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color);
+int stop_in_2d_r(t_cub3D *cube3d);
+int stop_in_2d_u(t_cub3D *cube3d);
+int stop_in_2d_d(t_cub3D *cube3d);
+int stop_in_2d_l(t_cub3D *cube3d);
 #endif
