@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/15 04:46:59 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/15 23:13:28 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct cub3D
 	int walk_directions; // -1 = baack , +1 of front,  0 stop
 	int rotation_angle; //pi/2 initilizing where player looks for 1st time
 	int speed;//3
+	int radius;
 	int rotation_speed;//3*(pi/180) 3 degress per frame 
 	void	*img;
 	char	*addr;
@@ -96,12 +97,12 @@ int		isplayer(char c);
 int		sizeof_map(char *map);
 
 
-void draw_player(t_cub3D *cub3d, int color, int i, int j, int radius);
-int	key(int keycode, t_cub3D *cub3d);
+void 	draw_player(t_cub3D *cub3d, int color, int i, int j);
+int		key(int keycode, t_cub3D *cub3d);
 void	draw_map(t_cub3D *cub3d);
 void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color);
-int stop_in_2d_r(t_cub3D *cube3d);
-int stop_in_2d_u(t_cub3D *cube3d);
-int stop_in_2d_d(t_cub3D *cube3d);
-int stop_in_2d_l(t_cub3D *cube3d);
+int 	stop_in_2d_r(t_cub3D *cube3d);
+int 	stop_in_2d_u(t_cub3D *cube3d);
+int 	stop_in_2d_d(t_cub3D *cube3d);
+int 	stop_in_2d_l(t_cub3D *cube3d);
 #endif

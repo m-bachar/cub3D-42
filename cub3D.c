@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/15 05:56:49 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/16 00:43:15 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	pixels(t_cub3D *cub3d, int color, int j, int i)
 		cub3d->y++;
 	}
 }
+
 void	draw_map(t_cub3D *cub3d)
 {
 	int	i;
@@ -70,17 +71,17 @@ void	draw_map(t_cub3D *cub3d)
 				|| cub3d->map[j][i] == 'W' || cub3d->map[j][i] == 'E')
 			{
 				pixels(cub3d,0x000000, j, i);
-				draw_player(cub3d,0xFFD000, cub3d->xp, cub3d->yp, 8);
+				draw_player(cub3d,0xFFD000, cub3d->xp, cub3d->yp);
 			}
 			else if (cub3d->map[j][i] == ' ' || cub3d->map[j][i] == '1')
 			{
 				pixels(cub3d,0x6342F5, j, i);
-				draw_player(cub3d,0xFFD000, cub3d->xp, cub3d->yp, 8);
+				draw_player(cub3d,0xFFD000, cub3d->xp, cub3d->yp);
 			}
 			else
 			{	
 				pixels(cub3d,0x000000, j, i);
-				draw_player(cub3d,0xFFD000, cub3d->xp, cub3d->yp, 8);
+				draw_player(cub3d,0xFFD000, cub3d->xp, cub3d->yp);
 			}
 			i++;
 		}
@@ -105,7 +106,8 @@ int	main(int ac, char **av)
 	cub3d.y = 0;
 	cub3d.xp = 0;
 	cub3d.yp = 0;
-	cub3d.speed = 5;
+	cub3d.speed = 20;
+	cub3d.radius = 8;
 	if (ac < 2)
 		error("Error: Missing map path !\n");
 	else if (ac > 2)
@@ -115,7 +117,7 @@ int	main(int ac, char **av)
 	cub3d.window = mlx_new_window(cub3d.mlx, 1920, 1080, "Cub3D");
 	player_position(&cub3d);
 	draw_map(&cub3d);
-	 printf("x = %d    y = %d\n",cub3d.xp,cub3d.yp);
+	 printf("x = %d    y = %d\n",cub3d.xp/32+2,cub3d.yp/32+2);
 	mlx_hook(cub3d.window, 2, 1L << 0, &key, &cub3d);
 	mlx_loop(cub3d.mlx);
 	free_mem(cub3d.config);
