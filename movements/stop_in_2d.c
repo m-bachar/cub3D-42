@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 03:33:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/16 01:11:05 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/16 22:02:22 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int stop_in_2d_r(t_cub3D *cub3d)
 	int c4 = 0;
 	int c5 = 0;
 	c1 = cub3d->xp / 32;
-	c2 = cub3d->yp / 32;
+	c2 = (cub3d->yp + 8) / 32;
 	c3 = c1 + 1;
 	c4 = c3 * 32;
-	c5 = cub3d->xp + 2 * cub3d->radius + cub3d->speed;
+	c5 = cub3d->xp +  2 * cub3d->radius + cub3d->speed;
 	if (cub3d->map && cub3d->map[c2][c3] && cub3d->map[c2][c3] == '1')
 	{
-		if (c5 < c4  && cub3d->map[c2][c5 / 32])
+		if (c5 < c4 && cub3d->map[c2][c5 / 32] != '1')
 			return (1);
 		else
 			return (0);
@@ -40,18 +40,14 @@ int stop_in_2d_l(t_cub3D *cub3d)
     int c3 = 0;
     int c4 = 0;
     int c5 = 0;
-    int c6 = 0;
     c1 = cub3d->xp / 32;
-    if (c1 == 0)
-        return (0);
-    c2 = cub3d->yp / 32;
+    c2 = (cub3d->yp + cub3d->radius) / 32;
     c3 = c1 - 1;
     c4 = c3 * 32;
-    c5 = cub3d->xp - cub3d->speed - 2 * cub3d->radius;
-	c6 = cub3d->xp;
+    c5 = cub3d->xp - cub3d->speed ;
     if (cub3d->map && cub3d->map[c2][c3] && cub3d->map[c2][c3] == '1')
     {
-        if (c5 > c4)
+        if (c5 > c4 && cub3d->map[c2][c5 / 32] != '1' )
 			return (1);
         else
             return (0);
@@ -67,17 +63,17 @@ int stop_in_2d_u(t_cub3D *cub3d)
     int c3 = 0;
     int c4 = 0;
     int c5 = 0;
-    c1 =cub3d->yp / 32;
-    c2 = cub3d->xp/32;
+    c1 = cub3d->yp / 32;
+    c2 = (cub3d->xp + cub3d->radius) / 32;
     c3 = c1 - 1;
     c4 = c3 * 32;
-    c5 = cub3d->yp - cub3d->speed  - 2 * cub3d->radius;
+    c5 = cub3d->yp - cub3d->speed;
    if (cub3d->map && cub3d->map[c3][c2] && cub3d->map[c3][c2] == '1')
     {
-        if (c5 > c4)
+        if (c5 >= c4 && cub3d->map[c5 / 32][c2] != '1')
             return (1);
         else
-            return 0;
+            return (0);
     }
     return(1);
 }
@@ -89,13 +85,13 @@ int stop_in_2d_d(t_cub3D *cub3d)
     int c4 = 0;
     int c5 = 0;
     c1 =cub3d->yp / 32;
-    c2 = cub3d->xp / 32;
+    c2 = (cub3d->xp + cub3d->radius) / 32;
     c3 = c1 + 1;
     c4 = c3 * 32;
     c5 = cub3d->yp + cub3d->speed + 2 * cub3d->radius;
     if (cub3d->map && cub3d->map[c3][c2] && cub3d->map[c3][c2] == '1')
     {
-        if (c5 < c4)
+        if (c5 <= c4 && cub3d->map[c5 / 32][c2] != '1')
             return (1);
         else
             return (0);
