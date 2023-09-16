@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 03:33:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/16 22:02:22 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/16 23:14:52 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int stop_in_2d_r(t_cub3D *cub3d)
 	int c4 = 0;
 	int c5 = 0;
 	c1 = cub3d->xp / 32;
-	c2 = (cub3d->yp + 8) / 32;
+	c2 = (cub3d->yp +  cub3d->radius) / 32;
 	c3 = c1 + 1;
 	c4 = c3 * 32;
 	c5 = cub3d->xp +  2 * cub3d->radius + cub3d->speed;
