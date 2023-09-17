@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/17 01:35:32 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/17 07:58:14 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	player_position(t_cub3D *cub3d)
 		{
 			if (!isplayer(cub3d->map[j][i]))
 			{
-				cub3d->xp = i * 32;
-				cub3d->yp = j * 32;
+				cub3d->xp_c = i * 32 + cub3d->radius;
+				cub3d->yp_c = j * 32 + cub3d->radius;
 				return ;
 			}
 			i++;
@@ -68,8 +68,8 @@ int	main(int ac, char **av)
 
 	cub3d.x = 0;
 	cub3d.y = 0;
-	cub3d.xp = 0;
-	cub3d.yp = 0;
+	cub3d.xp_c = 0;
+	cub3d.yp_c = 0;
 	cub3d.speed = 8;
 	cub3d.radius = 6;
 	cub3d.w_height = 1080;

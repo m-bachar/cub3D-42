@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/17 04:04:44 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/17 07:57:16 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ typedef struct cub3D
 	void	*mlx;
 	void	*window;
 	int		x;
-	int		yp;
-	int		xp;
+	double	yp_c;
+	double	xp_c;
 	int		y;
 	int w_height;
 	int w_width;
-	int angle;
+	float angle;
 	int speed;
-	int radius;
+	float radius;
 	int flag_angle;
 	char player_direcion;
 	int turn_directions; // -1 = left , +1 of right (index indiction if we will decrease or increase the angle)

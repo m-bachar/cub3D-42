@@ -6,51 +6,105 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 02:05:44 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/17 04:16:14 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/17 08:01:21 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	left_arrow(t_cub3D *cub3d)
+// void	left_arrow(t_cub3D *cub3d)
+// {
+// 	cub3d->xp -= 1 * cub3d->speed;
+// 	if (cub3d->xp < 0)
+// 		return ;
+// }
+
+// void	right_arrow(t_cub3D *cub3d)
+// {
+// 	cub3d->xp += 1 * cub3d->speed;
+// 	if (cub3d->xp < 0)
+// 		return ;
+// }
+
+// void	up_arrow(t_cub3D *cub3d)
+// {
+// 	cub3d->yp -= 1 * cub3d->speed;
+// 	if (cub3d->yp < 0)
+// 		return ;
+// }
+
+// void	down_arrow(t_cub3D *cub3d)
+// {
+// 	cub3d->yp += 1 * cub3d->speed;
+// 	if (cub3d->yp < 0)
+// 		return ;
+// }
+void up_arrow(t_cub3D *cub3d)
 {
-	cub3d->xp -= 1 * cub3d->speed;
-	if (cub3d->xp < 0)
-		return ;
+    double rad_angle = deg_to_rad(cub3d->angle);
+    double dx = cub3d->speed * cos(rad_angle);
+    double dy = cub3d->speed * sin(rad_angle);
+	int c1 = cub3d->xp_c + dx;
+	int c2 = cub3d->yp_c +dy;
+	if (cub3d->map[c2/32][c1/32] && cub3d->map[c2/32][c1/32] != '1')
+	{
+    	cub3d->xp_c += dx;
+   		cub3d->yp_c += dy;
+	}
+}
+void right_arrow(t_cub3D *cub3d)
+{
+	double rad_angle = deg_to_rad(cub3d->angle + 90);
+    double dx = cub3d->speed * cos(rad_angle);
+    double dy = cub3d->speed * sin(rad_angle);
+    int c1 = cub3d->xp_c + dx;
+	int c2 = cub3d->yp_c + dy;
+	if (cub3d->map[c2/32][c1/32] && cub3d->map[c2/32][c1/32] != '1')
+	{
+    	cub3d->xp_c += dx;
+    	cub3d->yp_c += dy;
+	}
 }
 
-void	right_arrow(t_cub3D *cub3d)
+void left_arrow(t_cub3D *cub3d)
 {
-	cub3d->xp += 1 * cub3d->speed;
-	if (cub3d->xp < 0)
-		return ;
+    double rad_angle = deg_to_rad(cub3d->angle - 90);
+    double dx = cub3d->speed * cos(rad_angle);
+    double dy = cub3d->speed * sin(rad_angle);
+	int c1 = cub3d->xp_c + dx;
+	int c2 = cub3d->yp_c + dy;
+	if (cub3d->map[c2/32][c1/32] && cub3d->map[c2/32][c1/32] != '1')
+	{
+    	cub3d->xp_c += dx;
+   		cub3d->yp_c += dy;
+	}
 }
 
-void	up_arrow(t_cub3D *cub3d)
+void down_arrow(t_cub3D *cub3d)
 {
-	cub3d->yp -= 1 * cub3d->speed;
-	if (cub3d->yp < 0)
-		return ;
-}
-
-void	down_arrow(t_cub3D *cub3d)
-{
-	cub3d->yp += 1 * cub3d->speed;
-	if (cub3d->yp < 0)
-		return ;
+    double rad_angle = deg_to_rad(cub3d->angle);
+    double dx = cub3d->speed * cos(rad_angle);
+    double dy = cub3d->speed * sin(rad_angle);
+	int c1 = cub3d->xp_c - dx;
+	int c2 = cub3d->yp_c - dy;
+	if (cub3d->map[c2/32][c1/32] && cub3d->map[c2/32][c1/32] != '1')
+	{
+    	cub3d->xp_c -= dx;
+    	cub3d->yp_c -= dy;
+	}
 }
 
 int	key_player(int keycode, t_cub3D *cub3d)
 {
 	if (keycode == 53)
 		exit(0);
-	if (keycode == 2 && stop_in_2d_r(cub3d))
+	if (keycode == 2)
 		right_arrow(cub3d);
-	if (keycode == 0 && stop_in_2d_l(cub3d))
+	if (keycode == 0)
 		left_arrow(cub3d);
-	if (keycode == 1 && stop_in_2d_d(cub3d))
+	if (keycode == 1)
 		down_arrow(cub3d);
-	if (keycode == 13 && stop_in_2d_u(cub3d))
+	if (keycode == 13)
 		up_arrow(cub3d);
 	if (keycode == 123)
 		left(cub3d);

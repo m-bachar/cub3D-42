@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 23:48:10 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/17 04:01:54 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/17 07:54:49 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void draw_player(t_cub3D *cub3d, int color, int i, int j)
 {
-	int center_x = i + cub3d->radius;
-	int center_y = j + cub3d->radius;
+	int center_x = i;
+	int center_y = j;
+	// int center_x = i + cub3d->radius;
+	// int center_y = j + cub3d->radius;
 
 	int x = center_x - cub3d->radius;
 	int y = center_y - cub3d->radius;
@@ -67,14 +69,14 @@ void	draw_map(t_cub3D *cub3d)
 			{
 				check_direction(cub3d->map[j][i], cub3d);
 				pixels(cub3d,0x000000, j, i);
-				draw_player(cub3d,0xFFD000, cub3d->xp, cub3d->yp);
+				draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
 				draw_line(cub3d, 0xFFD000);
 			}
 			if (cub3d->map[j][i] == ' ' || cub3d->map[j][i] == '1')
 				pixels(cub3d,0x6342F5, j, i);
 			else
 				pixels(cub3d,0x000000, j, i);
-			draw_player(cub3d,0xFFD000, cub3d->xp, cub3d->yp);
+			draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
 			draw_line(cub3d, 0xFFD000);
 			i++;
 		}
@@ -85,8 +87,8 @@ void	draw_map(t_cub3D *cub3d)
 
 void	draw_line(t_cub3D *cub3d, int color)
 {
-    int center_x = cub3d->xp + cub3d->radius;
-	int center_y = cub3d->yp + cub3d->radius;
+    int center_x = cub3d->xp_c;
+	int center_y = cub3d->yp_c;
 	double angle_rad = deg_to_rad(cub3d->angle);
     int line_length = 20;
     int end_x = center_x + line_length * cos(angle_rad);
