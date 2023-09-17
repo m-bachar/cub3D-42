@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/17 07:58:14 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/17 08:19:49 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ int	main(int ac, char **av)
 	cub3d.radius = 6;
 	cub3d.w_height = 1080;
 	cub3d.w_width = 1920;
-	cub3d.flag_angle = 0;
+	cub3d.rotation_speed = 10;
+	// cub3d.flag_angle = 0;
 	if (ac < 2)
 		error("Error: Missing map path !\n");
 	else if (ac > 2)

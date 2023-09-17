@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/17 07:57:16 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/17 08:18:09 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,9 @@ typedef struct cub3D
 	float angle;
 	int speed;
 	float radius;
-	int flag_angle;
+	// int flag_angle;
 	char player_direcion;
-	int turn_directions; // -1 = left , +1 of right (index indiction if we will decrease or increase the angle)
-	int walk_directions; // -1 = baack , +1 of front,  0 stop
-	int rotation_speed;//3*(pi/180) 3 degress per frame 
+	double rotation_speed;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;

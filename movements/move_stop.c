@@ -1,44 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements.c                                        :+:      :+:    :+:   */
+/*   move_stop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/08 02:05:44 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/17 08:01:21 by obouya           ###   ########.fr       */
+/*   Created: 2023/09/17 08:14:15 by obouya            #+#    #+#             */
+/*   Updated: 2023/09/17 08:19:32 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-// void	left_arrow(t_cub3D *cub3d)
-// {
-// 	cub3d->xp -= 1 * cub3d->speed;
-// 	if (cub3d->xp < 0)
-// 		return ;
-// }
-
-// void	right_arrow(t_cub3D *cub3d)
-// {
-// 	cub3d->xp += 1 * cub3d->speed;
-// 	if (cub3d->xp < 0)
-// 		return ;
-// }
-
-// void	up_arrow(t_cub3D *cub3d)
-// {
-// 	cub3d->yp -= 1 * cub3d->speed;
-// 	if (cub3d->yp < 0)
-// 		return ;
-// }
-
-// void	down_arrow(t_cub3D *cub3d)
-// {
-// 	cub3d->yp += 1 * cub3d->speed;
-// 	if (cub3d->yp < 0)
-// 		return ;
-// }
 void up_arrow(t_cub3D *cub3d)
 {
     double rad_angle = deg_to_rad(cub3d->angle);
@@ -118,10 +91,10 @@ int	key_player(int keycode, t_cub3D *cub3d)
 
 void	left(t_cub3D *cub3d)
 {
-	cub3d->angle -= 5;
+	cub3d->angle -= cub3d->rotation_speed;
 }
 
 void	right(t_cub3D *cub3d)
 {
-	cub3d->angle += 5;
+	cub3d->angle += cub3d->rotation_speed;
 }

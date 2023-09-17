@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 23:48:10 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/17 07:54:49 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/17 08:18:07 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@ void draw_player(t_cub3D *cub3d, int color, int i, int j)
 {
 	int center_x = i;
 	int center_y = j;
-	// int center_x = i + cub3d->radius;
-	// int center_y = j + cub3d->radius;
-
 	int x = center_x - cub3d->radius;
 	int y = center_y - cub3d->radius;
 
@@ -38,17 +35,17 @@ void draw_player(t_cub3D *cub3d, int color, int i, int j)
 		x++;
 	}
 }
-void	check_direction(char c, t_cub3D *cub3d)
-{
-	if (c == 'N')
-		cub3d->flag_angle = 1;
-	if (c == 'S')
-		cub3d->flag_angle = 2;
-	if (c == 'E')
-		cub3d->flag_angle = 3;
-	if (c == 'W')
-		cub3d->flag_angle = 4;
-}
+// void	check_direction(char c, t_cub3D *cub3d)
+// {
+// 	if (c == 'N')
+// 		cub3d->flag_angle = 1;
+// 	if (c == 'S')
+// 		cub3d->flag_angle = 2;
+// 	if (c == 'E')
+// 		cub3d->flag_angle = 3;
+// 	if (c == 'W')
+// 		cub3d->flag_angle = 4;
+// }
 
 void	draw_map(t_cub3D *cub3d)
 {
@@ -67,7 +64,7 @@ void	draw_map(t_cub3D *cub3d)
 			if (cub3d->map[j][i] == 'N' || cub3d->map[j][i] == 'S'
 				|| cub3d->map[j][i] == 'W' || cub3d->map[j][i] == 'E') // Update player pos in the map
 			{
-				check_direction(cub3d->map[j][i], cub3d);
+				// check_direction(cub3d->map[j][i], cub3d);
 				pixels(cub3d,0x000000, j, i);
 				draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
 				draw_line(cub3d, 0xFFD000);
