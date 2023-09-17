@@ -6,7 +6,7 @@
 #    By: obouya <obouya@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/09/15 03:33:45 by obouya           ###   ########.fr        #
+#    Updated: 2023/09/16 23:55:27 by obouya           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,10 @@ SRC			= 	cub3D.c \
 				./parsing/scene.c \
 				./parsing/tools.c \
 				./parsing/tweaked_funcs.c \
-				./movements/draw_player.c \
+				./movements/draw.c \
 				./movements/movements.c \
 				./movements/stop_in_2d.c \
+				./movements/rad_deg_con.c \
 				./parsing/utils.c
 
 INCLUDE		= 	cub3D.h
