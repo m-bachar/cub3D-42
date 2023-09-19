@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/19 15:15:17 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/19 16:15:22 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,10 @@ void	left(t_cub3D *cub3d);
 int	key_view(int keycode, t_cub3D *cub3d);
 void	check_direction(char c, t_cub3D *cub3d);
 void	right(t_cub3D *cub3d);
-void	check_v_walls_up_r(t_cub3D *cub3d);
 void	check_h_walls_up_r(t_cub3D *cub3d);
+void	check_h_walls_up_l(t_cub3D *cub3d);
+void	check_h_walls_down_r(t_cub3D *cub3d);
+void	check_h_walls_down_l(t_cub3D *cub3d);
+void	draw_line_ray(t_cub3D *cub3d, int color);
 void draw_grid(t_cub3D *cub3d, int color, int map_width, int map_height);
 #endif

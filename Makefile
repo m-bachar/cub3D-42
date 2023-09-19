@@ -6,7 +6,7 @@
 #    By: obouya <obouya@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/09/17 08:14:34 by obouya           ###   ########.fr        #
+#    Updated: 2023/09/19 16:02:54 by obouya           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC			= 	cub3D.c \
 				./movements/move_stop.c \
 				./movements/stop_in_2d.c \
 				./movements/rad_deg_con.c \
+				./rays/check_h.c \
 				./parsing/utils.c
 
 INCLUDE		= 	cub3D.h

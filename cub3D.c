@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/19 15:49:06 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/19 16:09:07 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,40 +62,7 @@ void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	check_h_walls_up_r(t_cub3D *cub3d)
-{
-	if (cub3d->angle >= 270)
-	{
-		//cub3d->flag =1;
-		printf("ang = %f\n", cub3d->angle);
-		double rad_angle = deg_to_rad(cub3d->angle);
-		printf("ang = %f\n", rad_angle);
-		cub3d->y_tile = (cub3d->yp_c / 32) * 32;
-		cub3d->x_tile = cub3d->xp_c + ((cub3d->y_tile - cub3d->yp_c) / tan(rad_angle));
-		// printf("x_h_wall = %d  y_h_wall = %d\n",cub3d->x_tile / 32, cub3d->y_tile / 32);
-		cub3d->dy_step = 32;
-		cub3d->dx_step = -(32.0 / tan(rad_angle));
-		// printf("xstep = %f  ystep = %f\n",cub3d->dx_step,cub3d->dy_step);
-		int new_h_x = cub3d->x_tile ;
-		int new_h_y =cub3d->y_tile --;
-		while (new_h_x >= 0 &&new_h_x <= cub3d->w_width && new_h_y >= 0 &&new_h_y <= cub3d->w_height) 
-		{
-			if (cub3d->map[new_h_y / 32][new_h_x/32] && cub3d->map[new_h_y / 32][new_h_x/32] == '1')
-			{
-				cub3d->wall_x = new_h_x;
-				cub3d->wall_y = new_h_y;
-				printf("tx_wall = %f  ty_wall = %f\n",cub3d->wall_x/32,cub3d->wall_y/32);
-				printf("px = %f  py = %f\n",cub3d->xp_c/32,cub3d->yp_c/32);
-				break;
-			}
-			else
-			{
-				new_h_x += cub3d->dx_step;
-				new_h_y -= cub3d->dy_step;
-			}
-		}
-	}
-}
+
 int	main(int ac, char **av)
 {
 	t_cub3D	cub3d;
@@ -124,8 +91,10 @@ int	main(int ac, char **av)
 	cub3d.mlx = mlx_init();
 	cub3d.window = mlx_new_window(cub3d.mlx, cub3d.w_width, cub3d.w_height, "Cub3D");
 	check_h_walls_up_r(&cub3d);
+	check_h_walls_up_l(&cub3d);
+	check_h_walls_down_r(&cub3d);
+	check_h_walls_down_l(&cub3d);
 	draw_map(&cub3d);
-	draw_grid(&cub3d,0xFFFFFF, 25, 28);
 	printf("angle = %f\n",cub3d.angle);
 	mlx_hook(cub3d.window, 2, 1L << 0, &key_player, &cub3d);
 	mlx_loop(cub3d.mlx);

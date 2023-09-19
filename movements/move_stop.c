@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 08:14:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/19 15:32:01 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/19 16:09:12 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ int	key_player(int keycode, t_cub3D *cub3d)
 	if (keycode == 124)
 		right(cub3d);
 	check_h_walls_up_r(cub3d);
-	// check_v_walls_up_r(cub3d);//still working on v walls
-	//printf("angle = %f \n",cub3d->angle);
+	check_h_walls_up_l(cub3d);
+	check_h_walls_down_r(cub3d);
+	check_h_walls_down_l(cub3d);
 	mlx_destroy_image(cub3d->mlx, cub3d->img);
 	mlx_clear_window(cub3d->mlx, cub3d->window);
 	draw_map(cub3d);
