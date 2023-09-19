@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/17 08:18:09 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/19 15:15:17 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct cub3D
 	void	*mlx;
 	void	*window;
 	int		x;
+	int flag;
 	double	yp_c;
 	double	xp_c;
 	int		y;
@@ -45,9 +46,14 @@ typedef struct cub3D
 	float angle;
 	int speed;
 	float radius;
-	// int flag_angle;
 	char player_direcion;
 	double rotation_speed;
+	int 	x_tile;
+	int 	y_tile;
+	double dx_step;
+	double dy_step;
+	double wall_x;
+	double wall_y;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -123,4 +129,7 @@ void	left(t_cub3D *cub3d);
 int	key_view(int keycode, t_cub3D *cub3d);
 void	check_direction(char c, t_cub3D *cub3d);
 void	right(t_cub3D *cub3d);
+void	check_v_walls_up_r(t_cub3D *cub3d);
+void	check_h_walls_up_r(t_cub3D *cub3d);
+void draw_grid(t_cub3D *cub3d, int color, int map_width, int map_height);
 #endif

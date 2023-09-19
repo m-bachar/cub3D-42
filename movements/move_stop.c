@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 08:14:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/17 08:19:32 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/19 15:32:01 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,33 @@ int	key_player(int keycode, t_cub3D *cub3d)
 		left(cub3d);
 	if (keycode == 124)
 		right(cub3d);
+	check_h_walls_up_r(cub3d);
+	// check_v_walls_up_r(cub3d);//still working on v walls
+	//printf("angle = %f \n",cub3d->angle);
 	mlx_destroy_image(cub3d->mlx, cub3d->img);
 	mlx_clear_window(cub3d->mlx, cub3d->window);
 	draw_map(cub3d);
+	draw_grid(cub3d,0xFFFFFF, 25, 28);
 	return (0);
+}
+void	ft_normalize_angle(t_cub3D *cub3d)
+{
+	while (cub3d->angle >= 360.0)
+        cub3d->angle -= 360.0;
+    while (cub3d->angle < 0.0)
+        cub3d->angle += 360.0;
 }
 
 void	left(t_cub3D *cub3d)
 {
 	cub3d->angle -= cub3d->rotation_speed;
+	ft_normalize_angle(cub3d);
+	// printf("angle_r = %f \n",cub3d->angle);
 }
 
 void	right(t_cub3D *cub3d)
 {
 	cub3d->angle += cub3d->rotation_speed;
+	ft_normalize_angle(cub3d);
+	// printf("angle_r = %f \n",cub3d->angle);
 }
