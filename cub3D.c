@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/20 18:57:34 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/20 23:49:19 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ int update (t_cub3D *cub3d)
 	mlx_destroy_image(cub3d->mlx, cub3d->img);
 	mlx_clear_window(cub3d->mlx, cub3d->window);
 	draw_map(cub3d);
-	check_h_walls_up_r(cub3d);
-	check_h_walls_down_r(cub3d);
+	// check_h_walls_up(cub3d);
+	check_v_walls_up_r(cub3d);
+	check_v_walls_up_l(cub3d);
+	// check_h_walls_down(cub3d);
 	// check_h_walls_up_l(cub3d);
 	return(0);
 }
@@ -101,17 +103,9 @@ int	main(int ac, char **av)
 	ft_find_angle(&cub3d);
 	cub3d.mlx = mlx_init();
 	cub3d.window = mlx_new_window(cub3d.mlx, cub3d.w_width, cub3d.w_height, "Cub3D");
-	// check_h_walls_up_r(&cub3d);
-	// check_h_walls_down_r(&cub3d);
-	// check_h_walls_down_l(&cub3d);
 	draw_map(&cub3d);
-	// check_h_walls_up_l(&cub3d);
-	// draw_line_ray(&cub3d, 0xFFFFFF);
-	// printf("angle = %f\n",cub3d.angle);
 	mlx_hook(cub3d.window, 2, 1L << 0, &key_player, &cub3d);
 	mlx_loop_hook(cub3d.mlx, update, &cub3d);
-	// check_h_walls_up_l(&cub3d);
-	// check_h_walls_up_l(&cub3d);
 	mlx_loop(cub3d.mlx);
 	free_mem(cub3d.config);
 	free_mem(cub3d.map);

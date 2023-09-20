@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 23:48:10 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/20 01:32:32 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/20 22:15:22 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,34 +36,6 @@ void draw_player(t_cub3D *cub3d, int color, int i, int j)
 	}
 }
 
-void draw_grid(t_cub3D *cub3d, int color, int map_width, int map_height)
-{
-    int grid_size = 32; // Size of each grid cell
-    int x, y;
-
-    // Draw horizontal grid lines
-    for (y = 0; y < map_height; y++)
-    {
-        for (x = 0; x < map_width; x++)
-        {
-            if (x == 0 || y == 0 || x == map_width - 1 || y == map_height - 1)
-            {
-                // Draw only the edges of the cell in white
-                for (int i = 0; i < grid_size; i++)
-                {
-                    my_mlx_pixel_put(cub3d, x * grid_size + i, y * grid_size, color); // Top edge
-                    my_mlx_pixel_put(cub3d, x * grid_size + i, (y + 1) * grid_size - 1, color); // Bottom edge
-                }
-                for (int j = 0; j < grid_size; j++)
-                {
-                    my_mlx_pixel_put(cub3d, x * grid_size, y * grid_size + j, color); // Left edge
-                    my_mlx_pixel_put(cub3d, (x + 1) * grid_size - 1, y * grid_size + j, color); // Right edge
-                }
-            }
-        }
-    }
-}
-
 void	draw_map(t_cub3D *cub3d)
 {
 	int	i;
@@ -79,12 +51,11 @@ void	draw_map(t_cub3D *cub3d)
 		while (cub3d->map[j][i])
 		{
 			if (cub3d->map[j][i] == 'N' || cub3d->map[j][i] == 'S'
-				|| cub3d->map[j][i] == 'W' || cub3d->map[j][i] == 'E') // Update player pos in the map
+				|| cub3d->map[j][i] == 'W' || cub3d->map[j][i] == 'E')
 			{
 				pixels(cub3d,0x000000, j, i);
 				draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
 				draw_line(cub3d, 0xFFD000);
-				// draw_line_ray(cub3d, 0XFF0000);
 			}
 			if (cub3d->map[j][i] == ' ' || cub3d->map[j][i] == '1')
 				pixels(cub3d,0x6342F5, j, i);
@@ -92,7 +63,6 @@ void	draw_map(t_cub3D *cub3d)
 				pixels(cub3d,0xFFFFFF, j, i);
 			draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
 			draw_line(cub3d, 0xFFD000);
-			// draw_line_ray(cub3d, 0XFF0000);
 			i++;
 		}
 		j++;
