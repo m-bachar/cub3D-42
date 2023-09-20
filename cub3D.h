@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/19 16:15:22 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/20 18:57:24 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct cub3D
 	void	*window;
 	int		x;
 	int flag;
-	double	yp_c;
-	double	xp_c;
+	int	yp_c;
+	int	xp_c;
 	int		y;
 	int w_height;
 	int w_width;
@@ -52,8 +52,8 @@ typedef struct cub3D
 	int 	y_tile;
 	double dx_step;
 	double dy_step;
-	double wall_x;
-	double wall_y;
+	int wall_x;
+	int wall_y;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -134,5 +134,5 @@ void	check_h_walls_up_l(t_cub3D *cub3d);
 void	check_h_walls_down_r(t_cub3D *cub3d);
 void	check_h_walls_down_l(t_cub3D *cub3d);
 void	draw_line_ray(t_cub3D *cub3d, int color);
-void draw_grid(t_cub3D *cub3d, int color, int map_width, int map_height);
+void	draw_line1(t_cub3D *cub3d, int color);
 #endif

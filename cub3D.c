@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/19 16:09:07 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/20 18:57:34 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,18 @@ void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color)
 	dst = cub3d->addr + (y * cub3d->line_length + x * (cub3d->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
-
+int update (t_cub3D *cub3d)
+{
+	// check_h_walls_down_r(&cub3d);
+	// check_h_walls_down_l(&cub3d);
+	mlx_destroy_image(cub3d->mlx, cub3d->img);
+	mlx_clear_window(cub3d->mlx, cub3d->window);
+	draw_map(cub3d);
+	check_h_walls_up_r(cub3d);
+	check_h_walls_down_r(cub3d);
+	// check_h_walls_up_l(cub3d);
+	return(0);
+}
 
 int	main(int ac, char **av)
 {
@@ -75,7 +86,7 @@ int	main(int ac, char **av)
 	cub3d.radius = 6;
 	cub3d.w_height = 1080;
 	cub3d.w_width = 1920;
-	cub3d.rotation_speed = 10;
+	cub3d.rotation_speed =5;
 	cub3d.x_tile = 0;
 	cub3d.y_tile = 0;
 	cub3d.dx_step = 0;
@@ -90,13 +101,17 @@ int	main(int ac, char **av)
 	ft_find_angle(&cub3d);
 	cub3d.mlx = mlx_init();
 	cub3d.window = mlx_new_window(cub3d.mlx, cub3d.w_width, cub3d.w_height, "Cub3D");
-	check_h_walls_up_r(&cub3d);
-	check_h_walls_up_l(&cub3d);
-	check_h_walls_down_r(&cub3d);
-	check_h_walls_down_l(&cub3d);
+	// check_h_walls_up_r(&cub3d);
+	// check_h_walls_down_r(&cub3d);
+	// check_h_walls_down_l(&cub3d);
 	draw_map(&cub3d);
-	printf("angle = %f\n",cub3d.angle);
+	// check_h_walls_up_l(&cub3d);
+	// draw_line_ray(&cub3d, 0xFFFFFF);
+	// printf("angle = %f\n",cub3d.angle);
 	mlx_hook(cub3d.window, 2, 1L << 0, &key_player, &cub3d);
+	mlx_loop_hook(cub3d.mlx, update, &cub3d);
+	// check_h_walls_up_l(&cub3d);
+	// check_h_walls_up_l(&cub3d);
 	mlx_loop(cub3d.mlx);
 	free_mem(cub3d.config);
 	free_mem(cub3d.map);

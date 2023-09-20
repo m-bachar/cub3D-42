@@ -18,6 +18,8 @@
         "stdio.h": "c",
         "unistd.h": "c",
         "stdlib.h": "c",
-        "fcntl.h": "c"
+        "fcntl.h": "c",
+        "chrono": "c",
+        "complex": "c"
     }
 }
