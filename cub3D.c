@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/20 23:49:19 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/21 00:27:48 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int update (t_cub3D *cub3d)
 	draw_map(cub3d);
 	// check_h_walls_up(cub3d);
 	check_v_walls_up_r(cub3d);
+	check_v_walls_down_r(cub3d);
 	check_v_walls_up_l(cub3d);
 	// check_h_walls_down(cub3d);
 	// check_h_walls_up_l(cub3d);
