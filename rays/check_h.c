@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:02:03 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/21 22:19:55 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/21 22:26:25 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	check_h_walls_down(t_cub3D *cub3d)
 		printf("ang = %f\n", cub3d->angle);
 		double rad_angle = deg_to_rad(cub3d->angle);
 		printf("ang = %f\n", rad_angle);
-		cub3d->y_tile = ((cub3d->yp_c / 32)+1) * 32;
+		cub3d->y_tile = ((cub3d->yp_c / 32) + 1) * 32;
 		cub3d->x_tile = cub3d->xp_c + ((cub3d->y_tile - cub3d->yp_c) / tan(rad_angle));
 		cub3d->dy_step = 32;
 		cub3d->dx_step = -(32.0 / tan(rad_angle));

@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 23:36:43 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/21 00:41:53 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/21 23:35:58 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_find_angle(t_cub3D *cub3d)
 	i = cub3d->xp_c / 32;
 	j = cub3d->yp_c / 32;
 	if (cub3d->map[j][i] == 'N')
-		cub3d->angle = 200;
+		cub3d->angle =150;
 	if (cub3d->map[j][i] == 'S')
 		cub3d->angle = 90;
 	if (cub3d->map[j][i] == 'W')
