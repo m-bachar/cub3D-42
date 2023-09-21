@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/21 23:21:23 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/22 00:15:46 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,7 @@
 # include "./libft/libft.h"
 
 # define BUFFER_SIZE 1
-typedef struct global_variable
-{
-	char *map_str;
-	char **map1;
-}	t_global;
 
-t_global	g_global;
 typedef struct cub3D
 {
 	char	**map;
@@ -37,29 +31,39 @@ typedef struct cub3D
 	void	*mlx;
 	void	*window;
 	int		x;
-	int flag;
-	int	yp_c;
-	int	xp_c;
+	int 	flag;
+	int		yp_c;
+	int		xp_c;
 	int		y;
-	int w_height;
-	int w_width;
-	float angle;
-	int speed;
-	float radius;
-	char player_direcion;
-	double rotation_speed;
+	int 	w_height;
+	int 	w_width;
+	float 	angle;
+	int 	speed;
+	float 	radius;
+	char 	player_direcion;
+	double 	rotation_speed;
 	int 	x_tile;
 	int 	y_tile;
-	double dx_step;
-	double dy_step;
-	int wall_x;
-	int wall_y;
+	double 	dx_step;
+	double 	dy_step;
+	int 	wall_h_x;
+	int 	wall_h_y;
+	int 	wall_v_x;
+	int 	wall_v_y;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	struct 	s_rays *ray;
 }	t_cub3D;
+
+typedef struct s_rays
+{
+	double	x_f_wall;
+	double	y_f_wall;
+	double	distance;
+}	t_rays;
 
 		/*	Config.c		*/
 void	check_rgb_values(char **cf);
@@ -139,4 +143,5 @@ void	check_v_walls_up_r(t_cub3D *cub3d);
 void	check_v_walls_up_l(t_cub3D *cub3d);
 void	check_v_walls_down_r(t_cub3D *cub3d);
 void	check_v_walls_down_l(t_cub3D *cub3d);
+void get_min_wall_distance(t_cub3D *cub3d);
 #endif
