@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/21 00:27:48 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/21 22:24:07 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,14 @@ void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color)
 }
 int update (t_cub3D *cub3d)
 {
-	// check_h_walls_down_r(&cub3d);
-	// check_h_walls_down_l(&cub3d);
 	mlx_destroy_image(cub3d->mlx, cub3d->img);
 	mlx_clear_window(cub3d->mlx, cub3d->window);
 	draw_map(cub3d);
-	// check_h_walls_up(cub3d);
 	check_v_walls_up_r(cub3d);
 	check_v_walls_down_r(cub3d);
 	check_v_walls_up_l(cub3d);
-	// check_h_walls_down(cub3d);
-	// check_h_walls_up_l(cub3d);
+	check_h_walls_down(cub3d);
+	check_h_walls_up(cub3d);
 	return(0);
 }
 
