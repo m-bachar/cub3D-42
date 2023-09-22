@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 08:14:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/22 01:53:55 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/23 00:36:49 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void up_arrow(t_cub3D *cub3d)
 {
-    double rad_angle = deg_to_rad(cub3d->angle);
-    double dx = cub3d->speed * cos(rad_angle);
-    double dy = cub3d->speed * sin(rad_angle);
+    double dx = cub3d->speed * cos(cub3d->rad_a);
+    double dy = cub3d->speed * sin(cub3d->rad_a);
 	int c1 = cub3d->xp_c + dx;
 	int c2 = cub3d->yp_c +dy;
 	if (cub3d->map[c2/32][c1/32] && cub3d->map[c2/32][c1/32] != '1')
@@ -27,9 +26,8 @@ void up_arrow(t_cub3D *cub3d)
 }
 void right_arrow(t_cub3D *cub3d)
 {
-	double rad_angle = deg_to_rad(cub3d->angle + 90);
-    double dx = cub3d->speed * cos(rad_angle);
-    double dy = cub3d->speed * sin(rad_angle);
+    double dx = cub3d->speed * cos(cub3d->rad_a + (M_PI/2));
+    double dy = cub3d->speed * sin(cub3d->rad_a + (M_PI/2));
     int c1 = cub3d->xp_c + dx;
 	int c2 = cub3d->yp_c + dy;
 	if (cub3d->map[c2/32][c1/32] && cub3d->map[c2/32][c1/32] != '1')
@@ -41,9 +39,8 @@ void right_arrow(t_cub3D *cub3d)
 
 void left_arrow(t_cub3D *cub3d)
 {
-    double rad_angle = deg_to_rad(cub3d->angle - 90);
-    double dx = cub3d->speed * cos(rad_angle);
-    double dy = cub3d->speed * sin(rad_angle);
+    double dx = cub3d->speed * cos(cub3d->rad_a - (M_PI/2));
+    double dy = cub3d->speed * sin(cub3d->rad_a - (M_PI/2));
 	int c1 = cub3d->xp_c + dx;
 	int c2 = cub3d->yp_c + dy;
 	if (cub3d->map[c2/32][c1/32] && cub3d->map[c2/32][c1/32] != '1')
@@ -55,9 +52,9 @@ void left_arrow(t_cub3D *cub3d)
 
 void down_arrow(t_cub3D *cub3d)
 {
-    double rad_angle = deg_to_rad(cub3d->angle);
-    double dx = cub3d->speed * cos(rad_angle);
-    double dy = cub3d->speed * sin(rad_angle);
+    // double rad_angle = deg_to_rad(cub3d->angle);
+    double dx = cub3d->speed * cos(cub3d->rad_a);
+    double dy = cub3d->speed * sin(cub3d->rad_a);
 	int c1 = cub3d->xp_c - dx;
 	int c2 = cub3d->yp_c - dy;
 	if (cub3d->map[c2/32][c1/32] && cub3d->map[c2/32][c1/32] != '1')
@@ -83,16 +80,6 @@ int	key_player(int keycode, t_cub3D *cub3d)
 		left(cub3d);
 	if (keycode == 124)
 		right(cub3d);
-	// check_h_walls_up_r(cub3d);
-	// check_h_walls_down_r(cub3d);
-	// check_h_walls_down_l(cub3d);
-	// mlx_destroy_image(cub3d->mlx, cub3d->img);
-	// mlx_clear_window(cub3d->mlx, cub3d->window);
-	// draw_map(cub3d);
-	// check_h_walls_up_l(cub3d);
-	mlx_destroy_image(cub3d->mlx, cub3d->img);
-	mlx_clear_window(cub3d->mlx, cub3d->window);
-	draw_map(cub3d);
 	return (0);
 }
 void	ft_normalize_angle(t_cub3D *cub3d)

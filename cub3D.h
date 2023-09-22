@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/22 02:06:12 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/22 23:49:26 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct cub3D
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	double rad_a;
 	struct 	s_rays *ray;
 }	t_cub3D;
 
