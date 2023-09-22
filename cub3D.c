@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/23 00:31:32 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/23 00:45:01 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int update (t_cub3D *cub3d)
 	draw_map(cub3d);
 	rad = deg_to_rad(cub3d->angle);
 	cub3d->rad_a = rad;
-	while (i < cub3d->w_width)
+	while (i < 200)
 	{
 		check_h_walls_down(cub3d);
 		check_h_walls_up(cub3d);
@@ -96,6 +96,7 @@ int update (t_cub3D *cub3d)
 		check_v_walls_down_l(cub3d);
 		get_min_wall_distance(cub3d);
 		push_ray(cub3d);
+		printf("anng = |%f|\n",cub3d->angle);
 	// mlx_pixel_put(cub3d->mlx,cub3d->window, cub3d->ray->x_f_wall, cub3d->ray->y_f_wall, 0XFF0000);
 		cub3d->rad_a += rad / cub3d->w_width;
 		i++;

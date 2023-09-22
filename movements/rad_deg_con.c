@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 23:36:43 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/23 00:29:13 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/23 00:38:15 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,4 @@ void	ft_find_angle(t_cub3D *cub3d)
 		cub3d->angle = 180;
 	if (cub3d->map[j][i] == 'E')
 		cub3d->angle = 0;
-	cub3d->ray->distance = 0;
 }

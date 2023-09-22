@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 08:14:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/23 00:36:49 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/23 00:38:03 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void left_arrow(t_cub3D *cub3d)
 
 void down_arrow(t_cub3D *cub3d)
 {
-    // double rad_angle = deg_to_rad(cub3d->angle);
     double dx = cub3d->speed * cos(cub3d->rad_a);
     double dy = cub3d->speed * sin(cub3d->rad_a);
 	int c1 = cub3d->xp_c - dx;
