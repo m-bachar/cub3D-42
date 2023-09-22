@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:02:03 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/21 23:59:17 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/22 00:29:32 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_h_walls_up(t_cub3D *cub3d)
 		new_h_y =cub3d->y_tile - 1;
 		while (new_h_x >= 0 && new_h_x <= 800 && new_h_y >= 0 && new_h_y <= 864)
 		{
-			mlx_pixel_put(cub3d->mlx,cub3d->window,new_h_x,new_h_y,0XFFFF00);
+			// mlx_pixel_put(cub3d->mlx,cub3d->window,new_h_x,new_h_y,0XFFFF00);
 			if (cub3d->map[new_h_y / 32][new_h_x/32] == '1')
 			{
 				cub3d->wall_h_x = new_h_x;
@@ -58,7 +58,7 @@ void	check_h_walls_down(t_cub3D *cub3d)
 		int new_h_y =cub3d->y_tile++;
 		while (new_h_x >= 0 && new_h_x <= 800 && new_h_y >= 0 && new_h_y <= 864)
 		{
-			mlx_pixel_put(cub3d->mlx,cub3d->window,new_h_x,new_h_y,0XFFFF00);
+			// mlx_pixel_put(cub3d->mlx,cub3d->window,new_h_x,new_h_y,0XFFFF00);
 			if (cub3d->map[new_h_y / 32][new_h_x/32] && cub3d->map[new_h_y / 32][new_h_x/32] == '1')
 			{
 				cub3d->wall_h_x = new_h_x;

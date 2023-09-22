@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 08:14:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/19 20:59:26 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/22 01:53:55 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ int	key_player(int keycode, t_cub3D *cub3d)
 	// mlx_clear_window(cub3d->mlx, cub3d->window);
 	// draw_map(cub3d);
 	// check_h_walls_up_l(cub3d);
+	mlx_destroy_image(cub3d->mlx, cub3d->img);
+	mlx_clear_window(cub3d->mlx, cub3d->window);
+	draw_map(cub3d);
 	return (0);
 }
 void	ft_normalize_angle(t_cub3D *cub3d)

@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/22 00:15:46 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/22 02:06:12 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void 	draw_player(t_cub3D *cub3d, int color, int i, int j);
 void	draw_map(t_cub3D *cub3d);
 void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color);
 void	draw_line(t_cub3D *cub3d, int color);
+// void draw_line(t_cub3D *cub3d, int x1, int y1, int x2, int y2, int color);
 //------------------------------>movements/stop_in_2d.c
 int		stop_in_2d_r(t_cub3D *cube3d);
 int		stop_in_2d_u(t_cub3D *cube3d);

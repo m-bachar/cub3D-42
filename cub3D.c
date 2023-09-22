@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/22 00:16:14 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/22 02:06:37 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,41 +62,17 @@ void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void get_min_wall_distance(t_cub3D *cub3d)
-{
-	int	distance_h;
-	int	distance_v;
-	int	d_v1;
-	int	d_v2;
-	int	d_h1;
-	int	d_h2;
 
-	d_h1 = pow((cub3d->xp_c - cub3d->wall_h_x),2); 
-	d_h2 = pow((cub3d->yp_c - cub3d->wall_h_y),2); 
-	distance_h = sqrt(d_h1 + d_h2);
-	d_v1 = pow((cub3d->xp_c - cub3d->wall_v_x),2); 
-	d_v2 = pow((cub3d->yp_c - cub3d->wall_v_y),2); 
-	distance_v = sqrt(d_v1 + d_v2);
-	if (distance_h <= distance_v)
-	{
-		cub3d->ray->x_f_wall = cub3d->wall_h_x;
-		cub3d->ray->y_f_wall = cub3d->wall_h_y;
-		cub3d->ray->distance = distance_h;
-	}
-	else
-	{
-		cub3d->ray->x_f_wall = cub3d->wall_v_x;
-		cub3d->ray->y_f_wall = cub3d->wall_v_y;
-		cub3d->ray->distance = distance_v;
-	}
-	printf("xxwall = %f    yywall  = %f\n",cub3d->ray->x_f_wall,cub3d->ray->y_f_wall);
-}
 
 int update (t_cub3D *cub3d)
 {
-	mlx_destroy_image(cub3d->mlx, cub3d->img);
-	mlx_clear_window(cub3d->mlx, cub3d->window);
-	draw_map(cub3d);
+	int i = 0;
+	// mlx_destroy_image(cub3d->mlx, cub3d->img);
+	// mlx_clear_window(cub3d->mlx, cub3d->window);
+	// draw_map(cub3d);
+	while (i < 10)
+	{
+
 	check_h_walls_down(cub3d);
 	check_h_walls_up(cub3d);
 	check_v_walls_up_r(cub3d);
@@ -104,6 +80,13 @@ int update (t_cub3D *cub3d)
 	check_v_walls_up_l(cub3d);
 	check_v_walls_down_l(cub3d);
 	get_min_wall_distance(cub3d);
+	mlx_pixel_put(cub3d->mlx,cub3d->window, cub3d->ray->x_f_wall, cub3d->ray->y_f_wall, 0XFF0000);
+	draw_line(cub3d,0XFF0000);
+	// draw_line(cub3d, cub3d->xp_c, cub3d->yp_c,cub3d->ray->x_f_wall,  cub3d->ray->y_f_wall, 0XFF0000);
+	cub3d->angle += (deg_to_rad(cub3d->angle)/ cub3d->w_width);
+	i++;
+	printf("i = ---------->%d\n",i);
+	}
 	return(0);
 }
 
@@ -125,6 +108,10 @@ int	main(int ac, char **av)
 	cub3d.dx_step = 0;
 	cub3d.dy_step = 0;
 	cub3d.flag = 0;
+	cub3d.wall_h_x = 0;
+	cub3d.wall_h_y = 0;
+	cub3d.wall_v_x = 0;
+	cub3d.wall_v_y = 0;
 	if (ac < 2)
 		error("Error: Missing map path !\n");
 	else if (ac > 2)
@@ -136,6 +123,7 @@ int	main(int ac, char **av)
 	cub3d.window = mlx_new_window(cub3d.mlx, cub3d.w_width, cub3d.w_height, "Cub3D");
 	draw_map(&cub3d);
 	mlx_hook(cub3d.window, 2, 1L << 0, &key_player, &cub3d);
+	// update(&cub3d);
 	mlx_loop_hook(cub3d.mlx, update, &cub3d);
 	mlx_loop(cub3d.mlx);
 	free_mem(cub3d.config);
