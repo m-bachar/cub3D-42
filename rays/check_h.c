@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:02:03 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/23 00:27:07 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/23 02:47:29 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	check_h_walls_up(t_cub3D *cub3d)
 {
-	// double cub3d->rad_a;
 	int new_h_x;
 	int new_h_y;
 
@@ -27,9 +26,8 @@ void	check_h_walls_up(t_cub3D *cub3d)
 		cub3d->dx_step = -(32.0 / tan(cub3d->rad_a));
 		new_h_x = cub3d->x_tile ;
 		new_h_y =cub3d->y_tile - 1;
-		while (new_h_x >= 0 && new_h_x < 800 && new_h_y >= 0 && new_h_y < 864)
+		while (new_h_x >= 0 && new_h_x < cub3d->w_width && new_h_y >= 0 && new_h_y < cub3d->w_height)
 		{
-			// mlx_pixel_put(cub3d->mlx,cub3d->window,new_h_x,new_h_y,0XFFFF00);
 			if (cub3d->map[new_h_y / 32][new_h_x/32] == '1')
 			{
 				cub3d->wall_h_x = new_h_x;
@@ -52,9 +50,8 @@ void	check_h_walls_down(t_cub3D *cub3d)
 		cub3d->dx_step = -(32.0 / tan(cub3d->rad_a));
 		int new_h_x = cub3d->x_tile ;
 		int new_h_y =cub3d->y_tile++;
-		while (new_h_x >= 0 && new_h_x < 800 && new_h_y >= 0 && new_h_y < 864)
+		while (new_h_x >= 0 && new_h_x < cub3d->w_width && new_h_y >= 0 && new_h_y < cub3d->w_height)
 		{
-			// mlx_pixel_put(cub3d->mlx,cub3d->window,new_h_x,new_h_y,0XFFFF00);
 			if (cub3d->map[new_h_y / 32][new_h_x/32] && cub3d->map[new_h_y / 32][new_h_x/32] == '1')
 			{
 				cub3d->wall_h_x = new_h_x;
@@ -80,7 +77,7 @@ void	check_h_walls_down(t_cub3D *cub3d)
 // 		cub3d->dx_step = (32.0 / tan(cub3d->rad_a));
 // 		int new_h_x = cub3d->x_tile ;
 // 		int new_h_y =cub3d->y_tile;
-// 		while (new_h_x >= 0 && new_h_x <= 800 && new_h_y >= 0 && new_h_y <= 864) //height and width map
+// 		while (new_h_x >= 0 && new_h_x <= cub3d->w_width && new_h_y >= 0 && new_h_y <= cub3d->w_height) //height and width map
 // 		{
 // 			printf("nx = %d  ny = %d\n",new_h_x/32,new_h_y/32);
 // 			draw_line1(cub3d,0XFF0000);
@@ -117,7 +114,7 @@ void	check_h_walls_down(t_cub3D *cub3d)
 // 		printf ("xstep = %f  ystep = %f\n",cub3d->dx_step , cub3d->dy_step);
 // 		printf ("xp = %d  yp = %d\n",cub3d->xp_c/32 , cub3d->yp_c/32);
 // 		printf ("xtile = %d  ytile = %d\n",cub3d->x_tile/32 , cub3d->y_tile/32);
-// 		while (new_h_x >= 0 && new_h_x < 800 && new_h_y >= 0 && new_h_y < 864)
+// 		while (new_h_x >= 0 && new_h_x < cub3d->w_width && new_h_y >= 0 && new_h_y < cub3d->w_height)
 // 		{
 // 			draw_line1(cub3d,0XFF0000);
 // 			if (cub3d->map[new_h_y / 32][new_h_x/32] == '1')
@@ -145,7 +142,7 @@ void	check_h_walls_down(t_cub3D *cub3d)
 // 		cub3d->dx_step = (32.0 / tan(cub3d->rad_a));
 // 		int new_h_x = cub3d->x_tile ;
 // 		int new_h_y =cub3d->y_tile;
-// 		while (new_h_x >= 0 && new_h_x < 800 && new_h_y >= 0 && new_h_y < 864)
+// 		while (new_h_x >= 0 && new_h_x < cub3d->w_width && new_h_y >= 0 && new_h_y < cub3d->w_height)
 // 		{
 // 			if (cub3d->map[new_h_y / 32][new_h_x/32] == '1')
 // 			{

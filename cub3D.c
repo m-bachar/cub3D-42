@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/23 02:23:23 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/23 02:52:12 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,35 +72,37 @@ void push_ray(t_cub3D *cub3d)
 	{
 		 ox = cub3d->xp_c + i * cos(cub3d->rad_a);
 		 oy = cub3d->yp_c + i * sin(cub3d->rad_a);
-		mlx_pixel_put(cub3d->mlx,cub3d->window, ox, oy, 0XFF0000);
+		my_mlx_pixel_put(cub3d, ox, oy, 0XFF0000);
 		i++;
 	}
 }	
 int update (t_cub3D *cub3d)
 {
-	int i = 0;
+	double i = cub3d->angle - (cub3d->fov / 2);
 	double rad;
 	
-	// mlx_destroy_image(cub3d->mlx, cub3d->img);
-	// mlx_clear_window(cub3d->mlx, cub3d->window);
+	mlx_destroy_image(cub3d->mlx, cub3d->img);
+	mlx_clear_window(cub3d->mlx, cub3d->window);
+
 	draw_map(cub3d);
 	rad = deg_to_rad(cub3d->angle);
 	cub3d->rad_a = rad;
-	while (i < 200)
+	while (i <(cub3d->angle + (cub3d->fov / 2)))
 	{
-		// check_h_walls_down(cub3d);
-		// check_h_walls_up(cub3d);
-		// check_v_walls_up_r(cub3d);
-		// check_v_walls_down_r(cub3d);
-		// check_v_walls_up_l(cub3d);
-		// check_v_walls_down_l(cub3d);
-		// get_min_wall_distance(cub3d);
-		// push_ray(cub3d);
+		check_h_walls_down(cub3d);
+		check_h_walls_up(cub3d);
+		check_v_walls_up_r(cub3d);
+		check_v_walls_down_r(cub3d);
+		check_v_walls_up_l(cub3d);
+		check_v_walls_down_l(cub3d);
+		get_min_wall_distance(cub3d);
+		push_ray(cub3d);
 		// printf("anng = |%f|\n",cub3d->angle);
 	// mlx_pixel_put(cub3d->mlx,cub3d->window, cub3d->ray->x_f_wall, cub3d->ray->y_f_wall, 0XFF0000);
-		cub3d->rad_a += rad / cub3d->w_width;
-		i++;
-	} 
+		// cub3d->rad_a += rad / cub3d->w_width;
+		i += (cub3d->fov/cub3d->w_width);
+	}
+	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
 	return(0);
 }
 
@@ -110,12 +112,13 @@ int	main(int ac, char **av)
 
 	cub3d.x = 0;
 	cub3d.y = 0;
+	cub3d.fov = 60;
 	cub3d.xp_c = 0;
 	cub3d.yp_c = 0;
 	cub3d.speed = 8;
 	cub3d.radius = 6;
-	cub3d.w_height = 1080;
-	cub3d.w_width = 1920;
+	cub3d.w_height = 720;
+	cub3d.w_width = 1080;
 	cub3d.rotation_speed =5;
 	cub3d.x_tile = 0;
 	cub3d.y_tile = 0;
@@ -137,7 +140,7 @@ int	main(int ac, char **av)
 	ft_find_angle(&cub3d);
 	cub3d.mlx = mlx_init();
 	cub3d.window = mlx_new_window(cub3d.mlx, cub3d.w_width, cub3d.w_height, "Cub3D");
-	cub3d.img = mlx_new_image(cub3d.mlx, 1920, 1080);
+	cub3d.img = mlx_new_image(cub3d.mlx, cub3d.w_width, cub3d.w_height);
 	cub3d.addr = mlx_get_data_addr(cub3d.img, &cub3d.bits_per_pixel, &cub3d.line_length,
 								&cub3d.endian);
 	mlx_hook(cub3d.window, 2, 1L << 0, &key_player, &cub3d);

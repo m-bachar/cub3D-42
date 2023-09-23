@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/22 23:49:26 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/23 02:47:12 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct cub3D
 	char	**config;
 	void	*mlx;
 	void	*window;
+	double	fov;
 	int		x;
 	int 	flag;
 	int		yp_c;
