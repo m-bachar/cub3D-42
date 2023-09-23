@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 23:48:10 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/23 00:31:03 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/23 02:29:01 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ void	draw_map(t_cub3D *cub3d)
 			{
 				pixels(cub3d,0x000000, j, i);
 				draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
-				// draw_line(cub3d, 0xFFD000);
+				draw_line(cub3d, 0xFFD000);
 			}
 			if (cub3d->map[j][i] == ' ' || cub3d->map[j][i] == '1')
 				pixels(cub3d,0x6342F5, j, i);
 			else
 				pixels(cub3d,0xFFFFFF, j, i);
 			draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
-			// draw_line(cub3d, 0xFFD000);
+			draw_line(cub3d, 0xFFD000);
 			i++;
 		}
 		j++;
@@ -156,7 +156,7 @@ void	draw_line1(t_cub3D *cub3d, int color)
     // int end_y = center_y + line_length * sin(angle_rad);
     int end_x = cub3d->x_tile;
     int end_y = cub3d->y_tile - 1;
-    printf("xtile = %d ytile =  %d\n",cub3d->x_tile,cub3d->y_tile - 1);
+    // printf("xtile = %d ytile =  %d\n",cub3d->x_tile,cub3d->y_tile - 1);
 
     int x1 = center_x;
     int y1 = center_y;
