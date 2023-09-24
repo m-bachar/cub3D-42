@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/27 23:32:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/23 02:52:12 by obouya           ###   ########.fr       */
+/*   Created: 2023/08/27 23:cub3d->tile:22 by mbachar           #+#    #+#             */
+/*   Updated: 2023/09/23 15:38:42 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	player_position(t_cub3D *cub3d)
 		{
 			if (!isplayer(cub3d->map[j][i]))
 			{
-				cub3d->xp_c = i * 32 + cub3d->radius;
-				cub3d->yp_c = j * 32 + cub3d->radius;
+				cub3d->xp_c = i * cub3d->tile + cub3d->radius;
+				cub3d->yp_c = j * cub3d->tile + cub3d->radius;
 				return ;
 			}
 			i++;
@@ -39,13 +39,13 @@ void	pixels(t_cub3D *cub3d, int color, int j, int i)
 {
 	int	x;
 
-	cub3d->x = i * 32;
-	cub3d->y = j * 32;
+	cub3d->x = i * cub3d->tile;
+	cub3d->y = j * cub3d->tile;
 	x = cub3d->x;
-	while (cub3d->y < (j + 1) * 32)
+	while (cub3d->y < (j + 1) * cub3d->tile)
 	{
 		cub3d->x = x;
-		while (cub3d->x < (i + 1) * 32)
+		while (cub3d->x < (i + 1) * cub3d->tile)
 		{
 			my_mlx_pixel_put(cub3d, cub3d->x, cub3d->y, color);
 			cub3d->x++;
@@ -70,15 +70,15 @@ void push_ray(t_cub3D *cub3d)
 	int oy;
 	while (i < cub3d->ray->distance)
 	{
-		 ox = cub3d->xp_c + i * cos(cub3d->rad_a);
-		 oy = cub3d->yp_c + i * sin(cub3d->rad_a);
-		my_mlx_pixel_put(cub3d, ox, oy, 0XFF0000);
+		ox = cub3d->xp_c + i * cos(cub3d->rad_a);
+		oy = cub3d->yp_c + i * sin(cub3d->rad_a);
+		// my_mlx_pixel_put(cub3d, ox, oy, 0XFF0000);
 		i++;
 	}
 }	
 int update (t_cub3D *cub3d)
 {
-	double i = cub3d->angle - (cub3d->fov / 2);
+	// double i = cub3d->angle - (cub3d->fov / 2);
 	double rad;
 	
 	mlx_destroy_image(cub3d->mlx, cub3d->img);
@@ -87,21 +87,20 @@ int update (t_cub3D *cub3d)
 	draw_map(cub3d);
 	rad = deg_to_rad(cub3d->angle);
 	cub3d->rad_a = rad;
-	while (i <(cub3d->angle + (cub3d->fov / 2)))
-	{
+	// while (i < (cub3d->angle + (cub3d->fov / 2)))
+	// {
 		check_h_walls_down(cub3d);
 		check_h_walls_up(cub3d);
 		check_v_walls_up_r(cub3d);
-		check_v_walls_down_r(cub3d);
-		check_v_walls_up_l(cub3d);
-		check_v_walls_down_l(cub3d);
+		// check_v_walls_down_r(cub3d);
+		// check_v_walls_up_l(cub3d);
+		// check_v_walls_down_l(cub3d);
 		get_min_wall_distance(cub3d);
-		push_ray(cub3d);
-		// printf("anng = |%f|\n",cub3d->angle);
-	// mlx_pixel_put(cub3d->mlx,cub3d->window, cub3d->ray->x_f_wall, cub3d->ray->y_f_wall, 0XFF0000);
+		printf("xwall = |%f|  ywall = |%f|\n", cub3d->ray->x_f_wall, cub3d->ray->y_f_wall);
 		// cub3d->rad_a += rad / cub3d->w_width;
-		i += (cub3d->fov/cub3d->w_width);
-	}
+	// 	i += ((double)cub3d->fov/(double)cub3d->w_width);
+	// }
+	my_mlx_pixel_put(cub3d, cub3d->ray->x_f_wall, cub3d->ray->y_f_wall, 0XFF0000);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
 	return(0);
 }
@@ -129,6 +128,7 @@ int	main(int ac, char **av)
 	cub3d.wall_h_y = 0;
 	cub3d.wall_v_x = 0;
 	cub3d.wall_v_y = 0;
+	cub3d.tile = 16;
 	cub3d.ray = malloc(sizeof(t_rays));
 	cub3d.ray->distance = 0;
 	if (ac < 2)

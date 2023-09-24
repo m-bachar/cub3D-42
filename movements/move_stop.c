@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 08:14:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/23 02:34:31 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/23 15:39:55 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void up_arrow(t_cub3D *cub3d)
     double dy = cub3d->speed * sin(rad_angle);
 	int c1 = cub3d->xp_c + dx;
 	int c2 = cub3d->yp_c +dy;
-	if (cub3d->map[c2/32][c1/32] && cub3d->map[c2/32][c1/32] != '1')
+	if (cub3d->map[c2/cub3d->tile][c1/cub3d->tile] && cub3d->map[c2/cub3d->tile][c1/cub3d->tile] != '1')
 	{
     	cub3d->xp_c += dx;
    		cub3d->yp_c += dy;
@@ -32,7 +32,7 @@ void right_arrow(t_cub3D *cub3d)
     double dy = cub3d->speed * sin(rad_angle);
     int c1 = cub3d->xp_c + dx;
 	int c2 = cub3d->yp_c + dy;
-	if (cub3d->map[c2/32][c1/32] && cub3d->map[c2/32][c1/32] != '1')
+	if (cub3d->map[c2/cub3d->tile][c1/cub3d->tile] && cub3d->map[c2/cub3d->tile][c1/cub3d->tile] != '1')
 	{
     	cub3d->xp_c += dx;
     	cub3d->yp_c += dy;
@@ -46,7 +46,7 @@ void left_arrow(t_cub3D *cub3d)
     double dy = cub3d->speed * sin(rad_angle);
 	int c1 = cub3d->xp_c + dx;
 	int c2 = cub3d->yp_c + dy;
-	if (cub3d->map[c2/32][c1/32] && cub3d->map[c2/32][c1/32] != '1')
+	if (cub3d->map[c2/cub3d->tile][c1/cub3d->tile] && cub3d->map[c2/cub3d->tile][c1/cub3d->tile] != '1')
 	{
     	cub3d->xp_c += dx;
    		cub3d->yp_c += dy;
@@ -60,7 +60,7 @@ void down_arrow(t_cub3D *cub3d)
     double dy = cub3d->speed * sin(rad_angle);
 	int c1 = cub3d->xp_c - dx;
 	int c2 = cub3d->yp_c - dy;
-	if (cub3d->map[c2/32][c1/32] && cub3d->map[c2/32][c1/32] != '1')
+	if (cub3d->map[c2/cub3d->tile][c1/cub3d->tile] && cub3d->map[c2/cub3d->tile][c1/cub3d->tile] != '1')
 	{
     	cub3d->xp_c -= dx;
     	cub3d->yp_c -= dy;
