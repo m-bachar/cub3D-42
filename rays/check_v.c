@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 22:19:28 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/24 04:42:32 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/24 05:20:45 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_v_walls_up_r(t_cub3D *cub3d)
 		cub3d->dy_step = (cub3d->tile * fabs(tan(cub3d->rad_a)));
 		new_h_x = cub3d->x_tile + 1;
 		new_h_y =cub3d->y_tile;
-			while (new_h_x >= 0 && new_h_x < 400 && new_h_y >= 0 && new_h_y < 432)
+		while (new_h_x >= 0 && (new_h_x < cub3d->tile * cub3d->map_x_max) && new_h_y >= 0 && new_h_y < (cub3d->tile * cub3d->map_y_max))
 		{
 			if (cub3d->map[new_h_y / cub3d->tile][new_h_x / cub3d->tile] 
 				&& cub3d->map[new_h_y / cub3d->tile][new_h_x / cub3d->tile] == '1')
@@ -59,7 +59,7 @@ void	check_v_walls_down_r(t_cub3D *cub3d)
 		{
 			cub3d->x_tile =((cub3d->xp_c / cub3d->tile) + 1) * cub3d->tile;
 			cub3d->y_tile = cub3d->yp_c + ((cub3d->x_tile - cub3d->xp_c) * tan(cub3d->rad_a));
-			printf("xvtile = %d    yvtile= %d\n",( cub3d->x_tile)/ cub3d->tile,( cub3d->y_tile));
+			// printf("xvtile = %d    yvtile= %d\n",( cub3d->x_tile)/ cub3d->tile,( cub3d->y_tile));
 			cub3d->dx_step = cub3d->tile;
 			cub3d->dy_step = (cub3d->tile * tan(cub3d->rad_a));
 		}
@@ -67,7 +67,7 @@ void	check_v_walls_down_r(t_cub3D *cub3d)
 		new_h_y = cub3d->y_tile;
 		// printf("ada = %f\n", cub3d->angle);
 		// printf("tdan = %f\n", tan(cub3d->rad_a));
-			while (new_h_x >= 0 && new_h_x < 400 && new_h_y >= 0 && new_h_y < 432)
+		while (new_h_x >= 0 && (new_h_x < cub3d->tile * cub3d->map_x_max) && new_h_y >= 0 && new_h_y < (cub3d->tile * cub3d->map_y_max))
 		{
 			if (cub3d->map[(new_h_y) / cub3d->tile][(new_h_x) / cub3d->tile] == '1')
 			{
@@ -107,7 +107,7 @@ void	check_v_walls_down_l(t_cub3D *cub3d)
 		new_h_x = 	cub3d->x_tile - 1;
 		new_h_y =	cub3d->y_tile;
 		// printf ("newhx= %d = , newhy = %d\n",new_h_x,new_h_y);
-		while (new_h_x >= 0 && new_h_x < 400 && new_h_y >= 0 && new_h_y < 432)
+	while (new_h_x >= 0 && (new_h_x < cub3d->tile * cub3d->map_x_max) && new_h_y >= 0 && new_h_y < (cub3d->tile * cub3d->map_y_max))
 		{
 			if (cub3d->map[new_h_y / cub3d->tile][new_h_x / cub3d->tile]
 				&& cub3d->map[new_h_y / cub3d->tile][new_h_x / cub3d->tile] == '1')
@@ -136,7 +136,7 @@ void	check_v_walls_up_l(t_cub3D *cub3d)
 		new_h_x = cub3d->x_tile - 1;
 		new_h_y = cub3d->y_tile;
 		// printf("angle f = %f\n",cub3d->angle);
-		while (new_h_x >= 0 && new_h_x < 400 && new_h_y >= 0 && new_h_y < 432)
+	while (new_h_x >= 0 && (new_h_x < cub3d->tile * cub3d->map_x_max) && new_h_y >= 0 && new_h_y < (cub3d->tile * cub3d->map_y_max))
 		{
 			if (cub3d->map[new_h_y / cub3d->tile][new_h_x / cub3d->tile] == '1')
 			{

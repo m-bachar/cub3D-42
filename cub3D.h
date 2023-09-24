@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/24 02:10:27 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/24 05:28:21 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 typedef struct cub3D
 {
 	char	**map;
-	 int        map_x_max;
-    int        map_y_max;
+	 int    map_x_max;
+    int     map_y_max;
 	char	**config;
 	void	*mlx;
 	void	*window;
