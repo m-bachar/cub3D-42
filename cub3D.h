@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/23 15:37:59 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/24 02:10:27 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 typedef struct cub3D
 {
 	char	**map;
+	 int        map_x_max;
+    int        map_y_max;
 	char	**config;
 	void	*mlx;
 	void	*window;
@@ -148,4 +150,5 @@ void	check_v_walls_up_l(t_cub3D *cub3d);
 void	check_v_walls_down_r(t_cub3D *cub3d);
 void	check_v_walls_down_l(t_cub3D *cub3d);
 void get_min_wall_distance(t_cub3D *cub3d);
+void    max_x_y(t_cub3D *cub3d);
 #endif

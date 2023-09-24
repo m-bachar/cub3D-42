@@ -89,12 +89,12 @@ int update (t_cub3D *cub3d)
 	cub3d->rad_a = rad;
 	// while (i < (cub3d->angle + (cub3d->fov / 2)))
 	// {
-		check_h_walls_down(cub3d);
-		check_h_walls_up(cub3d);
-		check_v_walls_up_r(cub3d);
+		// check_h_walls_down(cub3d);
+		// check_h_walls_up(cub3d);
+		// check_v_walls_up_r(cub3d);
 		// check_v_walls_down_r(cub3d);
 		// check_v_walls_up_l(cub3d);
-		// check_v_walls_down_l(cub3d);
+		check_v_walls_down_l(cub3d);
 		get_min_wall_distance(cub3d);
 		printf("xwall = |%f|  ywall = |%f|\n", cub3d->ray->x_f_wall, cub3d->ray->y_f_wall);
 		// cub3d->rad_a += rad / cub3d->w_width;
@@ -104,7 +104,22 @@ int update (t_cub3D *cub3d)
 	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
 	return(0);
 }
+void    max_x_y(t_cub3D *cub3d)
+{
+    int    i;
+    int    size;
 
+    i = 0;
+    size = 0;
+    cub3d->map_y_max = doublearray_size(cub3d->map);
+    while (cub3d->map[i])
+    {
+        size = ft_strlen(cub3d->map[i]);
+        if (size >= cub3d->map_x_max)
+            cub3d->map_x_max = size;
+        i++;
+    }
+}
 int	main(int ac, char **av)
 {
 	t_cub3D	cub3d;
@@ -129,6 +144,8 @@ int	main(int ac, char **av)
 	cub3d.wall_v_x = 0;
 	cub3d.wall_v_y = 0;
 	cub3d.tile = 16;
+	 cub3d.map_x_max = 0;
+     cub3d.map_y_max = 0;
 	cub3d.ray = malloc(sizeof(t_rays));
 	cub3d.ray->distance = 0;
 	if (ac < 2)
@@ -136,6 +153,8 @@ int	main(int ac, char **av)
 	else if (ac > 2)
 		error("Error: Too many arguments !\n");
 	parsing(av[1], &cub3d);
+	max_x_y(&cub3d);
+	printf("mappx =  %d mapy  = %d\n",cub3d.map_x_max,cub3d.map_y_max);
 	player_position(&cub3d);
 	ft_find_angle(&cub3d);
 	cub3d.mlx = mlx_init();
