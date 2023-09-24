@@ -89,14 +89,15 @@ int update (t_cub3D *cub3d)
 	cub3d->rad_a = rad;
 	// while (i < (cub3d->angle + (cub3d->fov / 2)))
 	// {
-		// check_h_walls_down(cub3d);
-		// check_h_walls_up(cub3d);
-		// check_v_walls_up_r(cub3d);
-		// check_v_walls_down_r(cub3d);
-		// check_v_walls_up_l(cub3d);
+		printf("cub ang = %f\n",cub3d->angle);
+		check_h_walls_down(cub3d);
+		check_h_walls_up(cub3d);
+		check_v_walls_up_r(cub3d);
+		check_v_walls_down_r(cub3d);
+		check_v_walls_up_l(cub3d);
 		check_v_walls_down_l(cub3d);
 		get_min_wall_distance(cub3d);
-		printf("xwall = |%f|  ywall = |%f|\n", cub3d->ray->x_f_wall, cub3d->ray->y_f_wall);
+	//	printf("xwall = |%f|  ywall = |%f|\n", cub3d->ray->x_f_wall, cub3d->ray->y_f_wall);
 		// cub3d->rad_a += rad / cub3d->w_width;
 	// 	i += ((double)cub3d->fov/(double)cub3d->w_width);
 	// }
