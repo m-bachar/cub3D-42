@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/27 23:cub3d->tile:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/23 15:38:42 by obouya           ###   ########.fr       */
+/*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
+/*   Updated: 2023/09/27 01:17:12 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-
 void push_ray(t_cub3D *cub3d)
 {
 	int i = 0;
@@ -83,28 +82,35 @@ int update (t_cub3D *cub3d)
 	
 	mlx_destroy_image(cub3d->mlx, cub3d->img);
 	mlx_clear_window(cub3d->mlx, cub3d->window);
-	draw_map(cub3d);
+	// draw_map(cub3d);
 	rad = deg_to_rad(cub3d->angle);
 	cub3d->rad_a = rad;
 	while (i < (cub3d->angle + (cub3d->fov / 2)))
 	{
 		printf("cub ang = %f\n",cub3d->angle);
-		check_h_walls_down(cub3d);
-		check_h_walls_up(cub3d);
-		check_v_walls_up_r(cub3d);
-		check_v_walls_down_r(cub3d);
-		check_v_walls_up_l(cub3d);
-		check_v_walls_down_l(cub3d);
+		// check_h_walls(cub3d);
+		if (cub3d->angle != 180 && cub3d->angle != 0)
+		{
+			check_h_walls_down(cub3d);
+			check_h_walls_up(cub3d);
+		}
+		if (cub3d->angle != 270 && cub3d->angle != 90)
+		{
+			check_v_walls_up_r(cub3d);
+			check_v_walls_down_r(cub3d);
+			check_v_walls_up_l(cub3d);
+			check_v_walls_down_l(cub3d);
+		}
 		get_min_wall_distance(cub3d);
 		push_ray(cub3d);
-	//	printf("xwall = |%f|  ywall = |%f|\n", cub3d->ray->x_f_wall, cub3d->ray->y_f_wall);
-		// my_mlx_pixel_put(cub3d, cub3d->ray->x_f_wall, cub3d->ray->y_f_wall, 0XFF0000);
-		// cub3d->rad_a += rad / cub3d->w_width;
+		cub3d->rad_a += rad / cub3d->w_width;
 		i += (cub3d->fov/cub3d->w_width);
+		draw_map_3d(cub3d, cub3d->ray->x_f_wall);
 	}
 	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
 	return(0);
 }
+
 void    max_x_y(t_cub3D *cub3d)
 {
     int    i;
@@ -121,9 +127,97 @@ void    max_x_y(t_cub3D *cub3d)
         i++;
     }
 }
+
+int	longest_line(char **map)
+{
+	int	j;
+	int	len;
+
+	j = 0;
+	len = 0;
+	while (map[j])
+	{
+		if ((int )ft_strlen(map[j]) >= len)
+			len = ft_strlen(map[j]);
+		j++;
+	}
+	return (len);
+}
+
+int	tab_to_hash(char *src, int i)
+{
+	int	j;
+
+	j = 0;
+	while (j < 4)
+	{
+		src[i] = '#';
+		i++;
+		j++;
+	}
+	return (i);
+}
+
+
+char	*copy_line(char *src, char *dst, int len)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (src[i])
+	{
+		if (src[i] == '\t')
+		{
+			j = tab_to_hash(dst, j);
+			i++;
+		}
+		dst[j] = src[i];
+		j++;
+		i++;
+	}
+	while (j < len)
+	{
+		dst[j] = '#';
+		j++;
+	}
+	dst[j] = '\0';
+	return (dst);
+}
+
+void	fillmap(t_cub3D *cub3d)
+{
+	char	**new_map;
+	int		counter;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	counter = 0;
+	new_map = malloc(sizeof(char *) * (doublearray_size(cub3d->map) + 1));
+	while (cub3d->map[j])
+	{
+		i = 0;
+		while (cub3d->map[j][i])
+		{
+			if (cub3d->map[j][i] == '\t')
+				counter++;
+			i++;
+		}
+		new_map[j] = malloc(sizeof(char) * ((counter * 4) + (longest_line(cub3d->map) + 1)));
+		new_map[j] = copy_line(cub3d->map[j], new_map[j], longest_line(cub3d->map));
+		j++;
+	}
+	new_map[j] = NULL;
+	cub3d->map = new_map;
+}
+
 int	main(int ac, char **av)
 {
 	t_cub3D	cub3d;
+	char	*test;
 
 	cub3d.x = 0;
 	cub3d.y = 0;
@@ -149,11 +243,15 @@ int	main(int ac, char **av)
      cub3d.map_y_max = 0;
 	cub3d.ray = malloc(sizeof(t_rays));
 	cub3d.ray->distance = 0;
+	test = malloc(sizeof(char) * 1);
+	if (!test)
+		error("Malloc Failure\n");
 	if (ac < 2)
 		error("Error: Missing map path !\n");
 	else if (ac > 2)
 		error("Error: Too many arguments !\n");
 	parsing(av[1], &cub3d);
+	// fillmap(&cub3d);
 	max_x_y(&cub3d);
 	printf("mappx =  %d mapy  = %d\n",cub3d.map_x_max,cub3d.map_y_max);
 	player_position(&cub3d);

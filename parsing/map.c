@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 05:12:11 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/24 03:00:44 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/26 19:48:38 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	first_last_lines(char **map)
 
 	i = doublearray_size(map) - 1;
 	j = 0;
-	while (map[0][j] && map[0][j] == ' ') // Add whitespaces
+	while (map[0][j] && !iswhitespaces(map[0][j]))
 		j++;
 	while (map[0][j])
 	{
@@ -43,7 +43,7 @@ void	first_last_lines(char **map)
 		j++;
 	}
 	j = 0;
-	while (map[i][j] && map[i][j] == ' ') // Add whitespaces
+	while (map[i][j] && !iswhitespaces(map[i][j]))
 		j++;
 	while (map[i][j])
 	{
@@ -62,12 +62,12 @@ void	sides(char **map)
 	while (map[j])
 	{
 		i = 0;
-		while (map[j][i] && map[j][i] == ' ') // Add whitespaces
+		while (map[j][i] && !iswhitespaces(map[j][i]))
 			i++;
 		if (map[j][i] != '1')
 			error("Error: Map must be surrounded by walls !\n");
 		i = ft_strlen(map[j]) - 1;
-		while (i && map[j][i] == ' ') // Add whitespaces
+		while (i && !iswhitespaces(map[j][i]))
 			i--;
 		if (map[j][i] != '1')
 			error("Error: Map must be surrounded by walls !\n");
@@ -142,7 +142,7 @@ void	check_map_content(char **map)
 			if (map[j][i] != '1' && map[j][i] != '0'
 				&& map[j][i] != 'N' && map[j][i] != 'S'
 				&& map[j][i] != 'W' && map[j][i] != 'E'
-				&& map[j][i] != ' ') // Add Whitespaces
+				&& iswhitespaces(map[j][i]))
 				error(\
 				"Error: A different element has been detected in the map !\n");
 			i++;

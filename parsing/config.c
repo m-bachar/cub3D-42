@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 00:16:18 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/09 21:54:03 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/26 19:45:27 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	parse_c_f(char *cf)
 	int		i;
 
 	i = 1;
-	while (cf[i] && cf[i] == ' ') // Add whitespaces
+	while (cf[i] && !iswhitespaces(cf[i]))
 		i++;
 	// Count commas
 	if (cf[i] == 'C' || cf[i] == 'F')

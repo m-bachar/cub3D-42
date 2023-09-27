@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: obouya <obouya@student.42.fr>              +#+  +:+       +#+         #
+#    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/09/23 15:34:57 by obouya           ###   ########.fr        #
+#    Updated: 2023/09/27 00:55:24 by mbachar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,13 @@ SRC			= 	cub3D.c \
 				./rays/check_h.c \
 				./rays/check_v.c \
 				./rays/wall.c \
+				./rays/rendering_walls.c \
 				./parsing/utils.c
 
 INCLUDE		= 	cub3D.h
 CC			= 	cc -Ofast
 OBJ			= 	$(SRC:.c=.o)
-CFLAGS		= 	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror #-g -fsanitize=address
 
 all : $(CUB3D)
 

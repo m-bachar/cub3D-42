@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_v.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 22:19:28 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/24 05:20:45 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/26 00:28:04 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	check_v_walls_down_r(t_cub3D *cub3d)
 			{
 				cub3d->wall_v_x = new_h_x;
 				cub3d->wall_v_y = new_h_y;
-				puts("vv");
 				break;
 			}
 				new_h_x += cub3d->dx_step;

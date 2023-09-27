@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:14 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/04 22:46:09 by benito           ###   ########.fr       */
+/*   Updated: 2023/09/26 19:55:33 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	error(char *str)
 	i = 0;
 	while (str[i])
 		write(2, &str[i++], 1);
+	system("leaks cub3D");
 	exit(1);
 }
 
@@ -65,4 +66,11 @@ int	sizeof_map(char *map)
 		i++;
 	}
 	return (map_size);
+}
+
+int	iswhitespaces(char c)
+{
+	if (c == ' ' || (c >= 9 && c <= 13))
+		return (0);
+	return (1);
 }

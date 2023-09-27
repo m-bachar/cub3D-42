@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/24 05:28:21 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/26 20:35:35 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,51 +23,54 @@
 # include "./libft/libft.h"
 
 # define BUFFER_SIZE 1
+# define ORANGE 0xF5BC42
+# define BLUE 0x42B6F5
+# define BROWN 0x632409
 
 typedef struct cub3D
 {
-	char	**map;
-	 int    map_x_max;
-    int     map_y_max;
-	char	**config;
-	void	*mlx;
-	void	*window;
-	double	fov;
-	int		x;
-	int 	flag;
-	int		yp_c;
-	int		xp_c;
-	int		y;
-	int 	w_height;
-	int 	w_width;
-	float 	angle;
-	int 	speed;
-	float 	radius;
-	char 	player_direcion;
-	double 	rotation_speed;
-	int 	x_tile;
-	int 	y_tile;
-	double 	dx_step;
-	double 	dy_step;
-	int 	wall_h_x;
-	int 	wall_h_y;
-	int 	wall_v_x;
-	int 	wall_v_y;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		tile;
-	double rad_a;
-	struct 	s_rays *ray;
+	char			**map;
+	int				map_x_max;
+    int				map_y_max;
+	char			**config;
+	void			*mlx;
+	void			*window;
+	double			fov;
+	int				x;
+	int				flag;
+	int				yp_c;
+	int				xp_c;
+	int				y;
+	int				w_height;
+	int				w_width;
+	float			angle;
+	int				speed;
+	float			radius;
+	char			player_direcion;
+	double			rotation_speed;
+	int				x_tile;
+	int				y_tile;
+	double			dx_step;
+	double			dy_step;
+	int				wall_h_x;
+	int				wall_h_y;
+	int				wall_v_x;
+	int				wall_v_y;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				tile;
+	double			rad_a;
+	struct s_rays	*ray;
 }	t_cub3D;
 
 typedef struct s_rays
 {
-	double	x_f_wall;
-	double	y_f_wall;
-	double	distance;
+	double			x_f_wall;
+	double			y_f_wall;
+	double			distance;
 }	t_rays;
 
 		/*	Config.c		*/
@@ -111,6 +114,7 @@ int		doublearray_size(char **array);
 void	error(char *str);
 int		isplayer(char c);
 int		sizeof_map(char *map);
+int		iswhitespaces(char c);
 
 //----------------------------->movements/draw.c
 void 	draw_player(t_cub3D *cub3d, int color, int i, int j);
@@ -136,7 +140,7 @@ double	rad_to_deg(double rad);
 //------------------------------>cub3D.c
 void	pixels(t_cub3D *cub3d, int color, int j, int i);
 void	left(t_cub3D *cub3d);
-int	key_view(int keycode, t_cub3D *cub3d);
+int		key_view(int keycode, t_cub3D *cub3d);
 void	check_direction(char c, t_cub3D *cub3d);
 void	right(t_cub3D *cub3d);
 void	check_h_walls_up(t_cub3D *cub3d);
@@ -149,6 +153,8 @@ void	check_v_walls_up_r(t_cub3D *cub3d);
 void	check_v_walls_up_l(t_cub3D *cub3d);
 void	check_v_walls_down_r(t_cub3D *cub3d);
 void	check_v_walls_down_l(t_cub3D *cub3d);
-void get_min_wall_distance(t_cub3D *cub3d);
+void 	get_min_wall_distance(t_cub3D *cub3d);
 void    max_x_y(t_cub3D *cub3d);
+void    draw_map_3d(t_cub3D *cub3d, int colomn);
+
 #endif
