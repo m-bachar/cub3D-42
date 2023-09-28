@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/26 20:35:35 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/28 19:21:58 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ typedef struct cub3D
 	double			rotation_speed;
 	int				x_tile;
 	int				y_tile;
-	double			dx_step;
-	double			dy_step;
+	// double			dx_step;
+	// double			dy_step;
 	int				wall_h_x;
 	int				wall_h_y;
 	int				wall_v_x;
@@ -63,6 +63,7 @@ typedef struct cub3D
 	int				endian;
 	int				tile;
 	double			rad_a;
+	int j;
 	struct s_rays	*ray;
 }	t_cub3D;
 
@@ -71,6 +72,9 @@ typedef struct s_rays
 	double			x_f_wall;
 	double			y_f_wall;
 	double			distance;
+	int *tab_x;
+	int *tab_y;
+	int *tab_dist;
 }	t_rays;
 
 		/*	Config.c		*/
@@ -143,18 +147,23 @@ void	left(t_cub3D *cub3d);
 int		key_view(int keycode, t_cub3D *cub3d);
 void	check_direction(char c, t_cub3D *cub3d);
 void	right(t_cub3D *cub3d);
-void	check_h_walls_up(t_cub3D *cub3d);
-void	check_h_walls_up_l(t_cub3D *cub3d);
-void	check_h_walls_down(t_cub3D *cub3d);
-void	check_h_walls_down_l(t_cub3D *cub3d);
+// void	check_h_walls_up(t_cub3D *cub3d);
+// void	check_h_walls_up_l(t_cub3D *cub3d);
+// void	check_h_walls_up_r(t_cub3D *cub3d);
+// void	check_h_walls_down(t_cub3D *cub3d);
+// void	check_h_walls_down_l(t_cub3D *cub3d);
+// void	check_h_walls_down_r(t_cub3D *cub3d);
 void	draw_line_ray(t_cub3D *cub3d, int color);
 void	draw_line1(t_cub3D *cub3d, int color);
-void	check_v_walls_up_r(t_cub3D *cub3d);
-void	check_v_walls_up_l(t_cub3D *cub3d);
-void	check_v_walls_down_r(t_cub3D *cub3d);
-void	check_v_walls_down_l(t_cub3D *cub3d);
+// void	check_v_walls_up_r(t_cub3D *cub3d);
+// void	check_v_walls_up_l(t_cub3D *cub3d);
+// void	check_v_walls_down_r(t_cub3D *cub3d);
+// void	check_v_walls_down_l(t_cub3D *cub3d);
 void 	get_min_wall_distance(t_cub3D *cub3d);
 void    max_x_y(t_cub3D *cub3d);
 void    draw_map_3d(t_cub3D *cub3d, int colomn);
+void 	draw_line_dda(t_cub3D *cub3d, int x0, int y0, int x1, int y1);
+void 	all_rays(t_cub3D *cub3d);
+void    check_horizental(t_cub3D *cub3d);
 
 #endif
