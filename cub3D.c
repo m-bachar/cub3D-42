@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/28 19:57:15 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/28 23:17:27 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,27 +220,12 @@ int	longest_line(char **map)
 	len = 0;
 	while (map[j])
 	{
-		if ((int )ft_strlen(map[j]) >= len)
+		if ((int)ft_strlen(map[j]) >= len)
 			len = ft_strlen(map[j]);
 		j++;
 	}
 	return (len);
 }
-
-int	tab_to_hash(char *src, int i)
-{
-	int	j;
-
-	j = 0;
-	while (j < 4)
-	{
-		src[i] = '#';
-		i++;
-		j++;
-	}
-	return (i);
-}
-
 
 char	*copy_line(char *src, char *dst, int len)
 {
@@ -250,16 +235,7 @@ char	*copy_line(char *src, char *dst, int len)
 	i = 0;
 	j = 0;
 	while (src[i])
-	{
-		if (src[i] == '\t')
-		{
-			j = tab_to_hash(dst, j);
-			i++;
-		}
-		dst[j] = src[i];
-		j++;
-		i++;
-	}
+		dst[j++] = src[i++];
 	while (j < len)
 	{
 		dst[j] = '#';
@@ -282,13 +258,6 @@ void	fillmap(t_cub3D *cub3d)
 	new_map = malloc(sizeof(char *) * (doublearray_size(cub3d->map) + 1));
 	while (cub3d->map[j])
 	{
-		i = 0;
-		while (cub3d->map[j][i])
-		{
-			if (cub3d->map[j][i] == '\t')
-				counter++;
-			i++;
-		}
 		new_map[j] = malloc(sizeof(char) * ((counter * 4) + (longest_line(cub3d->map) + 1)));
 		new_map[j] = copy_line(cub3d->map[j], new_map[j], longest_line(cub3d->map));
 		j++;
@@ -300,7 +269,7 @@ void	fillmap(t_cub3D *cub3d)
 int	main(int ac, char **av)
 {
 	t_cub3D	cub3d;
-	char	*test;
+	// char	*test;
 
 	cub3d.x = 0;
 	cub3d.y = 0;
@@ -326,27 +295,29 @@ int	main(int ac, char **av)
      cub3d.map_y_max = 0;
 	cub3d.ray = malloc(sizeof(t_rays));
 	cub3d.ray->distance = 0;
-	test = malloc(sizeof(char) * 1);
-	if (!test)
-		error("Malloc Failure\n");
+	// Malloc Protection here
 	if (ac < 2)
 		error("Error: Missing map path !\n");
 	else if (ac > 2)
 		error("Error: Too many arguments !\n");
 	parsing(av[1], &cub3d);
-	// fillmap(&cub3d);
-	max_x_y(&cub3d);
-	printf("mappx =  %d mapy  = %d\n",cub3d.map_x_max,cub3d.map_y_max);
-	player_position(&cub3d);
-	ft_find_angle(&cub3d);
-	cub3d.mlx = mlx_init();
-	cub3d.window = mlx_new_window(cub3d.mlx, cub3d.w_width, cub3d.w_height, "Cub3D");
-	cub3d.img = mlx_new_image(cub3d.mlx, cub3d.w_width, cub3d.w_height);
-	cub3d.addr = mlx_get_data_addr(cub3d.img, &cub3d.bits_per_pixel, &cub3d.line_length,
-								&cub3d.endian);
-	mlx_hook(cub3d.window, 2, 1L << 0, &key_player, &cub3d);
-	mlx_loop_hook(cub3d.mlx, update, &cub3d);
-	mlx_loop(cub3d.mlx);
+	fillmap(&cub3d);
+	for (int i = 0; i < doublearray_size(cub3d.map); i++)
+	{
+		printf("%s\n", cub3d.map[i]);
+	}
+	// max_x_y(&cub3d);
+	// printf("mappx =  %d mapy  = %d\n",cub3d.map_x_max,cub3d.map_y_max);
+	// player_position(&cub3d);
+	// ft_find_angle(&cub3d);
+	// cub3d.mlx = mlx_init();
+	// cub3d.window = mlx_new_window(cub3d.mlx, cub3d.w_width, cub3d.w_height, "Cub3D");
+	// cub3d.img = mlx_new_image(cub3d.mlx, cub3d.w_width, cub3d.w_height);
+	// cub3d.addr = mlx_get_data_addr(cub3d.img, &cub3d.bits_per_pixel, &cub3d.line_length,
+	// 							&cub3d.endian);
+	// mlx_hook(cub3d.window, 2, 1L << 0, &key_player, &cub3d);
+	// mlx_loop_hook(cub3d.mlx, update, &cub3d);
+	// mlx_loop(cub3d.mlx);
 	free_mem(cub3d.config);
 	free_mem(cub3d.map);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: obouya <obouya@student.42.fr>              +#+  +:+       +#+         #
+#    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/09/28 19:25:54 by obouya           ###   ########.fr        #
+#    Updated: 2023/09/28 23:39:17 by mbachar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRC			= 	cub3D.c \
 				./parsing/scene.c \
 				./parsing/tools.c \
 				./parsing/tweaked_funcs.c \
+				./parsing/xpm_files.c \
+				./parsing/utils.c \
 				./movements/draw.c \
 				./movements/move_stop.c \
 				./movements/stop_in_2d.c \
@@ -27,13 +29,12 @@ SRC			= 	cub3D.c \
 				./rays/check_v.c \
 				./rays/wall.c \
 				./rays/check_horizental.c \
-				./rays/rendering_walls.c \
-				./parsing/utils.c
+				./rays/rendering_walls.c
 
 INCLUDE		= 	cub3D.h
 CC			= 	cc -Ofast
 OBJ			= 	$(SRC:.c=.o)
-CFLAGS		= 	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror #-g -fsanitize=address
 
 all : $(CUB3D)
 

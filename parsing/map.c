@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 05:12:11 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/26 19:48:38 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/28 23:16:52 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,29 @@ void	check_surrounding(char **map)
 			|| (map[j - 1][i] != '1' && map[j - 1][i] != '0'
 				&& isplayer(map[j - 1][i]))))
 				error("Error: Map must be surrounded by walls !\n");
+			i++;
+		}
+		j++;
+	}
+}
+
+void	check_player_surrounding(char **map)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (map[j])
+	{
+		i = 0;
+		while (map[j][i])
+		{
+			if (!isplayer(map[j][i])
+			&& ((map[j][i + 1] != '1' && map[j][i + 1] != '0')
+			|| (map[j][i - 1] != '1' && map[j][i - 1] != '0')
+			|| (map[j + 1][i] != '1' && map[j + 1][i] != '0')
+			|| (map[j - 1][i] != '1' && map[j - 1][i] != '0')))
+				error("Error: Player must be surrounded by walls or floor !\n");
 			i++;
 		}
 		j++;

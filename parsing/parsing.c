@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:37:14 by benito            #+#    #+#             */
-/*   Updated: 2023/09/15 05:56:56 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/28 23:17:18 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	parse_map(char *map, t_cub3D *cub3d)
 	sides(splitted);
 	find_player(splitted);
 	check_map_content(splitted);
+	check_player_surrounding(splitted);
 	check_surrounding(splitted);
 	cub3d->map = splitted;
 }

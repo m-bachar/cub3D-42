@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_horizental.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:39:56 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/28 19:57:06 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/28 20:05:48 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ void    check_horizental(t_cub3D *cub3d)
         h_touch_y += dy_step;
     }
     my_mlx_pixel_put(cub3d,h_touch_x, h_touch_y, 0X000000);
-    draw_line_dda(cub3d, cub3d->xp_c, cub3d->yp_c, h_touch_x,  h_touch_y);
+    // draw_line_dda(cub3d, cub3d->xp_c, cub3d->yp_c, h_touch_x,  h_touch_y);
 }

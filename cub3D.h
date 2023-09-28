@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/28 19:21:58 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/28 23:17:41 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_rays
 		/*	Config.c		*/
 void	check_rgb_values(char **cf);
 void	count_elements(char **config);
+void	count_commas(char *cf);
 void	parse_c_f(char *cf);
 void	check_duplicated(char **config);
 void	parse_position(char *position);
@@ -89,6 +90,7 @@ void	empty_line(char *map);
 void	first_last_lines(char **map);
 void	sides(char **map);
 void	find_player(char **map);
+void	check_player_surrounding(char **map);
 void	check_surrounding(char **map);
 void	check_map_content(char **map);
 

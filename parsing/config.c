@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 00:16:18 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/26 19:45:27 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/28 23:08:26 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,26 @@ void	count_elements(char **config)
 	}
 }
 
+void	count_commas(char *cf)
+{
+	int	counter;
+	int	i;
+
+	i = 0;
+	counter = 0;
+	while (cf[i])
+	{
+		if (cf[i] == ',')
+			counter++;
+		i++;
+	}
+	if (counter != 2)
+	{
+		free(cf);
+		error("Error: RGB syntax must comply with (0-255),(0-255),(0-255) !\n");
+	}
+}
+
 void	parse_c_f(char *cf)
 {
 	char	**splitted;
@@ -69,7 +89,7 @@ void	parse_c_f(char *cf)
 	i = 1;
 	while (cf[i] && !iswhitespaces(cf[i]))
 		i++;
-	// Count commas
+	count_commas(cf);
 	if (cf[i] == 'C' || cf[i] == 'F')
 		error("Error: RGB syntax must comply with (0-255),(0-255),(0-255) !\n");
 	splitted = ft_split2(cf, " CF,"); // Add whitespaces
