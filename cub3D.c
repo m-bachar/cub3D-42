@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 19:55:11 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/30 21:59:22 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ int update (t_cub3D *cub3d)
 		// draw_line_dda(cub3d, cub3d->xp_c, cub3d->yp_c, cub3d->ray->x_f_wall, cub3d->ray->y_f_wall,0XFF0000);
 		cub3d->angle2 += cub3d->fov/cub3d->w_width;
 		ft_normalize_angle2(cub3d);
-		draw_map_3d(cub3d);
+		draw_map_3d(cub3d,k);
 		i += cub3d->fov/cub3d->w_width;
 		// printf("k = %d\n",k);
 		k++;
@@ -246,7 +246,7 @@ int	main(int ac, char **av)
 	cub3d.fov = 60;
 	cub3d.xp_c = 0;
 	cub3d.yp_c = 0;
-	cub3d.speed = 5;
+	cub3d.speed = 10;
 	cub3d.radius = 6;
 	cub3d.w_height = 720;
 	cub3d.w_width = 1080;

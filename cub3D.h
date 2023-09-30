@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 19:49:31 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/30 21:55:07 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 # include "./libft/libft.h"
 
 # define BUFFER_SIZE 1
-# define ORANGE 0xF5BC42
 # define BLUE 0x42B6F5
-# define BROWN 0x632409
+# define GREY 0X808080
+# define BLACK 0x000000
 # define MAX_SIZE	1000000
 
 typedef struct cub3D
@@ -64,6 +64,11 @@ typedef struct cub3D
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
+	void			*img_3d;
+	char			*addr_3d;
+	int				bits_per_pixel_3d;
+	int				line_length_3d;
+	int				endian_3d;
 	int				tile;
 	double			rad_a;
 	int hit_h;
@@ -183,7 +188,7 @@ void	draw_line1(t_cub3D *cub3d, int color);
 // void	check_v_walls_down_l(t_cub3D *cub3d);
 void 	get_min_wall_distance(t_cub3D *cub3d);
 void    max_x_y(t_cub3D *cub3d);
-void    draw_map_3d(t_cub3D *cub3d);
+void    draw_map_3d(t_cub3D *cub3d,int coloumn);
 void 	draw_line_dda(t_cub3D *cub3d, int x1, int y1, int x2, int y2, int color);
 void 	all_rays(t_cub3D *cub3d);
 void    check_horizental(t_cub3D *cub3d);

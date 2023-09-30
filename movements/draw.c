@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 23:48:10 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/30 19:50:01 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/30 21:59:40 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,15 @@ void draw_player(t_cub3D *cub3d, int color, int i, int j)
 void	draw_map(t_cub3D *cub3d)
 {
 	// int	i;
-	// int	j;
+	int	j;
 
-	// j = 0;
+	j = 0;
 	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
 	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel, &cub3d->line_length,
 								&cub3d->endian);
+    cub3d->img_3d = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
+	cub3d->addr_3d = mlx_get_data_addr(cub3d->img_3d, &cub3d->bits_per_pixel_3d, &cub3d->line_length_3d,
+								&cub3d->endian_3d);
 	// while (cub3d->map[j])
 	// {
 	// 	i = 0;
@@ -69,7 +72,7 @@ void	draw_map(t_cub3D *cub3d)
 	// 	}
 	// 	j++;
 	// }
-	// mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img_3d, 0, 0);
 }
 
 // void	draw_line(t_cub3D *cub3d, int color)
