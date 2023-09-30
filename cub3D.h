@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 21:55:07 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/30 23:36:27 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 # define BUFFER_SIZE 1
 # define BLUE 0x42B6F5
 # define GREY 0X808080
-# define BLACK 0x000000
+# define BLACK 0xFFFFFF
+# define OUSSAMA	0XFF69B4
 # define MAX_SIZE	1000000
 
 typedef struct cub3D
