@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 00:24:26 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/24 05:28:40 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/30 19:10:42 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,30 @@
 
 void get_min_wall_distance(t_cub3D *cub3d)
 {
-	int i = 0;
-	int	distance_h;
-	int	distance_v;
-	int	d_v1;
-	int	d_v2;
-	int	d_h1;
-	int	d_h2;
+	double	distance_h;
+	double	distance_v;
+	double	d_v1;
+	double	d_v2;
+	double	d_h1;
+	double	d_h2;
 
-	d_h1 = pow((cub3d->xp_c - cub3d->wall_h_x),2); 
-	d_h2 = pow((cub3d->yp_c - cub3d->wall_h_y),2); 
-	distance_h = sqrt(d_h1 + d_h2);
-	d_v1 = pow((cub3d->xp_c - cub3d->wall_v_x),2); 
-	d_v2 = pow((cub3d->yp_c - cub3d->wall_v_y),2); 
-	distance_v = sqrt(d_v1 + d_v2);
+	if(cub3d->hit_h == 0 && cub3d->hit_v == 1)
+		distance_h = INT_MAX;
+	else
+	{
+		d_h1 = pow((cub3d->xp_c - cub3d->wall_h_x),2); 
+		d_h2 = pow((cub3d->yp_c - cub3d->wall_h_y),2); 
+		distance_h = sqrt(d_h1 + d_h2);
+	}
+	if(cub3d->hit_h == 1 && cub3d->hit_v == 0)
+		distance_v = INT_MAX;
+	else
+	{
+		d_v1 = pow((cub3d->xp_c - cub3d->wall_v_x),2); 
+		d_v2 = pow((cub3d->yp_c - cub3d->wall_v_y),2); 
+		distance_v = sqrt(d_v1 + d_v2);
+	}
+	printf("h|%f|v|%f|\n",distance_h, distance_v);
 	if (distance_h <= distance_v)
 	{
 		cub3d->ray->x_f_wall = cub3d->wall_h_x;
@@ -40,5 +50,4 @@ void get_min_wall_distance(t_cub3D *cub3d)
 		cub3d->ray->y_f_wall = cub3d->wall_v_y;
 		cub3d->ray->distance = distance_v;
 	}
-	i++;
 }

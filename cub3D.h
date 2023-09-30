@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 03:28:32 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/30 19:10:58 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <mlx.h>
+# include <limits.h>
 # include "./libft/libft.h"
 
 # define BUFFER_SIZE 1
@@ -44,7 +45,8 @@ typedef struct cub3D
 	int				y;
 	int				w_height;
 	int				w_width;
-	float			angle;
+	double			angle;
+	double			angle2;
 	int				speed;
 	float			radius;
 	char			player_direcion;
@@ -64,7 +66,8 @@ typedef struct cub3D
 	int				endian;
 	int				tile;
 	double			rad_a;
-	int j;
+	int hit_h;
+	int hit_v;
 	struct s_rays	*ray;
 	struct s_textures	*textures;
 }	t_cub3D;
@@ -77,6 +80,10 @@ typedef struct s_rays
 	int *tab_x;
 	int *tab_y;
 	int *tab_dist;
+	int ray_right;
+	int ray_left;
+	int ray_down;
+	int ray_up;
 }	t_rays;
 
 typedef struct s_textures
@@ -177,8 +184,11 @@ void	draw_line1(t_cub3D *cub3d, int color);
 void 	get_min_wall_distance(t_cub3D *cub3d);
 void    max_x_y(t_cub3D *cub3d);
 void    draw_map_3d(t_cub3D *cub3d, int colomn);
-void 	draw_line_dda(t_cub3D *cub3d, int x0, int y0, int x1, int y1);
+void 	draw_line_dda(t_cub3D *cub3d, int x1, int y1, int x2, int y2, int color);
 void 	all_rays(t_cub3D *cub3d);
 void    check_horizental(t_cub3D *cub3d);
-
+void    check_vertical(t_cub3D *cub3d);
+void    ft_ray_facing(t_cub3D *cub3d);
+void	ft_normalize_angle(t_cub3D *cub3d);
+void	ft_normalize_angle2(t_cub3D *cub3d);
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
+#    By: obouya <obouya@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/09/30 18:49:34 by mbachar          ###   ########.fr        #
+#    Updated: 2023/09/30 19:07:25 by obouya           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ LIBFT		=	./libft/libft.a
 SRC			= 	./movements/draw.c \
 				./movements/move_stop.c \
 				./movements/rad_deg_con.c \
-				./movements/stop_in_2d.c \
 				./parsing/config.c \
 				./parsing/map.c \
 				./parsing/parsing.c \
@@ -24,9 +23,8 @@ SRC			= 	./movements/draw.c \
 				./parsing/tweaked_funcs.c \
 				./parsing/utils.c \
 				./parsing/xpm_files.c \
-				./rays/check_h.c \
 				./rays/check_horizental.c \
-				./rays/check_v.c \
+				./rays/check_vertical.c \
 				./rays/rendering_walls.c \
 				./rays/wall.c \
 				cub3D.c

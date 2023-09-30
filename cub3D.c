@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 18:54:43 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/30 19:10:30 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,136 +62,95 @@ void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void push_ray(t_cub3D *cub3d)
-{
-	int i = 0;
-	int ox; 
-	int oy;
-	while (i < cub3d->ray->distance)
-	{
-		ox = cub3d->xp_c + i * cos(cub3d->rad_a);
-		oy = cub3d->yp_c + i * sin(cub3d->rad_a);
-		my_mlx_pixel_put(cub3d, ox, oy, 0XFF0000);
-		i++;
-	}
-}	
-// int update (t_cub3D *cub3d)
+// void push_ray(t_cub3D *cub3d)
 // {
-// 	double i = cub3d->angle - (cub3d->fov / 2);
-// 	double rad;
-	
-// 	mlx_destroy_image(cub3d->mlx, cub3d->img);
-// 	mlx_clear_window(cub3d->mlx, cub3d->window);
-// 	// draw_map(cub3d);
-// 	rad = deg_to_rad(cub3d->angle);
-// 	cub3d->rad_a = rad;
-// 	while (i < (cub3d->angle + (cub3d->fov / 2)))
+// 	int i = 0;
+// 	int ox; 
+// 	int oy;
+// 	while (i < cub3d->ray->distance)
 // 	{
-// 		printf("cub ang = %f\n",cub3d->angle);
-// 		// check_h_walls(cub3d);
-// 		if (cub3d->angle != 180 && cub3d->angle != 0)
-// 		{
-// 			check_h_walls_down(cub3d);
-// 			check_h_walls_up(cub3d);
-// 		}
-// 		if (cub3d->angle != 270 && cub3d->angle != 90)
-// 		{
-// 			check_v_walls_up_r(cub3d);
-// 			check_v_walls_down_r(cub3d);
-// 			check_v_walls_up_l(cub3d);
-// 			check_v_walls_down_l(cub3d);
-// 		}
-// 		get_min_wall_distance(cub3d);
-// 		push_ray(cub3d);
-// 		cub3d->rad_a += rad / cub3d->w_width;
-// 		i += (cub3d->fov/cub3d->w_width);
-// 		draw_map_3d(cub3d, cub3d->ray->x_f_wall);
+// 		ox = cub3d->xp_c + i * cos(cub3d->rad_a);
+// 		oy = cub3d->yp_c + i * sin(cub3d->rad_a);
+// 		my_mlx_pixel_put(cub3d, ox, oy, 0XFF0000);
+// 		i++;
 // 	}
-// 	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
-// 	return(0);
-// }
-// void draw_line_dda(t_cub3D *cub3d, int x0, int y0, int x1, int y1)
+// }	
+
+// void all_rays(t_cub3D *cub3d)
 // {
-//     int dx = x1 - x0;
-//     int dy = y1 - y0;
-//     int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
-
-//     float xIncrement = (float)dx / (float)steps;
-//     float yIncrement = (float)dy / (float)steps;
-
-//     float x = (float)x0;
-//     float y = (float)y0;
-
-//     for (int i = 0; i <= steps; i++)
-//     {
-//         my_mlx_pixel_put(cub3d, (int)x, (int)y, 0xFF0000); // Set the pixel to red
-//         x += xIncrement;
-//         y += yIncrement;
-//     }
+// 	static int i = 0;
+// 	if (i < cub3d->j)
+// 	{
+// 		cub3d->ray->tab_x[i] = cub3d->ray->x_f_wall;
+// 		cub3d->ray->tab_y[i] = cub3d->ray->y_f_wall;
+// 		cub3d->ray->tab_dist[i] = cub3d->ray->distance;
+// 		i++;
+// 	}
+// 	if (i == cub3d->j)
+// 		i = 0;
 // }
-
-void all_rays(t_cub3D *cub3d)
+void draw_line_dda(t_cub3D *cub3d, int x1, int y1, int x2, int y2, int color)
 {
-	static int i = 0;
-	if (i < cub3d->j)
-	{
-		cub3d->ray->tab_x[i] = cub3d->ray->x_f_wall;
-		cub3d->ray->tab_y[i] = cub3d->ray->y_f_wall;
-		cub3d->ray->tab_dist[i] = cub3d->ray->distance;
-		i++;
-	}
-	if (i == cub3d->j)
-		i = 0;
+    int dx = x2 - x1;
+    int dy = y2 - y1;
+    int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
+
+    float xIncrement = (float)dx / (float)steps;
+    float yIncrement = (float)dy / (float)steps;
+
+    float x = (float)x1;
+    float y = (float)y1;
+
+    for (int i = 0; i < steps; i++)
+    {
+        my_mlx_pixel_put(cub3d, (int)round(x), (int)round(y), color);
+        x += xIncrement;
+        y += yIncrement;
+    }
+}
+void    ft_ray_facing(t_cub3D *cub3d)
+{
+    cub3d->ray->ray_right = 0;
+    cub3d->ray->ray_left = 0;
+    cub3d->ray->ray_up = 0;
+    cub3d->ray->ray_down = 0;
+    cub3d->hit_h = 0;
+    cub3d->hit_v = 0;
+    if (cub3d->rad_a >= 0 && cub3d->rad_a <= M_PI)
+        cub3d->ray->ray_down = 1;
+    cub3d->ray->ray_up = !cub3d->ray->ray_down;
+    if (cub3d->rad_a <= 0.5 * M_PI || cub3d->rad_a >= 1.5 * M_PI)
+        cub3d->ray->ray_right = 1;
+    cub3d->ray->ray_left = !cub3d->ray->ray_right;
 }
 int update (t_cub3D *cub3d)
 {
-	// double i = cub3d->angle - (cub3d->fov / 2);
-	double rad;
-	
-	cub3d->j  = ((cub3d->w_width) / (cub3d->fov));
-	cub3d->ray->tab_x = malloc (sizeof(int) * cub3d->j);
-	if (!cub3d->ray->tab_x)
-		exit(1);
-	cub3d->ray->tab_y = malloc (sizeof(int) * cub3d->j);
-	if (!cub3d->ray->tab_y)
-		exit(1);
-	cub3d->ray->tab_dist = malloc (sizeof(int) * cub3d->j);
-	if (!cub3d->ray->tab_dist)
-		exit(1);// exit permited ??
+	double i =  cub3d->angle - 30;
 	mlx_destroy_image(cub3d->mlx, cub3d->img);
 	mlx_clear_window(cub3d->mlx, cub3d->window);
 	draw_map(cub3d);
-	rad = deg_to_rad(cub3d->angle);
-	cub3d->rad_a = rad;
-	printf("angle == %f\n",cub3d->angle);
-	// while (i < (cub3d->angle + (cub3d->fov / 2)))
-	// {
-		// if (cub3d->angle != 180 && cub3d->angle != 0)
-		// {
-		// 	check_h_walls_up_r(cub3d);
-		// 	check_h_walls_up_l(cub3d);
-		// 	check_h_walls_down_r(cub3d);
-		// 	check_h_walls_down_l(cub3d);
-		// }
-		// if (cub3d->angle != 270 && cub3d->angle != 90)
-		// {
-		// 	check_v_walls_up_r(cub3d);
-		// 	check_v_walls_down_r(cub3d);
-		// 	check_v_walls_up_l(cub3d);
-		// 	check_v_walls_down_l(cub3d);
-		// }
-		// get_min_wall_distance(cub3d);
-		// // all_rays(cub3d);
-		// draw_map_3d(cub3d, cub3d->ray->x_f_wall);
+	int j = 0;
+	while (i < cub3d->angle + 30)
+	{
+		if (j == 0)
+		{
+			cub3d->angle2 = cub3d->angle - 30;
+			j = 1;
+		}
+		ft_normalize_angle2(cub3d);
+		cub3d->rad_a = deg_to_rad(cub3d->angle2);
+		ft_ray_facing(cub3d);
+		check_vertical(cub3d);
 		check_horizental(cub3d);
-		// draw_line_dda(cub3d, cub3d->xp_c, cub3d->yp_c, cub3d->ray->x_f_wall, cub3d->ray->y_f_wall);
-	// 	cub3d->rad_a += rad / (cub3d->w_width);
-	// 	i += (cub3d->fov/(cub3d->w_width));
-	// }
+		get_min_wall_distance(cub3d);
+		// // all_rays(cub3d);
+		draw_line_dda(cub3d, cub3d->xp_c, cub3d->yp_c, cub3d->ray->x_f_wall, cub3d->ray->y_f_wall,0XFF0000);
+		cub3d->angle2 += cub3d->fov/cub3d->w_width;
+		ft_normalize_angle2(cub3d);
+		i += cub3d->fov/cub3d->w_width;
+	}
+		// draw_map_3d(cub3d, cub3d->ray->x_f_wall);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
-	free(cub3d->ray->tab_x);
-	free(cub3d->ray->tab_y);
-	free(cub3d->ray->tab_dist);//here ???
 	return(0);
 }
 void    max_x_y(t_cub3D *cub3d)
@@ -284,21 +243,19 @@ int	main(int ac, char **av)
 	cub3d.fov = 60;
 	cub3d.xp_c = 0;
 	cub3d.yp_c = 0;
-	cub3d.speed = 8;
+	cub3d.speed = 5;
 	cub3d.radius = 6;
 	cub3d.w_height = 720;
 	cub3d.w_width = 1080;
-	cub3d.rotation_speed =5;
+	cub3d.rotation_speed = 5;
 	cub3d.x_tile = 0;
 	cub3d.y_tile = 0;
-	// cub3d.dx_step = 0;
-	// cub3d.dy_step = 0;
 	cub3d.flag = 0;
 	cub3d.wall_h_x = 0;
 	cub3d.wall_h_y = 0;
 	cub3d.wall_v_x = 0;
 	cub3d.wall_v_y = 0;
-	cub3d.tile = 16;
+	cub3d.tile = 24;
 	cub3d.map_x_max = 0;
     cub3d.map_y_max = 0;
 	cub3d.ray = malloc(sizeof(t_rays));

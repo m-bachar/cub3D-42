@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 08:14:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/23 15:39:55 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/30 19:04:42 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,13 @@ void	ft_normalize_angle(t_cub3D *cub3d)
         cub3d->angle -= 360.0;
     while (cub3d->angle < 0.0)
         cub3d->angle += 360.0;
+}
+void	ft_normalize_angle2(t_cub3D *cub3d)
+{
+	while (cub3d->angle2 >= 360.0)
+        cub3d->angle2 -= 360.0;
+    while (cub3d->angle2 < 0.0)
+        cub3d->angle2 += 360.0;
 }
 
 void	left(t_cub3D *cub3d)
