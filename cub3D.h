@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 23:55:37 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/30 23:56:54 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,13 @@ typedef struct s_rays
 
 typedef struct s_textures
 {
-	int		red;
-	int		green;
-	int		blue;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
+	int				red;
+	int				green;
+	int				blue;
+	unsigned int	*no;
+	unsigned int	*so;
+	unsigned int	*we;
+	unsigned int	*ea;
 }	t_textures;
 
 		/*	Config.c		*/

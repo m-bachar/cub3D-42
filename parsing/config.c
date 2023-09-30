@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 00:16:18 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 18:54:25 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/01 00:06:35 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,37 +127,35 @@ void	check_duplicated(char **config)
 	}
 }
 
-void	read_and_store(int fd, char *config, t_cub3D *cub3d)
+void	read_and_store(t_cub3D *cub3d, char *path, unsigned int **texture)
 {
-	if (!ft_strcmp(config, "NO"))
-		cub3d->textures->no = read_file(fd);
-	else if (!ft_strcmp(config, "SO"))
-		cub3d->textures->so = read_file(fd);
-	else if (!ft_strcmp(config, "WE"))
-		cub3d->textures->we = read_file(fd);
-	else if (!ft_strcmp(config, "EA"))
-		cub3d->textures->ea = read_file(fd);
-	if (!cub3d->textures->no || !cub3d->textures->no[0]
-		|| !cub3d->textures->so || !cub3d->textures->so[0]
-		|| !cub3d->textures->we || !cub3d->textures->we[0]
-		|| !cub3d->textures->ea || !cub3d->textures->ea[0])
-	{
-		printf("\t=================== XPM 1 =================\n");
-		printf("%s\n", cub3d->textures->no);
-		printf("\t=================== XPM 2 =================\n");
-		printf("%s\n", cub3d->textures->so);
-		printf("\t=================== XPM 3 =================\n");
-		printf("%s\n", cub3d->textures->ea);
-		printf("\t=================== XPM 4 =================\n");
-		printf("%s\n", cub3d->textures->we);
-		printf("\t=============================================\n");
-		error("Error: One of the XPM files is empty !\n");
-	}
+    t_cub3D				wall; // separate them
+    unsigned char		rgb[3];
+    int					bytes_per_pixel;
+    int					i;
+    int					y;
+
+    wall.img = mlx_xpm_file_to_image(cub3d->mlx, path, &i, &y);
+    if (!wall.img || i != 64 || y != 64)
+        return (error("Error: Bad Image !\n"));
+    wall.addr = mlx_get_data_addr(wall.img, &wall.bits_per_pixel,
+            &wall.line_length, &wall.endian);
+    bytes_per_pixel = wall.bits_per_pixel / 8;
+    *texture = malloc(sizeof(unsigned int) * 64 * 64);
+    if (!(*texture))
+        return (error("Error: Malloc Failure !\n"));
+    i = -1;
+    while (++i < 64 * 64)
+    {
+        rgb[0] = wall.addr[i * bytes_per_pixel + 2];
+        rgb[1] = wall.addr[i * bytes_per_pixel + 1];
+        rgb[2] = wall.addr[i * bytes_per_pixel];
+        texture[0][i] = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+    }
 }
 
 void	parse_position(char *position, t_cub3D *cub3d)
 {
-	(void)cub3d;
 	char	**splitted;
 	int		fd;
 
@@ -179,7 +177,12 @@ void	parse_position(char *position, t_cub3D *cub3d)
 		free_mem(splitted);
 		error("Error: XPM file not found !\n");
 	}
-	// else
-	// 	read_and_store(fd, splitted[0], cub3d);
+	else
+	{
+		read_and_store(cub3d, splitted[1], &cub3d->textures->no);
+		read_and_store(cub3d, splitted[1], &cub3d->textures->so);
+		read_and_store(cub3d, splitted[1], &cub3d->textures->ea);
+		read_and_store(cub3d, splitted[1], &cub3d->textures->we);
+	}
 	free_mem(splitted);
 }
