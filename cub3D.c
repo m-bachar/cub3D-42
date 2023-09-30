@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 21:59:22 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/30 23:52:37 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,6 @@ int update (t_cub3D *cub3d)
 		check_vertical(cub3d);
 		check_horizental(cub3d);
 		get_min_wall_distance(cub3d);
-		// // all_rays(cub3d);
 		// draw_line_dda(cub3d, cub3d->xp_c, cub3d->yp_c, cub3d->ray->x_f_wall, cub3d->ray->y_f_wall,0XFF0000);
 		cub3d->angle2 += cub3d->fov/cub3d->w_width;
 		ft_normalize_angle2(cub3d);
@@ -251,8 +250,8 @@ int	main(int ac, char **av)
 	cub3d.w_height = 720;
 	cub3d.w_width = 1080;
 	cub3d.rotation_speed = 5;
-	cub3d.x_tile = 0;
-	cub3d.y_tile = 0;
+	// cub3d.x_tile = 0;
+	// cub3d.y_tile = 0;
 	cub3d.flag = 0;
 	cub3d.wall_h_x = 0;
 	cub3d.wall_h_y = 0;
@@ -272,7 +271,6 @@ int	main(int ac, char **av)
 	fillmap(&cub3d);
 	printf("%d\n",doublearray_size(cub3d.map));
 	max_x_y(&cub3d);
-	printf("mappx =  %d mapy  = %d\n",cub3d.map_x_max,cub3d.map_y_max);
 	player_position(&cub3d);
 	ft_find_angle(&cub3d);
 	cub3d.mlx = mlx_init();

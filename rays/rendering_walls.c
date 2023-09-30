@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_walls.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 00:40:36 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 23:39:05 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/30 23:42:39 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void    draw_map_3d(t_cub3D *cub3d, int colomn)
         if (line < start_wall)
             color = BLUE;
         else if ((line >= start_wall) && (line <= end_wall))
-            color = OUSSAMA;
+            color = Dark_B;
         else if (line > end_wall)
             color = GREY;
         my_mlx_pixel_put(cub3d, colomn, line, color);

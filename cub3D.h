@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 23:36:27 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/30 23:55:37 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,34 @@
 # include "./libft/libft.h"
 
 # define BUFFER_SIZE 1
-# define BLUE 0x42B6F5
+# define BLUE 0x80CCCC
 # define GREY 0X808080
 # define BLACK 0xFFFFFF
-# define OUSSAMA	0XFF69B4
+# define Dark_B	0X053047
 # define MAX_SIZE	1000000
 
 typedef struct cub3D
 {
 	char			**map;
 	int				map_x_max;
-    int				map_y_max;
+	int				map_y_max;
 	char			**config;
 	void			*mlx;
 	void			*window;
 	double			fov;
 	int				x;
 	int				flag;
-	int				yp_c;
-	int				xp_c;
+	double			yp_c;
+	double			xp_c;
 	int				y;
 	int				w_height;
 	int				w_width;
 	double			angle;
 	double			angle2;
-	int				speed;
-	float			radius;
+	double			speed;
+	double			radius;
 	char			player_direcion;
 	double			rotation_speed;
-	int				x_tile;
-	int				y_tile;
-	// double			dx_step;
-	// double			dy_step;
 	int				wall_h_x;
 	int				wall_h_y;
 	int				wall_v_x;
@@ -72,24 +68,24 @@ typedef struct cub3D
 	int				endian_3d;
 	int				tile;
 	double			rad_a;
-	int hit_h;
-	int hit_v;
+	int 			hit_h;
+	int 			hit_v;
 	struct s_rays	*ray;
 	struct s_textures	*textures;
 }	t_cub3D;
 
 typedef struct s_rays
 {
-	double			x_f_wall;
-	double			y_f_wall;
-	double			distance;
-	int *tab_x;
-	int *tab_y;
-	int *tab_dist;
-	int ray_right;
-	int ray_left;
-	int ray_down;
-	int ray_up;
+	double	x_f_wall;
+	double	y_f_wall;
+	double	distance;
+	int		*tab_x;
+	int		*tab_y;
+	int		*tab_dist;
+	int		ray_right;
+	int		ray_left;
+	int		ray_down;
+	int		ray_up;
 }	t_rays;
 
 typedef struct s_textures
@@ -175,18 +171,8 @@ void	left(t_cub3D *cub3d);
 int		key_view(int keycode, t_cub3D *cub3d);
 void	check_direction(char c, t_cub3D *cub3d);
 void	right(t_cub3D *cub3d);
-// void	check_h_walls_up(t_cub3D *cub3d);
-// void	check_h_walls_up_l(t_cub3D *cub3d);
-// void	check_h_walls_up_r(t_cub3D *cub3d);
-// void	check_h_walls_down(t_cub3D *cub3d);
-// void	check_h_walls_down_l(t_cub3D *cub3d);
-// void	check_h_walls_down_r(t_cub3D *cub3d);
 void	draw_line_ray(t_cub3D *cub3d, int color);
 void	draw_line1(t_cub3D *cub3d, int color);
-// void	check_v_walls_up_r(t_cub3D *cub3d);
-// void	check_v_walls_up_l(t_cub3D *cub3d);
-// void	check_v_walls_down_r(t_cub3D *cub3d);
-// void	check_v_walls_down_l(t_cub3D *cub3d);
 void 	get_min_wall_distance(t_cub3D *cub3d);
 void    max_x_y(t_cub3D *cub3d);
 void    draw_map_3d(t_cub3D *cub3d,int coloumn);
