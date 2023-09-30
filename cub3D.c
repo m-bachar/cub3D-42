@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/28 23:17:27 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/30 18:54:43 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,12 +265,20 @@ void	fillmap(t_cub3D *cub3d)
 	new_map[j] = NULL;
 	cub3d->map = new_map;
 }
+// void f()
+// {
+// 	system("leaks cub3D");
+// }
 
 int	main(int ac, char **av)
 {
+	// atexit(f);
 	t_cub3D	cub3d;
-	// char	*test;
+	char	*protection;
 
+	protection = malloc(sizeof(char) * 0);
+	if (!protection)
+		return (1);
 	cub3d.x = 0;
 	cub3d.y = 0;
 	cub3d.fov = 60;
@@ -291,33 +299,29 @@ int	main(int ac, char **av)
 	cub3d.wall_v_x = 0;
 	cub3d.wall_v_y = 0;
 	cub3d.tile = 16;
-	 cub3d.map_x_max = 0;
-     cub3d.map_y_max = 0;
+	cub3d.map_x_max = 0;
+    cub3d.map_y_max = 0;
 	cub3d.ray = malloc(sizeof(t_rays));
+	cub3d.textures = malloc(sizeof(t_textures));
 	cub3d.ray->distance = 0;
-	// Malloc Protection here
 	if (ac < 2)
 		error("Error: Missing map path !\n");
 	else if (ac > 2)
 		error("Error: Too many arguments !\n");
 	parsing(av[1], &cub3d);
 	fillmap(&cub3d);
-	for (int i = 0; i < doublearray_size(cub3d.map); i++)
-	{
-		printf("%s\n", cub3d.map[i]);
-	}
-	// max_x_y(&cub3d);
-	// printf("mappx =  %d mapy  = %d\n",cub3d.map_x_max,cub3d.map_y_max);
-	// player_position(&cub3d);
-	// ft_find_angle(&cub3d);
-	// cub3d.mlx = mlx_init();
-	// cub3d.window = mlx_new_window(cub3d.mlx, cub3d.w_width, cub3d.w_height, "Cub3D");
-	// cub3d.img = mlx_new_image(cub3d.mlx, cub3d.w_width, cub3d.w_height);
-	// cub3d.addr = mlx_get_data_addr(cub3d.img, &cub3d.bits_per_pixel, &cub3d.line_length,
-	// 							&cub3d.endian);
-	// mlx_hook(cub3d.window, 2, 1L << 0, &key_player, &cub3d);
-	// mlx_loop_hook(cub3d.mlx, update, &cub3d);
-	// mlx_loop(cub3d.mlx);
+	max_x_y(&cub3d);
+	printf("mappx =  %d mapy  = %d\n",cub3d.map_x_max,cub3d.map_y_max);
+	player_position(&cub3d);
+	ft_find_angle(&cub3d);
+	cub3d.mlx = mlx_init();
+	cub3d.window = mlx_new_window(cub3d.mlx, cub3d.w_width, cub3d.w_height, "Cub3D");
+	cub3d.img = mlx_new_image(cub3d.mlx, cub3d.w_width, cub3d.w_height);
+	cub3d.addr = mlx_get_data_addr(cub3d.img, &cub3d.bits_per_pixel, &cub3d.line_length,
+								&cub3d.endian);
+	mlx_hook(cub3d.window, 2, 1L << 0, &key_player, &cub3d);
+	mlx_loop_hook(cub3d.mlx, update, &cub3d);
+	mlx_loop(cub3d.mlx);
 	free_mem(cub3d.config);
 	free_mem(cub3d.map);
 }

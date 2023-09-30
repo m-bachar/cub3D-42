@@ -6,35 +6,35 @@
 #    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/09/28 23:39:17 by mbachar          ###   ########.fr        #
+#    Updated: 2023/09/30 18:49:34 by mbachar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CUB3D		= 	cub3D
 LIBFT		=	./libft/libft.a
-SRC			= 	cub3D.c \
+SRC			= 	./movements/draw.c \
+				./movements/move_stop.c \
+				./movements/rad_deg_con.c \
+				./movements/stop_in_2d.c \
 				./parsing/config.c \
 				./parsing/map.c \
 				./parsing/parsing.c \
 				./parsing/scene.c \
 				./parsing/tools.c \
 				./parsing/tweaked_funcs.c \
-				./parsing/xpm_files.c \
 				./parsing/utils.c \
-				./movements/draw.c \
-				./movements/move_stop.c \
-				./movements/stop_in_2d.c \
-				./movements/rad_deg_con.c \
+				./parsing/xpm_files.c \
 				./rays/check_h.c \
-				./rays/check_v.c \
-				./rays/wall.c \
 				./rays/check_horizental.c \
-				./rays/rendering_walls.c
+				./rays/check_v.c \
+				./rays/rendering_walls.c \
+				./rays/wall.c \
+				cub3D.c
 
 INCLUDE		= 	cub3D.h
 CC			= 	cc -Ofast
 OBJ			= 	$(SRC:.c=.o)
-CFLAGS		= 	-Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror -g -fsanitize=address
 
 all : $(CUB3D)
 

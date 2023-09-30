@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:37:14 by benito            #+#    #+#             */
-/*   Updated: 2023/09/28 23:17:18 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/30 03:06:21 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	parse_config(char *config, t_cub3D *cub3d)
 			|| !ft_strncmp("SO", splitted[i], 2)
 			|| !ft_strncmp("WE", splitted[i], 2)
 			|| !ft_strncmp("EA", splitted[i], 2))
-			parse_position(splitted[i]);
+			parse_position(splitted[i], cub3d);
 		i++;
 	}
 	cub3d->config = splitted;
@@ -111,7 +111,6 @@ void	parsing(char *av, t_cub3D *cub3d)
 		error("Error: Missing map or config !\n");
 	parse_config(config, cub3d);
 	parse_map(map, cub3d);
-	printf("Success !\n");
 	free(config);
 	free(map);
 	free(fullmap);

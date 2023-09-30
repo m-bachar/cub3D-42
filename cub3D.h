@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/28 23:17:41 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/30 03:28:32 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define ORANGE 0xF5BC42
 # define BLUE 0x42B6F5
 # define BROWN 0x632409
+# define MAX_SIZE	1000000
 
 typedef struct cub3D
 {
@@ -65,6 +66,7 @@ typedef struct cub3D
 	double			rad_a;
 	int j;
 	struct s_rays	*ray;
+	struct s_textures	*textures;
 }	t_cub3D;
 
 typedef struct s_rays
@@ -77,20 +79,31 @@ typedef struct s_rays
 	int *tab_dist;
 }	t_rays;
 
+typedef struct s_textures
+{
+	int		red;
+	int		green;
+	int		blue;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+}	t_textures;
+
 		/*	Config.c		*/
 void	check_rgb_values(char **cf);
 void	count_elements(char **config);
 void	count_commas(char *cf);
 void	parse_c_f(char *cf);
-void	check_duplicated(char **config);
-void	parse_position(char *position);
+void	check_duplicated(char **config);//
+void	parse_position(char *position, t_cub3D *cub3d);
 
 		/*	Map.c			*/
 void	empty_line(char *map);
 void	first_last_lines(char **map);
 void	sides(char **map);
 void	find_player(char **map);
-void	check_player_surrounding(char **map);
+void	check_player_surrounding(char **map);//
 void	check_surrounding(char **map);
 void	check_map_content(char **map);
 
@@ -104,7 +117,7 @@ void	parsing(char *av, t_cub3D *cub3d);
 		/*	Scene.c			*/
 void	map_extension(char *av);
 char	*map_path(char *map);
-char	*read_map(int fd);
+char	*read_file(int fd);
 
 		/*	Tools.c			*/
 char	**ft_split2(char *s, char *c);
@@ -119,7 +132,7 @@ void	free_mem(char **str);
 int		doublearray_size(char **array);
 void	error(char *str);
 int		isplayer(char c);
-int		sizeof_map(char *map);
+int		sizeof_map(char *map);//
 int		iswhitespaces(char c);
 
 //----------------------------->movements/draw.c

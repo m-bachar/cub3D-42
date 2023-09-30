@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 05:12:11 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/28 23:16:52 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/30 00:53:19 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	first_last_lines(char **map)
 		j++;
 	while (map[0][j])
 	{
-		if (map[0][j] != '1')
-			error("Erro: Map must be surrounded by walls !\n");
+		if (map[0][j] != '1' && iswhitespaces(map[0][j]))
+			error("Erro: Map must be surrounded by walls !1111\n");
 		j++;
 	}
 	j = 0;
@@ -47,7 +47,7 @@ void	first_last_lines(char **map)
 		j++;
 	while (map[i][j])
 	{
-		if (map[i][j] != '1')
+		if (map[i][j] != '1' && iswhitespaces(map[i][j]))
 			error("Error: Map must be surrounded by walls !\n");
 		j++;
 	}

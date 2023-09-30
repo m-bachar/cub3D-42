@@ -6,10 +6,8 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 23:26:24 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/28 23:26:48 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/28 23:40:45 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
-void	check_xpm_extension()

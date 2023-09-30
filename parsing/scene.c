@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 00:44:57 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/26 19:55:28 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/29 22:17:59 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ char	*map_path(char *map)
 		error("Error: Permission denied !\n");
 	else if (fd == -1)
 		error("Error: File not found !\n");
-	return (read_map(fd));
+	return (read_file(fd));
 }
 
-char	*read_map(int fd)
+char	*read_file(int fd)
 {
 	char	*stash;
 	char	*buff;

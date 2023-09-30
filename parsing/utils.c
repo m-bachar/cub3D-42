@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:14 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/26 19:55:33 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/09/30 03:12:46 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	error(char *str)
 	i = 0;
 	while (str[i])
 		write(2, &str[i++], 1);
-	system("leaks cub3D");
+	// system("leaks cub3D");
 	exit(1);
 }
 
