@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:39:56 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/30 19:09:18 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/30 19:30:02 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void    check_horizental(t_cub3D *cub3d)
     {
         m_x = h_touch_x / cub3d->tile;
         m_y = h_touch_y / cub3d->tile;
-        if (cub3d->map[m_y][m_x] && cub3d->map[m_y][m_x] == '1')
+        if ((cub3d->map[m_y][m_x] && (cub3d->map[m_y][m_x] == '1' || cub3d->map[m_y][m_x] == ' ' || cub3d->map[m_y][m_x] == '\t' || cub3d->map[m_y][m_x] == '#')) || (!cub3d->map[m_y][m_x]))
         {
             cub3d->wall_h_x = h_touch_x;
             cub3d->wall_h_y = h_touch_y;

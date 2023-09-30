@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 19:10:30 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/30 19:26:19 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ int update (t_cub3D *cub3d)
 	mlx_clear_window(cub3d->mlx, cub3d->window);
 	draw_map(cub3d);
 	int j = 0;
+	int k = 0;
 	while (i < cub3d->angle + 30)
 	{
 		if (j == 0)
@@ -148,7 +149,10 @@ int update (t_cub3D *cub3d)
 		cub3d->angle2 += cub3d->fov/cub3d->w_width;
 		ft_normalize_angle2(cub3d);
 		i += cub3d->fov/cub3d->w_width;
+		k++;
+		
 	}
+	// printf("k = %d\n",k);
 		// draw_map_3d(cub3d, cub3d->ray->x_f_wall);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
 	return(0);
@@ -267,6 +271,10 @@ int	main(int ac, char **av)
 		error("Error: Too many arguments !\n");
 	parsing(av[1], &cub3d);
 	fillmap(&cub3d);
+	for (int i = 0; i < doublearray_size(cub3d.map); i++)
+    {
+        printf("%s\tlen = %zu\n", cub3d.map[i], strlen(cub3d.map[i]));
+    }
 	max_x_y(&cub3d);
 	printf("mappx =  %d mapy  = %d\n",cub3d.map_x_max,cub3d.map_y_max);
 	player_position(&cub3d);

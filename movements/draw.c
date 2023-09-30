@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 23:48:10 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/28 19:35:19 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/30 19:19:40 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ void	draw_map(t_cub3D *cub3d)
 			if (cub3d->map[j][i] == 'N' || cub3d->map[j][i] == 'S'
 				|| cub3d->map[j][i] == 'W' || cub3d->map[j][i] == 'E')
 			{
-				pixels(cub3d,0x000000, j, i);
+				pixels(cub3d,0xFFFFFF, j, i);
 				draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
 				draw_line(cub3d, 0xFFD000);
 			}
-			if (cub3d->map[j][i] == ' ' || cub3d->map[j][i] == '1')
+			else if (cub3d->map[j][i] == '1')
 				pixels(cub3d,0x6342F5, j, i);
+            else if (cub3d->map[j][i] == '#' || cub3d->map[j][i] == ' ' || cub3d->map[j][i] == '\t')
+                pixels(cub3d, 0x000000, j, i);
 			else
 				pixels(cub3d,0xFFFFFF, j, i);
 			draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
