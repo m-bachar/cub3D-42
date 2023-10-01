@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 23:56:54 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/01 01:00:19 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 
 # define BUFFER_SIZE 1
 # define BLUE 0x80CCCC
-# define GREY 0X808080
-# define BLACK 0xFFFFFF
-# define Dark_B	0X053047
+# define GREY 0x32a89e
+# define BLACK 0x000000
+# define OUSSAMA_CHOUFOUNI	0xFF1493
 # define MAX_SIZE	1000000
 
 typedef struct cub3D
@@ -183,4 +183,5 @@ void    check_vertical(t_cub3D *cub3d);
 void    ft_ray_facing(t_cub3D *cub3d);
 void	ft_normalize_angle(t_cub3D *cub3d);
 void	ft_normalize_angle2(t_cub3D *cub3d);
+void    put_texture_bouk(t_cub3D *cub3d);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 23:52:37 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/01 00:51:27 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,9 +149,9 @@ int update (t_cub3D *cub3d)
 		ft_normalize_angle2(cub3d);
 		draw_map_3d(cub3d,k);
 		i += cub3d->fov/cub3d->w_width;
-		// printf("k = %d\n",k);
 		k++;
 	}
+	// put_texture_bouk(cub3d);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
 	return(0);
 }
