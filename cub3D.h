@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/01 01:00:19 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/01 02:50:23 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,24 @@ typedef struct cub3D
 
 typedef struct s_rays
 {
-	double	x_f_wall;
-	double	y_f_wall;
-	double	distance;
-	int		*tab_x;
-	int		*tab_y;
-	int		*tab_dist;
-	int		ray_right;
-	int		ray_left;
-	int		ray_down;
-	int		ray_up;
-}	t_rays;
+    double    x_f_wall;
+    double    y_f_wall;
+    double    distance;
+    double    *tab_x;
+    double    *tab_y;
+    double    *tab_dist;
+    double    *tab_angle;
+    int        ray_right;
+    int        ray_left;
+    int        ray_down;
+    int        ray_up;
+    int        *is_ray_right;
+    int        *is_ray_left;
+    int        *is_ray_down;
+    int        *is_ray_up;
+    int        *tab_hit_h;
+    int        *tab_hit_v;
+}    t_rays;
 
 typedef struct s_textures
 {
@@ -175,9 +182,9 @@ void	draw_line_ray(t_cub3D *cub3d, int color);
 void	draw_line1(t_cub3D *cub3d, int color);
 void 	get_min_wall_distance(t_cub3D *cub3d);
 void    max_x_y(t_cub3D *cub3d);
-void    draw_map_3d(t_cub3D *cub3d,int coloumn);
+void    draw_map_3d(t_cub3D *cub3d);
 void 	draw_line_dda(t_cub3D *cub3d, int x1, int y1, int x2, int y2, int color);
-void 	all_rays(t_cub3D *cub3d);
+void 	all_rays(t_cub3D *cub3d, int k);
 void    check_horizental(t_cub3D *cub3d);
 void    check_vertical(t_cub3D *cub3d);
 void    ft_ray_facing(t_cub3D *cub3d);

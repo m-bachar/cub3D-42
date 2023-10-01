@@ -6,70 +6,64 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 00:40:36 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/01 00:59:23 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/01 02:51:50 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void    draw_map_3d(t_cub3D *cub3d, int colomn)
+void    draw_map_3d(t_cub3D *cub3d)
 {
     double      wall_height;
     int         start_wall;
     int         end_wall;
-    int         line;
     int         color;
+    int         i;
 
-    cub3d->ray->distance = cub3d->ray->distance * cos(deg_to_rad(cub3d->angle) - cub3d->rad_a);
+    
+    i = 0;
     color = 0;
-    wall_height = (cub3d->w_width * cub3d->tile) / ((cub3d->ray->distance));
-    start_wall = (cub3d->w_height / 2) - (wall_height / 2);
-    end_wall = (cub3d->w_height / 2) + (wall_height / 2);
-    if (start_wall <= 0)
-        start_wall = 0;
-    if (end_wall >= cub3d->w_height)
-        end_wall = cub3d->w_height;
-    line = 0;
-    while (line < cub3d->w_height - 1)
+    while (i < cub3d->w_width)
     {
-        if (line < start_wall)
-            color = BLACK;
-        else if ((line >= start_wall) && (line <= end_wall))
-            color = OUSSAMA_CHOUFOUNI;
-        else if (line > end_wall)
-            color = GREY;
-        my_mlx_pixel_put(cub3d, colomn, line, color);
-        line++;
+        cub3d->ray->distance = cub3d->ray->tab_dist[i] * cos(deg_to_rad(cub3d->angle) - cub3d->rad_a);
+        wall_height = (cub3d->w_width * cub3d->tile) / ((cub3d->ray->distance));
+        start_wall = (cub3d->w_height / 2) - (wall_height / 2);
+        end_wall = (cub3d->w_height / 2) + (wall_height / 2);
+        if (start_wall <= 0)
+            start_wall = 0;
+        if (end_wall >= cub3d->w_height)
+            end_wall = cub3d->w_height;
+
+        int	y;
+
+        y = -1;
+        while (++y < start_wall)
+            my_mlx_pixel_put(cub3d, y, i, BLACK);
+        y = end_wall - 1;
+        while (++y < 720)
+            my_mlx_pixel_put(cub3d, y, i, GREY);
+              
+        unsigned int	tex;
+        int				offset_y;
+        int				offset_x;
+        int				distance_top;
+        
+        if(cub3d->ray->tab_hit_v[i])
+            offset_x = ((int)cub3d->ray->tab_y[i] % 64);
+        else
+            offset_x = ((int)cub3d->ray->tab_x[i] % 64);
+        y = start_wall;
+        while (y < end_wall)
+        {
+            distance_top = y + (wall_height / 2) - (cub3d->w_height / 2);
+            offset_y = distance_top * ((float)64 / wall_height);//return here
+            tex = cub3d->textures->no[(64 * offset_y) + offset_x];
+            color = tex;
+            my_mlx_pixel_put(cub3d, ((cub3d->w_width * y) + i), y, color);
+            y++;
+        }
     }
-
-    // unsigned int	tex;
-    // int				offset_y;
-    // int				offset_x;
-    // int				y;
-    // int				distance_top;
-    
-
-    // if(cub3d->hit_v)
-    //     offset_x = ((int)cub3d->ray->y_f_wall % 64);
-    // else
-    //     offset_x = ((int)cub3d->ray->x_f_wall % 64);
-    // y = start_wall;
-    // while (y < end_wall)
-    // {
-    //     distance_top = y + (wall_height / 2) - (cub3d->w_height / 2);
-    //     offset_y = distance_top * ((float)64 / wall_height);//return here
-    //     tex = cub3d->textures->no[(64 * offset_y) + offset_x];
-    //     color = tex;
-    //     my_mlx_pixel_put(cub3d, colomn, y, color);
-    //     y++;
-    // }
 }
-
-
-// void    put_texture_bouk(t_cub3D *cub3d)
-// {
-    
-// }
 
 // void	get_correct_texture(t_maps *maps, int i, int wall_top, int wall_bot)
 // {
@@ -113,12 +107,6 @@ void    draw_map_3d(t_cub3D *cub3d, int colomn)
 // 		tex = maps->tex.wall_tex[(64 * offset_y) + offset_x];
 // 		maps->tex.color_buff[(maps->width * y) + i] = tex;
 // 	}
-// }
-
-// double	fish_eye(t_maps *maps, int i)
-// {
-// 	return ((maps->rays.angle[i] * (M_PI / 180))
-// 		- (maps->angle * (M_PI / 180)));
 // }
 
 // void	fill_3d_projection(t_maps *maps)

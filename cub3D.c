@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/01 00:51:27 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/01 02:50:39 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,37 +123,54 @@ void    ft_ray_facing(t_cub3D *cub3d)
         cub3d->ray->ray_right = 1;
     cub3d->ray->ray_left = !cub3d->ray->ray_right;
 }
+void all_rays(t_cub3D *cub3d, int k)
+{
+    cub3d->ray->tab_x[k] = cub3d->ray->x_f_wall;
+    cub3d->ray->tab_y[k] = cub3d->ray->y_f_wall;
+    cub3d->ray->tab_dist[k] = cub3d->ray->distance;
+    cub3d->ray->tab_angle[k] = cub3d->angle2;
+    cub3d->ray->is_ray_down[k] = cub3d->ray->ray_down;
+    cub3d->ray->is_ray_up[k] = cub3d->ray->ray_up;
+    cub3d->ray->is_ray_right[k] = cub3d->ray->ray_right;
+    cub3d->ray->is_ray_left[k] = cub3d->ray->ray_left;
+    cub3d->ray->tab_hit_h[k] = cub3d->hit_h;
+    cub3d->ray->tab_hit_v[k] = cub3d->hit_v;
+}
+
 int update (t_cub3D *cub3d)
 {
-	double i =  cub3d->angle - 30;
-	mlx_destroy_image(cub3d->mlx, cub3d->img);
-	mlx_clear_window(cub3d->mlx, cub3d->window);
-	draw_map(cub3d);
-	int j = 0;
-	int k = 0;
-	while (i < cub3d->angle + 30)
-	{
-		if (j == 0)
-		{
-			cub3d->angle2 = cub3d->angle - 30;
-			j = 1;
-		}
-		ft_normalize_angle2(cub3d);
-		cub3d->rad_a = deg_to_rad(cub3d->angle2);
-		ft_ray_facing(cub3d);
-		check_vertical(cub3d);
-		check_horizental(cub3d);
-		get_min_wall_distance(cub3d);
-		// draw_line_dda(cub3d, cub3d->xp_c, cub3d->yp_c, cub3d->ray->x_f_wall, cub3d->ray->y_f_wall,0XFF0000);
-		cub3d->angle2 += cub3d->fov/cub3d->w_width;
-		ft_normalize_angle2(cub3d);
-		draw_map_3d(cub3d,k);
-		i += cub3d->fov/cub3d->w_width;
-		k++;
-	}
-	// put_texture_bouk(cub3d);
-	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
-	return(0);
+    double i =  cub3d->angle - 30;
+    mlx_destroy_image(cub3d->mlx, cub3d->img);
+    mlx_clear_window(cub3d->mlx, cub3d->window);
+    cub3d->img = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
+    cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel, &cub3d->line_length,
+                                &cub3d->endian);
+    int j = 0;
+    int k = 0;
+    while (i < cub3d->angle + 30)
+    {
+        if (j == 0)
+        {
+            cub3d->angle2 = cub3d->angle - 30;
+            j = 1;
+        }
+        ft_normalize_angle2(cub3d);
+        cub3d->rad_a = deg_to_rad(cub3d->angle2);
+        ft_ray_facing(cub3d);
+        check_vertical(cub3d);
+        check_horizental(cub3d);
+        get_min_wall_distance(cub3d);
+        // draw_line_dda(cub3d, cub3d->xp_c, cub3d->yp_c, cub3d->ray->x_f_wall, cub3d->ray->y_f_wall,0XFF0000);
+        all_rays(cub3d, k);
+        cub3d->angle2 += cub3d->fov/cub3d->w_width;
+        ft_normalize_angle2(cub3d);
+        i += cub3d->fov/cub3d->w_width;
+        // printf("k = %d\n",k);
+        k++;
+    }
+	draw_map_3d(cub3d);
+    mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
+    return(0);
 }
 void    max_x_y(t_cub3D *cub3d)
 {
@@ -260,6 +277,16 @@ int	main(int ac, char **av)
 	cub3d.map_x_max = 0;
     cub3d.map_y_max = 0;
 	cub3d.ray = malloc(sizeof(t_rays));
+	cub3d.ray->tab_x = ft_calloc((cub3d.w_width + 1), sizeof(double));
+    cub3d.ray->tab_y = ft_calloc((cub3d.w_width + 1), sizeof(double));
+    cub3d.ray->tab_dist = ft_calloc((cub3d.w_width + 1), sizeof(double)); 
+    cub3d.ray->tab_angle = ft_calloc((cub3d.w_width + 1), sizeof(double)); 
+    cub3d.ray->is_ray_down = ft_calloc((cub3d.w_width + 1), sizeof(int));
+    cub3d.ray->is_ray_up = ft_calloc((cub3d.w_width + 1), sizeof(int));
+    cub3d.ray->is_ray_right = ft_calloc((cub3d.w_width + 1), sizeof(int));
+    cub3d.ray->is_ray_left = ft_calloc((cub3d.w_width + 1), sizeof(int));
+    cub3d.ray->tab_hit_h = ft_calloc((cub3d.w_width + 1), sizeof(int));
+    cub3d.ray->tab_hit_v = ft_calloc((cub3d.w_width + 1), sizeof(int));
 	cub3d.textures = malloc(sizeof(t_textures));
 	cub3d.ray->distance = 0;
 	if (ac < 2)
