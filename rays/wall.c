@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 00:24:26 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/30 19:13:22 by obouya           ###   ########.fr       */
+/*   Updated: 2023/09/30 23:57:32 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void get_min_wall_distance(t_cub3D *cub3d)
 		d_v2 = pow((cub3d->yp_c - cub3d->wall_v_y),2); 
 		distance_v = sqrt(d_v1 + d_v2);
 	}
-	// printf("h|%f|v|%f|\n",distance_h, distance_v);
 	if (distance_h <= distance_v)
 	{
 		cub3d->ray->x_f_wall = cub3d->wall_h_x;

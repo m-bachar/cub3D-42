@@ -6,7 +6,7 @@
 #    By: obouya <obouya@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/09/30 19:07:25 by obouya           ###   ########.fr        #
+#    Updated: 2023/10/01 00:26:21 by obouya           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC			= 	./movements/draw.c \
 				./rays/check_vertical.c \
 				./rays/rendering_walls.c \
 				./rays/wall.c \
-				cub3D.c
+				cub3D.c \
+				cub3d_utils1.c
 
 INCLUDE		= 	cub3D.h
 CC			= 	cc -Ofast

@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 23:48:10 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/30 23:52:19 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/01 00:44:59 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ void draw_player(t_cub3D *cub3d, int color, int i, int j)
 void	draw_map(t_cub3D *cub3d)
 {
 	// int	i;
-	int	j;
+	// int	j;
 
-	j = 0;
+	// j = 0;
 	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
 	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel, &cub3d->line_length,
 								&cub3d->endian);
-    cub3d->img_3d = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
-	cub3d->addr_3d = mlx_get_data_addr(cub3d->img_3d, &cub3d->bits_per_pixel_3d, &cub3d->line_length_3d,
-								&cub3d->endian_3d);
+    // cub3d->img_3d = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
+	// cub3d->addr_3d = mlx_get_data_addr(cub3d->img_3d, &cub3d->bits_per_pixel_3d, &cub3d->line_length_3d,
+	// 							&cub3d->endian_3d);
 	// while (cub3d->map[j])
 	// {
 	// 	i = 0;
@@ -72,19 +72,17 @@ void	draw_map(t_cub3D *cub3d)
 	// 	}
 	// 	j++;
 	// }
-	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img_3d, 0, 0);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
 }
 
-void draw_line(t_cub3D *cub3d, int color) {
+void draw_line(t_cub3D *cub3d, int color)//remove this function because we re not gonna add minimap
+{
     int center_x = cub3d->xp_c;
     int center_y = cub3d->yp_c;
-    double angle_rad = deg_to_rad(cub3d->angle);//back to ang
+    double angle_rad = deg_to_rad(cub3d->angle);
     int line_length = 5;
     int end_x = center_x + line_length * cos(angle_rad);
     int end_y = center_y + line_length * sin(angle_rad);
-    // int end_x = cub3d->wall_x;
-    // int end_y = cub3d->wall_y;
-
     int x1 = center_x;
     int y1 = center_y;
     int x2 = end_x;
@@ -96,19 +94,32 @@ void draw_line(t_cub3D *cub3d, int color) {
     int sy = (y1 < y2) ? 1 : -1;
     int err = dx - dy;
 
-    while (x1 != x2 || y1 != y2) {
-        // printf("Drawing pixel at (%d, %d)\n", x1, y1);
+    while (x1 != x2 || y1 != y2)
+    {
         my_mlx_pixel_put(cub3d, x1, y1, color);
 
         int err2 = 2 * err;
-        if (err2 > -dy) {
+        if (err2 > -dy)
+        {
             err -= dy;
             x1 += sx;
         }
-        if (err2 < dx) {
+        if (err2 < dx)
+        {
             err += dx;
             y1 += sy;
         }
     }
 }
 
+void	left(t_cub3D *cub3d)
+{
+	cub3d->angle -= cub3d->rotation_speed;
+	ft_normalize_angle(cub3d);
+}
+
+void	right(t_cub3D *cub3d)
+{
+	cub3d->angle += cub3d->rotation_speed;
+	ft_normalize_angle(cub3d);
+}

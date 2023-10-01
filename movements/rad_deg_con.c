@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 23:36:43 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/24 04:46:00 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/01 00:29:00 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,20 @@ void	ft_find_angle(t_cub3D *cub3d)
 		cub3d->angle = 180;
 	if (cub3d->map[j][i] == 'E')
 		cub3d->angle = 0;
+}
+
+void	ft_normalize_angle(t_cub3D *cub3d)
+{
+	while (cub3d->angle >= 360.0)
+        cub3d->angle -= 360.0;
+    while (cub3d->angle < 0.0)
+        cub3d->angle += 360.0;
+}
+
+void	ft_normalize_angle2(t_cub3D *cub3d)
+{
+	while (cub3d->angle2 >= 360.0)
+        cub3d->angle2 -= 360.0;
+    while (cub3d->angle2 < 0.0)
+        cub3d->angle2 += 360.0;
 }

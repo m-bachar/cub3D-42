@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 08:14:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/30 19:04:42 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/01 00:34:20 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void up_arrow(t_cub3D *cub3d)
    		cub3d->yp_c += dy;
 	}
 }
+
 void right_arrow(t_cub3D *cub3d)
 {
 	double rad_angle = deg_to_rad(cub3d->angle + 90);
@@ -84,32 +85,4 @@ int	key_player(int keycode, t_cub3D *cub3d)
 	if (keycode == 124)
 		right(cub3d);
 	return (0);
-}
-void	ft_normalize_angle(t_cub3D *cub3d)
-{
-	while (cub3d->angle >= 360.0)
-        cub3d->angle -= 360.0;
-    while (cub3d->angle < 0.0)
-        cub3d->angle += 360.0;
-}
-void	ft_normalize_angle2(t_cub3D *cub3d)
-{
-	while (cub3d->angle2 >= 360.0)
-        cub3d->angle2 -= 360.0;
-    while (cub3d->angle2 < 0.0)
-        cub3d->angle2 += 360.0;
-}
-
-void	left(t_cub3D *cub3d)
-{
-	cub3d->angle -= cub3d->rotation_speed;
-	ft_normalize_angle(cub3d);
-	// printf("angle_r = %f \n",cub3d->angle);
-}
-
-void	right(t_cub3D *cub3d)
-{
-	cub3d->angle += cub3d->rotation_speed;
-	ft_normalize_angle(cub3d);
-	// printf("angle_r = %f \n",cub3d->angle);
 }
