@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/01 02:38:14 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/01 18:58:16 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ typedef struct cub3D
 	double			radius;
 	char			player_direcion;
 	double			rotation_speed;
-	int				wall_h_x;
-	int				wall_h_y;
-	int				wall_v_x;
-	int				wall_v_y;
+	double			wall_h_x;
+	double			wall_h_y;
+	double			wall_v_x;
+	double			wall_v_y;
 	void			*img;
 	char			*addr;
 	int				bits_per_pixel;
@@ -86,6 +86,8 @@ typedef struct s_rays
 	int		*is_ray_left;
 	int		*is_ray_down;
 	int		*is_ray_up;
+	int		*tab_hit_h;
+	int		*tab_hit_v;
 }	t_rays;
 
 typedef struct s_textures
@@ -93,6 +95,7 @@ typedef struct s_textures
 	int		red;
 	int		green;
 	int		blue;
+	// Unsigned int here
 	char	*no;
 	char	*so;
 	char	*we;
