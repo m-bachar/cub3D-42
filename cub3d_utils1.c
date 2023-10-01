@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:25:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/10/01 00:25:49 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/01 20:20:21 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ void    ft_ray_facing(t_cub3D *cub3d)
     cub3d->ray->ray_down = 0;
     cub3d->hit_h = 0;
     cub3d->hit_v = 0;
-    if (cub3d->rad_a >= 0 && cub3d->rad_a <= M_PI)
+    if (cub3d->rad_a > 0 && cub3d->rad_a < M_PI)
         cub3d->ray->ray_down = 1;
     cub3d->ray->ray_up = !cub3d->ray->ray_down;
-    if (cub3d->rad_a <= 0.5 * M_PI || cub3d->rad_a >= 1.5 * M_PI)
+    if (cub3d->rad_a < 0.5 * M_PI || cub3d->rad_a > 1.5 * M_PI)
         cub3d->ray->ray_right = 1;
     cub3d->ray->ray_left = !cub3d->ray->ray_right;
 }

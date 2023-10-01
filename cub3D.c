@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/01 18:59:53 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/01 21:18:41 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int	update(t_cub3D *cub3d)
 		check_horizental(cub3d);
 		get_min_wall_distance(cub3d);
 		all_rays(cub3d, k);
-		cub3d->angle2 += cub3d->fov / cub3d->w_width;
-		ft_normalize_angle2(cub3d);
 		draw_map_3d(cub3d, k);
+		cub3d->angle2 += cub3d->fov / cub3d->w_width;
+		// ft_normalize_angle2(cub3d);
 		i += cub3d->fov / cub3d->w_width;
 		k++;
 	}
@@ -173,6 +173,10 @@ void	ft_init_vars(t_cub3D *cub3d)
 	cub3d->ray->tab_hit_h = ft_calloc((cub3d->w_width + 1), sizeof(int));
 	cub3d->ray->tab_hit_v = ft_calloc((cub3d->w_width + 1), sizeof(int));
 	cub3d->textures = malloc(sizeof(t_textures));
+	cub3d->textures->no = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
+	cub3d->textures->so = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
+	cub3d->textures->ea = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
+	cub3d->textures->we = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
 }
 
 void	parsing_total(int ac, char **av, t_cub3D *cub3d)
@@ -186,16 +190,13 @@ void	parsing_total(int ac, char **av, t_cub3D *cub3d)
 	max_x_y(cub3d);
 }
 
-void	ft_mlx(t_cub3D cub3d)
+void	ft_mlx(t_cub3D *cub3d)
 {
-	cub3d.mlx = mlx_init();
-	cub3d.window = mlx_new_window(cub3d.mlx, cub3d.w_width, cub3d.w_height, "Cub3D");
-	cub3d.img = mlx_new_image(cub3d.mlx, cub3d.w_width, cub3d.w_height);
-	cub3d.addr = mlx_get_data_addr(cub3d.img, &cub3d.bits_per_pixel, &cub3d.line_length,
-								&cub3d.endian);
-	mlx_hook(cub3d.window, 2, 1L << 0, &key_player, &cub3d);
-	mlx_loop_hook(cub3d.mlx, update, &cub3d);
-	mlx_loop(cub3d.mlx);
+	cub3d->mlx = mlx_init();
+	cub3d->window = mlx_new_window(cub3d->mlx, cub3d->w_width, cub3d->w_height, "Cub3D");
+	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
+	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel, &cub3d->line_length,
+								&cub3d->endian);
 }
 
 int	main(int ac, char **av)
@@ -208,10 +209,13 @@ int	main(int ac, char **av)
 	if (!protection)
 		return (1);	
 	ft_init_vars(&cub3d);
+	ft_mlx(&cub3d);
 	parsing_total(ac, av, &cub3d);
 	player_position(&cub3d);
 	ft_find_angle(&cub3d);
-	ft_mlx(cub3d);
+	mlx_hook(cub3d.window, 2, 1L << 0, &key_player, &cub3d);
+	mlx_loop_hook(cub3d.mlx, update, &cub3d);
+	mlx_loop(cub3d.mlx);
 	free_mem(cub3d.config);
 	free_mem(cub3d.map);
 }

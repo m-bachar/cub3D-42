@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/01 18:58:16 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/01 21:01:56 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,13 @@ typedef struct s_rays
 
 typedef struct s_textures
 {
-	int		red;
-	int		green;
-	int		blue;
-	// Unsigned int here
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
+	int				red;
+	int				green;
+	int				blue;
+	unsigned int	*no;
+	unsigned int	*so;
+	unsigned int	*we;
+	unsigned int	*ea;
 }	t_textures;
 
 		/*	Config.c		*/

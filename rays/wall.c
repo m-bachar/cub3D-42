@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 00:24:26 by obouya            #+#    #+#             */
-/*   Updated: 2023/09/30 23:57:32 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/01 20:26:46 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,15 @@ void get_min_wall_distance(t_cub3D *cub3d)
 		cub3d->ray->x_f_wall = cub3d->wall_h_x;
 		cub3d->ray->y_f_wall = cub3d->wall_h_y;
 		cub3d->ray->distance = distance_h;
+		cub3d->hit_h = 1;
+		cub3d->hit_v = 0;
 	}
 	else
 	{
 		cub3d->ray->x_f_wall = cub3d->wall_v_x;
 		cub3d->ray->y_f_wall = cub3d->wall_v_y;
 		cub3d->ray->distance = distance_v;
+		cub3d->hit_v = 1;
+		cub3d->hit_h = 0;
 	}
 }
