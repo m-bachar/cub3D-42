@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 23:48:10 by obouya            #+#    #+#             */
-/*   Updated: 2023/10/01 00:44:59 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/02 01:03:02 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,40 +38,40 @@ void draw_player(t_cub3D *cub3d, int color, int i, int j)
 
 void	draw_map(t_cub3D *cub3d)
 {
-	// int	i;
-	// int	j;
+	int	i;
+	int	j;
 
-	// j = 0;
+	j = 0;
 	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
 	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel, &cub3d->line_length,
 								&cub3d->endian);
     // cub3d->img_3d = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
 	// cub3d->addr_3d = mlx_get_data_addr(cub3d->img_3d, &cub3d->bits_per_pixel_3d, &cub3d->line_length_3d,
 	// 							&cub3d->endian_3d);
-	// while (cub3d->map[j])
-	// {
-	// 	i = 0;
-	// 	while (cub3d->map[j][i])
-	// 	{
-	// 		if (cub3d->map[j][i] == 'N' || cub3d->map[j][i] == 'S'
-	// 			|| cub3d->map[j][i] == 'W' || cub3d->map[j][i] == 'E')
-	// 		{
-	// 			pixels(cub3d,0xFFFFFF, j, i);
-	// 			draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
-	// 			draw_line(cub3d, 0xFFD000);
-	// 		}
-	// 		else if (cub3d->map[j][i] == '1')
-	// 			pixels(cub3d,0x6342F5, j, i);
-    //         else if (cub3d->map[j][i] == '#' || cub3d->map[j][i] == ' ' || cub3d->map[j][i] == '\t')
-    //             pixels(cub3d, 0x000000, j, i);
-	// 		else
-	// 			pixels(cub3d,0xFFFFFF, j, i);
-	// 		draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
-	// 		draw_line(cub3d, 0xFFD000);
-	// 		i++;
-	// 	}
-	// 	j++;
-	// }
+	while (cub3d->map[j])
+	{
+		i = 0;
+		while (cub3d->map[j][i])
+		{
+			if (cub3d->map[j][i] == 'N' || cub3d->map[j][i] == 'S'
+				|| cub3d->map[j][i] == 'W' || cub3d->map[j][i] == 'E')
+			{
+				pixels(cub3d,0xFFFFFF, j, i);
+				draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
+				draw_line(cub3d, 0xFFD000);
+			}
+			else if (cub3d->map[j][i] == '1')
+				pixels(cub3d,0x6342F5, j, i);
+            else if (cub3d->map[j][i] == '#' || cub3d->map[j][i] == ' ' || cub3d->map[j][i] == '\t')
+                pixels(cub3d, 0x000000, j, i);
+			else
+				pixels(cub3d,0xFFFFFF, j, i);
+			draw_player(cub3d,0xFFD000, cub3d->xp_c, cub3d->yp_c);
+			draw_line(cub3d, 0xFFD000);
+			i++;
+		}
+		j++;
+	}
 	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
 }
 

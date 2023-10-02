@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/01 21:01:56 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 01:55:51 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,15 @@ typedef struct s_textures
 	unsigned int	*ea;
 }	t_textures;
 
+typedef struct s_imgs
+{
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}	t_imgs;
+
 		/*	Config.c		*/
 void	check_rgb_values(char **cf);
 void	count_elements(char **config);
@@ -185,4 +194,5 @@ void	left_arrow(t_cub3D *cub3d);
 void	right_arrow(t_cub3D *cub3d);
 void	down_arrow(t_cub3D *cub3d);
 void	up_arrow(t_cub3D *cub3d);
+void    tex(t_cub3D *cub3d, char *path, unsigned int **tex);
 #endif

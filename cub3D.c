@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/01 21:18:41 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 02:04:25 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	update(t_cub3D *cub3d)
 	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
 	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel,
 			&cub3d->line_length, &cub3d->endian);
+	// draw_map(cub3d);
 	int j = 0;
 	int k = 0;
 	while (i < cub3d->angle + 30)
@@ -45,6 +46,7 @@ int	update(t_cub3D *cub3d)
 			cub3d->angle2 = cub3d->angle - 30;
 			j = 1;
 		}
+		// printf("ang == %f\n",cub3d->angle);
 		ft_normalize_angle2(cub3d);
 		cub3d->rad_a = deg_to_rad(cub3d->angle2);
 		ft_ray_facing(cub3d);
@@ -54,7 +56,7 @@ int	update(t_cub3D *cub3d)
 		all_rays(cub3d, k);
 		draw_map_3d(cub3d, k);
 		cub3d->angle2 += cub3d->fov / cub3d->w_width;
-		// ft_normalize_angle2(cub3d);
+		ft_normalize_angle2(cub3d);
 		i += cub3d->fov / cub3d->w_width;
 		k++;
 	}
@@ -173,10 +175,10 @@ void	ft_init_vars(t_cub3D *cub3d)
 	cub3d->ray->tab_hit_h = ft_calloc((cub3d->w_width + 1), sizeof(int));
 	cub3d->ray->tab_hit_v = ft_calloc((cub3d->w_width + 1), sizeof(int));
 	cub3d->textures = malloc(sizeof(t_textures));
-	cub3d->textures->no = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
-	cub3d->textures->so = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
-	cub3d->textures->ea = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
-	cub3d->textures->we = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
+// 	cub3d->textures->no = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
+// 	cub3d->textures->so = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
+// 	cub3d->textures->ea = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
+// 	cub3d->textures->we = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
 }
 
 void	parsing_total(int ac, char **av, t_cub3D *cub3d)
