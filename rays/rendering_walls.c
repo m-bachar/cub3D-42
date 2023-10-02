@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 00:40:36 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 22:43:01 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 22:58:55 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	ft_rgb(int r, int g, int b)
 
 void	draw_map_3d(t_cub3D *cub3d, int colomn)
 {
-	int	wall_height;
-	int	start_wall;
-	int	end_wall;
+	int	w_height;
+	int	wall_beg;
+	int	wall_end;
 	int	line;
 	int	color;
 	unsigned int 	*d;
@@ -36,19 +36,19 @@ void	draw_map_3d(t_cub3D *cub3d, int colomn)
 		d = cub3d->textures->no;
 	cub3d->ray->distance = cub3d->ray->distance * cos(deg_to_rad(cub3d->angle) - cub3d->rad_a);
 	color = 0;
-	wall_height = (cub3d->w_width * cub3d->tile) / ((cub3d->ray->distance));
-	start_wall = (cub3d->w_height / 2) - (wall_height / 2);
-	end_wall = (cub3d->w_height / 2) + (wall_height / 2);
-	if (start_wall <= 0)
-		start_wall = 0;
-	if (end_wall >= cub3d->w_height)
-		end_wall = cub3d->w_height;
+	w_height = (cub3d->w_width * cub3d->tile) / ((cub3d->ray->distance));
+	wall_beg = (cub3d->w_height / 2) - (w_height / 2);
+	wall_end = (cub3d->w_height / 2) + (w_height / 2);
+	if (wall_beg <= 0)
+		wall_beg = 0;
+	if (wall_end >= cub3d->w_height)
+		wall_end = cub3d->w_height;
 	line = 0;
 	while (line < cub3d->w_height - 1)
 	{
-		if (line < start_wall)
+		if (line < wall_beg)
 			color = ft_rgb(cub3d->textures->c[0], cub3d->textures->c[1], cub3d->textures->c[2]);
-		else if ((line >= start_wall) && (line <= end_wall - 1))
+		else if ((line >= wall_beg) && (line <= wall_end - 1))
 		{
 			int				x=0;
 			unsigned int	c;
@@ -56,11 +56,11 @@ void	draw_map_3d(t_cub3D *cub3d, int colomn)
 				x = fmod(cub3d->ray->x_f_wall, 64);
 			else if (cub3d->hit_v == 1)
 				x = fmod(cub3d->ray->y_f_wall, 64);
-			c = line + (wall_height / 2) - (cub3d->w_height / 2);
-			c = c * ((double)64 / wall_height);
+			c = line + (w_height / 2) - (cub3d->w_height / 2);
+			c = c * ((double)64 / w_height);
 			color = d[(64 * c) + x];
 		}
-		else if (line > end_wall)
+		else if (line > wall_end)
 			color = ft_rgb(cub3d->textures->f[0], cub3d->textures->f[1], cub3d->textures->f[2]);
 		my_mlx_pixel_put(cub3d, colomn, line, color);
 		line++;
