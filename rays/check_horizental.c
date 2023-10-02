@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_horizental.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:39:56 by obouya            #+#    #+#             */
-/*   Updated: 2023/10/02 05:57:58 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/02 06:58:23 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,3 @@ void	check_horizental(t_cub3D *cub3d)
 		vars_h->h_touch_y -= 0.01;
 	check_horizental2(cub3d, vars_h);
 }
-

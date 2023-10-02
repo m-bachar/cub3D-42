@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 06:49:29 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/02 06:56:45 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int	update(t_cub3D *cub3d)
 
 void	ft_init_vars(t_cub3D *cub3d)
 {
-	// cub3d->x = 0;
-	// cub3d->y = 0;
 	cub3d->fov = 60;
 	cub3d->xp_c = 0;
 	cub3d->yp_c = 0;
@@ -58,12 +56,13 @@ void	ft_init_vars(t_cub3D *cub3d)
 	cub3d->wall_v_x = 0;
 	cub3d->wall_v_y = 0;
 	cub3d->map_x_max = 0;
-    cub3d->map_y_max = 0;
+	cub3d->map_y_max = 0;
 	cub3d->tile = 64;
-	cub3d->i=0;
-	cub3d->j=0;
-	cub3d->k=0;
+	cub3d->i = 0;
+	cub3d->j = 0;
+	cub3d->k = 0;
 }
+
 void	ft_init_vars2(t_cub3D *cub3d)
 {
 	cub3d->ray = malloc(sizeof(t_rays));
@@ -83,7 +82,6 @@ void	ft_init_vars2(t_cub3D *cub3d)
 	cub3d->right_angle_key = 0;
 }
 
-
 void	parsing_total(int ac, char **av, t_cub3D *cub3d)
 {
 	if (ac < 2)
@@ -95,25 +93,22 @@ void	parsing_total(int ac, char **av, t_cub3D *cub3d)
 	max_x_y(cub3d);
 }
 
-
-
 int	main(int ac, char **av)
 {
-	// atexit(f);
 	t_cub3D	cub3d;
 	char	*protection;
 
 	protection = malloc(sizeof(char) * 0);
 	if (!protection)
-		return (1);	
+		return (1);
 	ft_init_vars(&cub3d);
 	ft_init_vars2(&cub3d);
 	ft_mlx(&cub3d);
 	parsing_total(ac, av, &cub3d);
 	player_position(&cub3d);
 	ft_find_angle(&cub3d);
-	mlx_hook(cub3d.window, 2,0, key_player_press, &cub3d);
-	mlx_hook(cub3d.window, 3,0, key_player_release, &cub3d);
+	mlx_hook(cub3d.window, 2, 0, key_player_press, &cub3d);
+	mlx_hook(cub3d.window, 3, 0, key_player_release, &cub3d);
 	mlx_loop_hook(cub3d.mlx, update, &cub3d);
 	mlx_loop(cub3d.mlx);
 	free_mem(cub3d.config);

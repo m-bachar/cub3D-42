@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 06:48:40 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/02 06:58:05 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,9 @@ typedef struct cub3D
 	void				*mlx;
 	void				*window;
 	double				fov;
-	// int					x;
 	int					flag;
 	double				yp_c;
 	double				xp_c;
-	// int					y;
 	int					w_height;
 	int					w_width;
 	double				angle;
@@ -67,7 +65,7 @@ typedef struct cub3D
 	int					left_angle_key;
 	int					right_angle_key;
 	double				i;
-	int 				j;
+	int					j;
 	int					k;
 	struct s_rays		*ray;
 	struct s_textures	*textures;
@@ -86,22 +84,22 @@ typedef struct s_rays
 
 typedef struct s_horiz
 {
-	double x_intercept;
-    double y_intercept;
-    double h_touch_x;
-    double h_touch_y;
-    double dx_step;
-    double dy_step;
+	double	x_intercept;
+	double	y_intercept;
+	double	h_touch_x;
+	double	h_touch_y;
+	double	dx_step;
+	double	dy_step;
 }	t_horiz;
 
 typedef struct s_vert
 {
-	double x_intercept;
-    double y_intercept;
-    double v_touch_x;
-    double v_touch_y;
-    double dx_step;
-    double dy_step;
+	double	x_intercept;
+	double	y_intercept;
+	double	v_touch_x;
+	double	v_touch_y;
+	double	dx_step;
+	double	dy_step;
 }	t_vert;
 
 typedef struct s_textures
@@ -214,7 +212,7 @@ void	player_position(t_cub3D *cub3d);
 void	pixels(t_cub3D *cub3d, int color, int j, int i);
 void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color);
 
-//------------------------------>cub3D.c
+		/*	Cub3D.c		*/
 void	get_min_wall_distance(t_cub3D *cub3d);
 void	ft_init_vars(t_cub3D *cub3d);
 void	ft_init_vars2(t_cub3D *cub3d);
@@ -222,10 +220,12 @@ void	parsing_total(int ac, char **av, t_cub3D *cub3d);
 int		update(t_cub3D *cub3d);
 void	update2(t_cub3D *cub3d);
 void	init_vars_update(t_cub3D *cub3d);
-//------------------------------>Cub3D_Utils2.c
+
+		/*	Cub3D_Utils2.c		*/
 void	ft_mlx(t_cub3D *cub3d);
 void	max_x_y(t_cub3D *cub3d);
 int		longest_line(char **map);
 char	*copy_line(char *src, char *dst, int len);
 void	fillmap(t_cub3D *cub3d);
+
 #endif

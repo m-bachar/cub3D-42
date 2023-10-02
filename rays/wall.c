@@ -6,13 +6,13 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 00:24:26 by obouya            #+#    #+#             */
-/*   Updated: 2023/10/02 05:35:51 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 06:58:34 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void get_min_wall_distance(t_cub3D *cub3d)
+void	get_min_wall_distance(t_cub3D *cub3d)
 {
 	double	distance_h;
 	double	distance_v;
