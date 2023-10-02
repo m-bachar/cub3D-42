@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 05:04:19 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/02 05:33:51 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,45 +155,45 @@ int		sizeof_map(char *map);
 
 //------------------------------>cub3D.c
 void	left(t_cub3D *cub3d);
-int		key_view(int keycode, t_cub3D *cub3d);
-void	check_direction(char c, t_cub3D *cub3d);
 void	right(t_cub3D *cub3d);
-void	draw_line_ray(t_cub3D *cub3d, int color);
-void	draw_line1(t_cub3D *cub3d, int color);
-void 	get_min_wall_distance(t_cub3D *cub3d);
-void    max_x_y(t_cub3D *cub3d);
-void    draw_map_3d(t_cub3D *cub3d,int coloumn);
-void	all_rays(t_cub3D *cub3d, int k);
-void    check_horizental(t_cub3D *cub3d);
-void    check_vertical(t_cub3D *cub3d);
+void	get_min_wall_distance(t_cub3D *cub3d);
+void	max_x_y(t_cub3D *cub3d);
+void	check_horizental(t_cub3D *cub3d);
+void	check_vertical(t_cub3D *cub3d);
 void	ft_init_vars(t_cub3D *cub3d);
 void	parsing_total(int ac, char **av, t_cub3D *cub3d);
-//------------------------------>cub3D_utils1.c
-void    ft_ray_facing(t_cub3D *cub3d);
+
+		/*	Cub3D_Utils.c		*/
+void	ft_ray_facing(t_cub3D *cub3d);
 void	player_position(t_cub3D *cub3d);
 void	pixels(t_cub3D *cub3d, int color, int j, int i);
 void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color);
-void 	draw_line_dda(t_cub3D *cub3d, int x1, int y1, int x2, int y2, int color);
-//------------------------------>movements/rad_deg_conv.c
-void	ft_find_angle(t_cub3D *cub3d);
+
+		/*	Rad_Deg_Con.c		*/
 double	deg_to_rad(double deg);
 double	rad_to_deg(double rad);
+void	ft_find_angle(t_cub3D *cub3d);
 void	ft_normalize_angle(t_cub3D *cub3d);
 void	ft_normalize_angle2(t_cub3D *cub3d);
-//----------------------------->movements/draw.c
-void 	draw_player(t_cub3D *cub3d, int color, int i, int j);
-void	draw_map(t_cub3D *cub3d);
-void	draw_line(t_cub3D *cub3d, int color);
+
+		/*	Draw.c		*/
 void	left(t_cub3D *cub3d);
 void	right(t_cub3D *cub3d);
-//------------------------------>movements/move.c
-int		key_player(t_cub3D *cub3d);
-void	left_arrow(t_cub3D *cub3d);
-void	right_arrow(t_cub3D *cub3d);
-void	down_arrow(t_cub3D *cub3d);
+
+		/*	Move_Stop.c		*/
 void	up_arrow(t_cub3D *cub3d);
-void    tex(t_cub3D *cub3d, char *path, unsigned int **tex);
+void	right_arrow(t_cub3D *cub3d);
+void	left_arrow(t_cub3D *cub3d);
+void	down_arrow(t_cub3D *cub3d);
+int		key_player(t_cub3D *cub3d);
+
+		/*	Move_Stop_Norm.c		*/
 int		key_player_press(int keycode, t_cub3D *cub3d);
 int		key_player_release(int keycode, t_cub3D *cub3d);
+
+		/*	Rendering_Walls.c		*/
+int		ft_rgb(int r, int g, int b);
+void	draw_map_3d(t_cub3D *cub3d, int coloumn);
+void	tex(t_cub3D *cub3d, char *path, unsigned int **tex);
 
 #endif

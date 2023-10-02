@@ -6,7 +6,7 @@
 #    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/10/02 04:32:22 by mbachar          ###   ########.fr        #
+#    Updated: 2023/10/02 05:18:40 by mbachar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ CUB3D		= 	cub3D
 LIBFT		=	./libft/libft.a
 SRC			= 	./movements/draw.c \
 				./movements/move_stop.c \
+				./movements/move_stop_norm.c \
 				./movements/rad_deg_con.c \
 				./parsing/config.c \
 				./parsing/map.c \

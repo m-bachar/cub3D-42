@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:25:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/10/01 20:20:21 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 05:26:24 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,42 +58,23 @@ void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = cub3d->addr + (y * cub3d->line_length + x * (cub3d->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	dst = cub3d->addr + (y * cub3d->line_length + \
+		x * (cub3d->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
-void draw_line_dda(t_cub3D *cub3d, int x1, int y1, int x2, int y2, int color)
+void	ft_ray_facing(t_cub3D *cub3d)
 {
-    int dx = x2 - x1;
-    int dy = y2 - y1;
-    int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
-
-    float xIncrement = (float)dx / (float)steps;
-    float yIncrement = (float)dy / (float)steps;
-
-    float x = (float)x1;
-    float y = (float)y1;
-
-    for (int i = 0; i < steps; i++)
-    {
-        my_mlx_pixel_put(cub3d, (int)round(x), (int)round(y), color);
-        x += xIncrement;
-        y += yIncrement;
-    }
-}
-
-void    ft_ray_facing(t_cub3D *cub3d)
-{
-    cub3d->ray->ray_right = 0;
-    cub3d->ray->ray_left = 0;
-    cub3d->ray->ray_up = 0;
-    cub3d->ray->ray_down = 0;
-    cub3d->hit_h = 0;
-    cub3d->hit_v = 0;
-    if (cub3d->rad_a > 0 && cub3d->rad_a < M_PI)
-        cub3d->ray->ray_down = 1;
-    cub3d->ray->ray_up = !cub3d->ray->ray_down;
-    if (cub3d->rad_a < 0.5 * M_PI || cub3d->rad_a > 1.5 * M_PI)
-        cub3d->ray->ray_right = 1;
-    cub3d->ray->ray_left = !cub3d->ray->ray_right;
+	cub3d->ray->ray_right = 0;
+	cub3d->ray->ray_left = 0;
+	cub3d->ray->ray_up = 0;
+	cub3d->ray->ray_down = 0;
+	cub3d->hit_h = 0;
+	cub3d->hit_v = 0;
+	if (cub3d->rad_a > 0 && cub3d->rad_a < M_PI)
+		cub3d->ray->ray_down = 1;
+	cub3d->ray->ray_up = !cub3d->ray->ray_down;
+	if (cub3d->rad_a < 0.5 * M_PI || cub3d->rad_a > 1.5 * M_PI)
+		cub3d->ray->ray_right = 1;
+	cub3d->ray->ray_left = !cub3d->ray->ray_right;
 }

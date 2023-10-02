@@ -66,9 +66,9 @@
     {
       "id": "pointer:pointer",
       "typeName": "pointer",
-      "x": -105.13394346775692,
-      "y": -757.9727338530429,
-      "lastActivityTimestamp": 1696218208073,
+      "x": 614.6186428969892,
+      "y": -921.278883101796,
+      "lastActivityTimestamp": 1696220632898,
       "meta": {}
     },
     {
@@ -80,7 +80,7 @@
     },
     {
       "x": 139.84748259129208,
-      "y": 1089.1836713530429,
+      "y": 1098.6291333459367,
       "z": 1,
       "meta": {},
       "id": "camera:page:DEGFcAIgIY4E5VdPH77b0",
@@ -89,7 +89,9 @@
     {
       "editingId": null,
       "croppingId": null,
-      "selectedIds": [],
+      "selectedIds": [
+        "shape:4GRjsDVu8b-YSFJrl6Xtx"
+      ],
       "hoveredId": null,
       "erasingIds": [],
       "hintingIds": [],
@@ -364,8 +366,8 @@
       "typeName": "shape"
     },
     {
-      "x": 28.98627654714825,
-      "y": -830.6759810742823,
+      "x": 30.076776425077938,
+      "y": -863.1857314404932,
       "rotation": 0,
       "isLocked": false,
       "opacity": 1,
@@ -387,8 +389,8 @@
       "typeName": "shape"
     },
     {
-      "x": 29.311769008860423,
-      "y": -870.3743096768928,
+      "x": 30.40226888679011,
+      "y": -902.8840600431038,
       "rotation": 0,
       "isLocked": false,
       "opacity": 1,
@@ -453,6 +455,29 @@
       "parentId": "page:DEGFcAIgIY4E5VdPH77b0",
       "index": "aK",
       "id": "shape:MmtMXM0DITpms8JM2M_Bb",
+      "typeName": "shape"
+    },
+    {
+      "x": 26.85737029714825,
+      "y": -820.4188094434229,
+      "rotation": 0,
+      "isLocked": false,
+      "opacity": 1,
+      "meta": {},
+      "id": "shape:4GRjsDVu8b-YSFJrl6Xtx",
+      "type": "text",
+      "props": {
+        "color": "orange",
+        "size": "m",
+        "w": 223.05078125,
+        "text": "func that frees all",
+        "font": "draw",
+        "align": "middle",
+        "autoSize": true,
+        "scale": 1
+      },
+      "parentId": "page:DEGFcAIgIY4E5VdPH77b0",
+      "index": "aL",
       "typeName": "shape"
     }
   ]
