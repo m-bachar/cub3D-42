@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 00:16:18 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 04:39:49 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 22:38:57 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_rgb_values(char **cf, t_cub3D *cub3d, int flag)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = 1;
 	while (cf[i])
 	{
 		j = 0;
@@ -30,9 +30,9 @@ void	check_rgb_values(char **cf, t_cub3D *cub3d, int flag)
 		}
 		value = ft_atoi(cf[i]);
 		if (flag == 0)
-			cub3d->textures->c[i] = value;
+			cub3d->textures->c[i - 1] = value;
 		else if (flag == 1)
-			cub3d->textures->f[i] = value;
+			cub3d->textures->f[i - 1] = value;
 		if (value >= 0 && value <= 255)
 			i++;
 		else
@@ -96,9 +96,9 @@ void	parse_c_f(char *cf, t_cub3D *cub3d)
 	count_commas(cf);
 	if (cf[i] == 'C' || cf[i] == 'F')
 		error("Error: RGB syntax must comply with (0-255),(0-255),(0-255) !\n");
-	splitted = ft_split2(cf, " CF,\t\r");
+	splitted = ft_split2(cf, " ,\t\r");
 	size = doublearray_size(splitted);
-	if (size != 3)
+	if (size != 4)
 	{
 		free(cf);
 		free_mem(splitted);

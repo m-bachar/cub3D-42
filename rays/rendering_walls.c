@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 00:40:36 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 05:31:18 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 22:43:01 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ void	draw_map_3d(t_cub3D *cub3d, int colomn)
 	while (line < cub3d->w_height - 1)
 	{
 		if (line < start_wall)
-			// color = ft_rgb(cub3d->textures->c[0], cub3d->textures->c[1], cub3d->textures->c[3]);
-			color = ft_rgb(33, 41, 128);
+			color = ft_rgb(cub3d->textures->c[0], cub3d->textures->c[1], cub3d->textures->c[2]);
 		else if ((line >= start_wall) && (line <= end_wall - 1))
 		{
 			int				x=0;
@@ -62,8 +61,7 @@ void	draw_map_3d(t_cub3D *cub3d, int colomn)
 			color = d[(64 * c) + x];
 		}
 		else if (line > end_wall)
-			// color = ft_rgb(cub3d->textures->f[0], cub3d->textures->f[1], cub3d->textures->f[2]);
-			color = ft_rgb(62, 63, 64);
+			color = ft_rgb(cub3d->textures->f[0], cub3d->textures->f[1], cub3d->textures->f[2]);
 		my_mlx_pixel_put(cub3d, colomn, line, color);
 		line++;
 	}

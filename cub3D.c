@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 06:56:45 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 22:40:26 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,13 @@ void	ft_init_vars2(t_cub3D *cub3d)
 	cub3d->textures = malloc(sizeof(t_textures));
 	cub3d->textures->c = malloc(sizeof(int) * 4);
 	cub3d->textures->f = malloc(sizeof(int) * 4);
+	cub3d->textures->c[0] = 0;
+	cub3d->textures->c[1] = 0;
+	cub3d->textures->c[2] = 0;
 	cub3d->textures->c[3] = '\0';
+	cub3d->textures->f[0] = 0;
+	cub3d->textures->f[1] = 0;
+	cub3d->textures->f[2] = 0;
 	cub3d->textures->f[3] = '\0';
 	cub3d->right_key = 0;
 	cub3d->left_key = 0;
