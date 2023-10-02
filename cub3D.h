@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 06:58:05 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/03 00:20:49 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,15 @@ typedef struct s_textures
 	unsigned int	*we;
 	unsigned int	*ea;
 }	t_textures;
+typedef struct s_wall_d
+{
+	double	distance_h;
+	double	distance_v;
+	double	d_v1;
+	double	d_v2;
+	double	d_h1;
+	double	d_h2;
+}	t_wall_d;
 
 typedef struct s_imgs
 {
@@ -213,7 +222,6 @@ void	pixels(t_cub3D *cub3d, int color, int j, int i);
 void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color);
 
 		/*	Cub3D.c		*/
-void	get_min_wall_distance(t_cub3D *cub3d);
 void	ft_init_vars(t_cub3D *cub3d);
 void	ft_init_vars2(t_cub3D *cub3d);
 void	parsing_total(int ac, char **av, t_cub3D *cub3d);
@@ -228,4 +236,9 @@ int		longest_line(char **map);
 char	*copy_line(char *src, char *dst, int len);
 void	fillmap(t_cub3D *cub3d);
 
+		/*	Wall.c		*/
+void	get_min_wall_distance(t_cub3D *cub3d);
+void	init_vars_wall_dis(t_wall_d *dis);
+void	get_min_wall_distance_nr1(t_cub3D *cub3d, t_wall_d *dis);
+void	get_min_wall_distance_nr2(t_cub3D *cub3d, t_wall_d *dis);
 #endif
