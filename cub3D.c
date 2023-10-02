@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 05:07:11 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/02 05:47:19 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
 
 int	update(t_cub3D *cub3d)
 {
@@ -120,10 +119,6 @@ void	fillmap(t_cub3D *cub3d)
 	new_map[j] = NULL;
 	cub3d->map = new_map;
 }
-// void f()
-// {
-// 	system("leaks cub3D");
-// }
 
 void	ft_init_vars(t_cub3D *cub3d)
 {
