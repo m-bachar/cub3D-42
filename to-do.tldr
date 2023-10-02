@@ -66,9 +66,9 @@
     {
       "id": "pointer:pointer",
       "typeName": "pointer",
-      "x": -106.91728255567605,
-      "y": -470.4430318135087,
-      "lastActivityTimestamp": 1696048689307,
+      "x": -105.13394346775692,
+      "y": -757.9727338530429,
+      "lastActivityTimestamp": 1696218208073,
       "meta": {}
     },
     {
@@ -79,9 +79,9 @@
       "typeName": "page"
     },
     {
-      "x": 101.24289904467774,
-      "y": 1045.613357528117,
-      "z": 0.8872720431374415,
+      "x": 139.84748259129208,
+      "y": 1089.1836713530429,
+      "z": 1,
       "meta": {},
       "id": "camera:page:DEGFcAIgIY4E5VdPH77b0",
       "typeName": "camera"
@@ -119,8 +119,8 @@
       "screenBounds": {
         "x": 0,
         "y": 0,
-        "w": 750,
-        "h": 886.111083984375
+        "w": 922.5,
+        "h": 1085.833251953125
       },
       "zoomBrush": null,
       "isGridMode": false,
@@ -257,7 +257,7 @@
       "meta": {},
       "type": "text",
       "props": {
-        "color": "red",
+        "color": "light-green",
         "size": "m",
         "w": 161.37326049804688,
         "text": "xpm to pixels",
@@ -280,7 +280,7 @@
       "meta": {},
       "type": "text",
       "props": {
-        "color": "red",
+        "color": "light-green",
         "size": "m",
         "w": 231.88107299804688,
         "text": "walls and textures",
@@ -364,15 +364,15 @@
       "typeName": "shape"
     },
     {
-      "x": 27.856714169218563,
-      "y": -775.7671370801417,
+      "x": 28.98627654714825,
+      "y": -830.6759810742823,
       "rotation": 0,
       "isLocked": false,
       "opacity": 1,
       "meta": {},
       "type": "text",
       "props": {
-        "color": "red",
+        "color": "orange",
         "size": "m",
         "w": 140.30120849609375,
         "text": "Norminette",
@@ -387,8 +387,8 @@
       "typeName": "shape"
     },
     {
-      "x": 28.182206630930736,
-      "y": -815.4654656827522,
+      "x": 29.311769008860423,
+      "y": -870.3743096768928,
       "rotation": 0,
       "isLocked": false,
       "opacity": 1,
@@ -433,15 +433,15 @@
       "typeName": "shape"
     },
     {
-      "x": 28.86163316745757,
-      "y": -851.4833856911052,
+      "x": 28.09014879245757,
+      "y": -778.1468073219646,
       "rotation": 0,
       "isLocked": false,
       "opacity": 1,
       "meta": {},
       "type": "text",
       "props": {
-        "color": "red",
+        "color": "light-green",
         "size": "m",
         "w": 268.8439636230469,
         "text": "Extract and store rgb",

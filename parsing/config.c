@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 00:16:18 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 02:00:53 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/02 04:39:49 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	check_rgb_values(char **cf)
+void	check_rgb_values(char **cf, t_cub3D *cub3d, int flag)
 {
 	int	value;
 	int	i;
@@ -29,6 +29,10 @@ void	check_rgb_values(char **cf)
 			j++;
 		}
 		value = ft_atoi(cf[i]);
+		if (flag == 0)
+			cub3d->textures->c[i] = value;
+		else if (flag == 1)
+			cub3d->textures->f[i] = value;
 		if (value >= 0 && value <= 255)
 			i++;
 		else
@@ -80,7 +84,7 @@ void	count_commas(char *cf)
 	}
 }
 
-void	parse_c_f(char *cf)
+void	parse_c_f(char *cf, t_cub3D *cub3d)
 {
 	char	**splitted;
 	int		size;
@@ -100,7 +104,10 @@ void	parse_c_f(char *cf)
 		free_mem(splitted);
 		error("Error: RGB syntax must comply with (0-255),(0-255),(0-255) !\n");
 	}
-	check_rgb_values(splitted);
+	if (!ft_strncmp("C", splitted[0], 1))
+		check_rgb_values(splitted, cub3d, 0);
+	else if (!ft_strncmp("F", splitted[0], 1))
+		check_rgb_values(splitted, cub3d, 1);
 	free_mem(splitted);
 }
 
@@ -125,48 +132,4 @@ void	check_duplicated(char **config)
 		j = 0;
 		i++;
 	}
-}
-
-void	read_and_store(int fd, char **config, t_cub3D *cub3d)
-{
-	// int	x;
-	// int	y;
-	(void)fd;
-	if (!ft_strcmp(config[0], "NO"))
-		tex(cub3d, config[1],&cub3d->textures->no);
-	else if (!ft_strcmp(config[0], "SO"))
-		tex(cub3d, config[1],&cub3d->textures->so);
-	else if (!ft_strcmp(config[0], "WE"))
-		tex(cub3d, config[1],&cub3d->textures->we);
-	else if (!ft_strcmp(config[0], "EA"))
-		tex(cub3d, config[1],&cub3d->textures->ea);
-}
-
-void	parse_position(char *position, t_cub3D *cub3d)
-{
-	(void)cub3d;
-	char	**splitted;
-	int		fd;
-
-	splitted = ft_split2(position, " \t\r");
-	if (ft_strcmp(splitted[0], "NO") && ft_strcmp(splitted[0], "SO")
-		&& ft_strcmp(splitted[0], "WE") && ft_strcmp(splitted[0], "EA"))
-	{
-		free_mem(splitted);
-		error("Error: Missing or too many elements !\n");
-	}
-	fd = open(splitted[1], O_RDWR);
-	if (fd == -1 && !access(splitted[1], F_OK))
-	{
-		free_mem(splitted);
-		error("Error: Permission denied !\n");
-	}
-	else if (fd == -1)
-	{
-		free_mem(splitted);
-		error("Error: XPM file not found !\n");
-	}
-	else
-		read_and_store(fd, splitted, cub3d);
-	free_mem(splitted);
 }

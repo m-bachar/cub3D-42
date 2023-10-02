@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:14 by mbachar           #+#    #+#             */
-/*   Updated: 2023/09/30 03:12:46 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 04:27:41 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	error(char *str)
 	i = 0;
 	while (str[i])
 		write(2, &str[i++], 1);
-	// system("leaks cub3D");
 	exit(1);
 }
 
@@ -66,11 +65,4 @@ int	sizeof_map(char *map)
 		i++;
 	}
 	return (map_size);
-}
-
-int	iswhitespaces(char c)
-{
-	if (c == ' ' || (c >= 9 && c <= 13))
-		return (0);
-	return (1);
 }

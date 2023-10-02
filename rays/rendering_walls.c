@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_walls.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 00:40:36 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 02:27:50 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/02 04:56:23 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	draw_map_3d(t_cub3D *cub3d, int colomn)
 		d = cub3d->textures->no;
 	cub3d->ray->distance = cub3d->ray->distance * cos(deg_to_rad(cub3d->angle) - cub3d->rad_a);
 	color = 0;
-	wall_height = (cub3d->w_width * 32) / ((cub3d->ray->distance));
+	wall_height = (cub3d->w_width * cub3d->tile) / ((cub3d->ray->distance));
 	start_wall = (cub3d->w_height / 2) - (wall_height / 2);
 	end_wall = (cub3d->w_height / 2) + (wall_height / 2);
 	if (start_wall <= 0)
@@ -101,7 +101,8 @@ void	draw_map_3d(t_cub3D *cub3d, int colomn)
 	while (line < cub3d->w_height - 1)
 	{
 		if (line < start_wall)
-			color = ft_rgb(237, 179, 19);
+			// color = ft_rgb(cub3d->textures->c[0], cub3d->textures->c[1], cub3d->textures->c[3]);
+			color = ft_rgb(33, 41, 128);
 		else if ((line >= start_wall) && (line <= end_wall - 1))
 		{
 			int				x=0;
@@ -115,14 +116,12 @@ void	draw_map_3d(t_cub3D *cub3d, int colomn)
 			color = d[(64 * c) + x];
 		}
 		else if (line > end_wall)
-			color = ft_rgb(130, 129, 125);
+			// color = ft_rgb(cub3d->textures->f[0], cub3d->textures->f[1], cub3d->textures->f[2]);
+			color = ft_rgb(62, 63, 64);
 		my_mlx_pixel_put(cub3d, colomn, line, color);
 		line++;
 	}
 }
-
-
-
 
 void    tex(t_cub3D *cub3d, char *path, unsigned int **tex)
 {

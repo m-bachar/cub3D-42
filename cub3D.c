@@ -3,28 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 02:04:25 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/02 04:48:34 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	all_rays(t_cub3D *cub3d, int k)
-{
-	cub3d->ray->tab_x[k] = cub3d->ray->x_f_wall;
-	cub3d->ray->tab_y[k] = cub3d->ray->y_f_wall;
-	cub3d->ray->tab_dist[k] = cub3d->ray->distance;
-	cub3d->ray->tab_angle[k] = cub3d->angle2;
-	cub3d->ray->is_ray_down[k] = cub3d->ray->ray_down;
-	cub3d->ray->is_ray_up[k] = cub3d->ray->ray_up;
-	cub3d->ray->is_ray_right[k] = cub3d->ray->ray_right;
-	cub3d->ray->is_ray_left[k] = cub3d->ray->ray_left;
-	cub3d->ray->tab_hit_h[k] = cub3d->hit_h;
-	cub3d->ray->tab_hit_v[k] = cub3d->hit_v;
-}
 
 int	update(t_cub3D *cub3d)
 {
@@ -53,7 +40,6 @@ int	update(t_cub3D *cub3d)
 		check_vertical(cub3d);
 		check_horizental(cub3d);
 		get_min_wall_distance(cub3d);
-		all_rays(cub3d, k);
 		draw_map_3d(cub3d, k);
 		cub3d->angle2 += cub3d->fov / cub3d->w_width;
 		ft_normalize_angle2(cub3d);
@@ -159,26 +145,16 @@ void	ft_init_vars(t_cub3D *cub3d)
 	cub3d->wall_v_y = 0;
 	cub3d->map_x_max = 0;
     cub3d->map_y_max = 0;
-	cub3d->tile = 24;
+	cub3d->tile = 64;
 	cub3d->ray = malloc(sizeof(t_rays));
 	cub3d->ray->distance = 0;
 	cub3d->ray->x_f_wall = 0;
 	cub3d->ray->y_f_wall = 0;
-	cub3d->ray->tab_x = ft_calloc((cub3d->w_width + 1), sizeof(double));
-	cub3d->ray->tab_y = ft_calloc((cub3d->w_width + 1), sizeof(double));
-	cub3d->ray->tab_dist = ft_calloc((cub3d->w_width + 1), sizeof(double)); 
-	cub3d->ray->tab_angle = ft_calloc((cub3d->w_width + 1), sizeof(double)); 
-	cub3d->ray->is_ray_down = ft_calloc((cub3d->w_width + 1), sizeof(int));
-	cub3d->ray->is_ray_up = ft_calloc((cub3d->w_width + 1), sizeof(int));
-	cub3d->ray->is_ray_right = ft_calloc((cub3d->w_width + 1), sizeof(int));
-	cub3d->ray->is_ray_left = ft_calloc((cub3d->w_width + 1), sizeof(int));
-	cub3d->ray->tab_hit_h = ft_calloc((cub3d->w_width + 1), sizeof(int));
-	cub3d->ray->tab_hit_v = ft_calloc((cub3d->w_width + 1), sizeof(int));
 	cub3d->textures = malloc(sizeof(t_textures));
-// 	cub3d->textures->no = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
-// 	cub3d->textures->so = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
-// 	cub3d->textures->ea = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
-// 	cub3d->textures->we = malloc(sizeof(unsigned int) * ((64 * 64) + 1));
+	cub3d->textures->c = malloc(sizeof(int) * 4);
+	cub3d->textures->f = malloc(sizeof(int) * 4);
+	cub3d->textures->c[3] = '\0';
+	cub3d->textures->f[3] = '\0';
 }
 
 void	parsing_total(int ac, char **av, t_cub3D *cub3d)

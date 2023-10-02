@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:37:14 by benito            #+#    #+#             */
-/*   Updated: 2023/09/30 03:06:21 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 04:33:46 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	parse_config(char *config, t_cub3D *cub3d)
 	{
 		if (!ft_strncmp("C", splitted[i], 1)
 			|| !ft_strncmp("F", splitted[i], 1))
-			parse_c_f(splitted[i]);
+			parse_c_f(splitted[i], cub3d);
 		else if (!ft_strncmp("NO", splitted[i], 2)
 			|| !ft_strncmp("SO", splitted[i], 2)
 			|| !ft_strncmp("WE", splitted[i], 2)

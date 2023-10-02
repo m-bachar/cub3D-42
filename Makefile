@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: obouya <obouya@student.42.fr>              +#+  +:+       +#+         #
+#    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/10/01 00:26:21 by obouya           ###   ########.fr        #
+#    Updated: 2023/10/02 04:32:22 by mbachar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,12 @@ SRC			= 	./movements/draw.c \
 				./movements/rad_deg_con.c \
 				./parsing/config.c \
 				./parsing/map.c \
+				./parsing/norm.c \
 				./parsing/parsing.c \
 				./parsing/scene.c \
 				./parsing/tools.c \
 				./parsing/tweaked_funcs.c \
 				./parsing/utils.c \
-				./parsing/xpm_files.c \
 				./rays/check_horizental.c \
 				./rays/check_vertical.c \
 				./rays/rendering_walls.c \

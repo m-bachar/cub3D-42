@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 01:55:51 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/02 04:48:03 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,27 +74,16 @@ typedef struct s_rays
 	double	x_f_wall;
 	double	y_f_wall;
 	double	distance;
-	double	*tab_x;
-	double	*tab_y;
-	double	*tab_dist;
-	double	*tab_angle;
 	int		ray_right;
 	int		ray_left;
 	int		ray_down;
 	int		ray_up;
-	int		*is_ray_right;
-	int		*is_ray_left;
-	int		*is_ray_down;
-	int		*is_ray_up;
-	int		*tab_hit_h;
-	int		*tab_hit_v;
 }	t_rays;
 
 typedef struct s_textures
 {
-	int				red;
-	int				green;
-	int				blue;
+	int				*c;
+	int				*f;
 	unsigned int	*no;
 	unsigned int	*so;
 	unsigned int	*we;
@@ -111,21 +100,25 @@ typedef struct s_imgs
 }	t_imgs;
 
 		/*	Config.c		*/
-void	check_rgb_values(char **cf);
+void	check_rgb_values(char **cf, t_cub3D *cub3d, int flag);
 void	count_elements(char **config);
 void	count_commas(char *cf);
-void	parse_c_f(char *cf);
-void	check_duplicated(char **config);//
-void	parse_position(char *position, t_cub3D *cub3d);
+void	parse_c_f(char *cf, t_cub3D *cub3d);
+void	check_duplicated(char **config);
 
 		/*	Map.c			*/
 void	empty_line(char *map);
 void	first_last_lines(char **map);
 void	sides(char **map);
 void	find_player(char **map);
-void	check_player_surrounding(char **map);//
 void	check_surrounding(char **map);
+
+		/*	Norm.c			*/
+int		iswhitespaces(char c);
+void	read_and_store(char **config, t_cub3D *cub3d);
+void	parse_position(char *position, t_cub3D *cub3d);
 void	check_map_content(char **map);
+void	check_player_surrounding(char **map);
 
 		/*	Parsing.c		*/
 char	*extract_config(char *fullmap);
@@ -152,8 +145,7 @@ void	free_mem(char **str);
 int		doublearray_size(char **array);
 void	error(char *str);
 int		isplayer(char c);
-int		sizeof_map(char *map);//
-int		iswhitespaces(char c);
+int		sizeof_map(char *map);
 
 //------------------------------>cub3D.c
 void	left(t_cub3D *cub3d);
@@ -195,4 +187,5 @@ void	right_arrow(t_cub3D *cub3d);
 void	down_arrow(t_cub3D *cub3d);
 void	up_arrow(t_cub3D *cub3d);
 void    tex(t_cub3D *cub3d, char *path, unsigned int **tex);
+
 #endif
