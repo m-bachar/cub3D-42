@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 05:59:18 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/02 06:48:40 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ typedef struct cub3D
 	void				*mlx;
 	void				*window;
 	double				fov;
-	int					x;
+	// int					x;
 	int					flag;
 	double				yp_c;
 	double				xp_c;
-	int					y;
+	// int					y;
 	int					w_height;
 	int					w_width;
 	double				angle;
@@ -66,6 +66,9 @@ typedef struct cub3D
 	int					up_key;
 	int					left_angle_key;
 	int					right_angle_key;
+	double				i;
+	int 				j;
+	int					k;
 	struct s_rays		*ray;
 	struct s_textures	*textures;
 }	t_cub3D;
@@ -205,18 +208,24 @@ int		ft_rgb(int r, int g, int b);
 void	draw_map_3d(t_cub3D *cub3d, int coloumn);
 void	tex(t_cub3D *cub3d, char *path, unsigned int **tex);
 
-		/*	Cub3D_Utils.c		*/
+		/*	Cub3D_Utils1.c		*/
 void	ft_ray_facing(t_cub3D *cub3d);
 void	player_position(t_cub3D *cub3d);
 void	pixels(t_cub3D *cub3d, int color, int j, int i);
 void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color);
 
 //------------------------------>cub3D.c
-void	left(t_cub3D *cub3d);
-void	right(t_cub3D *cub3d);
 void	get_min_wall_distance(t_cub3D *cub3d);
-void	max_x_y(t_cub3D *cub3d);
 void	ft_init_vars(t_cub3D *cub3d);
+void	ft_init_vars2(t_cub3D *cub3d);
 void	parsing_total(int ac, char **av, t_cub3D *cub3d);
-
+int		update(t_cub3D *cub3d);
+void	update2(t_cub3D *cub3d);
+void	init_vars_update(t_cub3D *cub3d);
+//------------------------------>Cub3D_Utils2.c
+void	ft_mlx(t_cub3D *cub3d);
+void	max_x_y(t_cub3D *cub3d);
+int		longest_line(char **map);
+char	*copy_line(char *src, char *dst, int len);
+void	fillmap(t_cub3D *cub3d);
 #endif

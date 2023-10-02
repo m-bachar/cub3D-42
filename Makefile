@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
+#    By: obouya <obouya@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/10/02 05:46:59 by mbachar          ###   ########.fr        #
+#    Updated: 2023/10/02 06:49:44 by obouya           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ SRC			= 	./movements/draw.c \
 				./rays/rendering_walls.c \
 				./rays/wall.c \
 				cub3D.c \
-				cub3d_utils1.c
+				cub3d_utils1.c \
+				cub3d_utils2.c \
+				cub3d_utils3.c
 
 INCLUDE		= 	cub3D.h
 CC			= 	cc

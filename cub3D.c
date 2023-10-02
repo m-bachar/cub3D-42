@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 05:47:19 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 06:49:29 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,116 +14,36 @@
 
 int	update(t_cub3D *cub3d)
 {
-	double	i;
-
+	init_vars_update(cub3d);
 	key_player(cub3d);
-	i = cub3d->angle - 30;
+	cub3d->i = cub3d->angle - 30;
 	mlx_destroy_image(cub3d->mlx, cub3d->img);
 	mlx_clear_window(cub3d->mlx, cub3d->window);
 	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
 	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel,
 			&cub3d->line_length, &cub3d->endian);
-	int j = 0;
-	int k = 0;
-	while (i < cub3d->angle + 30)
+	while (cub3d->i < cub3d->angle + 30)
 	{
-		if (j == 0)
+		if (cub3d->j == 0)
 		{
 			cub3d->angle2 = cub3d->angle - 30;
-			j = 1;
+			cub3d->j = 1;
 		}
-		ft_normalize_angle2(cub3d);
-		cub3d->rad_a = deg_to_rad(cub3d->angle2);
-		ft_ray_facing(cub3d);
-		check_vertical(cub3d);
-		check_horizental(cub3d);
-		get_min_wall_distance(cub3d);
-		draw_map_3d(cub3d, k);
+		update2(cub3d);
+		draw_map_3d(cub3d, cub3d->k);
 		cub3d->angle2 += cub3d->fov / cub3d->w_width;
 		ft_normalize_angle2(cub3d);
-		i += cub3d->fov / cub3d->w_width;
-		k++;
+		cub3d->i += cub3d->fov / cub3d->w_width;
+		cub3d->k++;
 	}
 	mlx_put_image_to_window(cub3d->mlx, cub3d->window, cub3d->img, 0, 0);
 	return (0);
 }
 
-void    max_x_y(t_cub3D *cub3d)
-{
-    int    i;
-    int    size;
-
-    i = 0;
-    size = 0;
-    cub3d->map_y_max = doublearray_size(cub3d->map);
-    while (cub3d->map[i])
-    {
-        size = ft_strlen(cub3d->map[i]);
-        if (size >= cub3d->map_x_max)
-            cub3d->map_x_max = size;
-        i++;
-    }
-}
-
-int	longest_line(char **map)
-{
-	int	j;
-	int	len;
-
-	j = 0;
-	len = 0;
-	while (map[j])
-	{
-		if ((int)ft_strlen(map[j]) >= len)
-			len = ft_strlen(map[j]);
-		j++;
-	}
-	return (len);
-}
-
-char	*copy_line(char *src, char *dst, int len)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (src[i])
-		dst[j++] = src[i++];
-	while (j < len)
-	{
-		dst[j] = '#';
-		j++;
-	}
-	dst[j] = '\0';
-	return (dst);
-}
-
-void	fillmap(t_cub3D *cub3d)
-{
-	char	**new_map;
-	int		counter;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	counter = 0;
-	new_map = malloc(sizeof(char *) * (doublearray_size(cub3d->map) + 1));
-	while (cub3d->map[j])
-	{
-		new_map[j] = malloc(sizeof(char) * ((counter * 4) + (longest_line(cub3d->map) + 1)));
-		new_map[j] = copy_line(cub3d->map[j], new_map[j], longest_line(cub3d->map));
-		j++;
-	}
-	new_map[j] = NULL;
-	cub3d->map = new_map;
-}
-
 void	ft_init_vars(t_cub3D *cub3d)
 {
-	cub3d->x = 0;
-	cub3d->y = 0;
+	// cub3d->x = 0;
+	// cub3d->y = 0;
 	cub3d->fov = 60;
 	cub3d->xp_c = 0;
 	cub3d->yp_c = 0;
@@ -140,6 +60,12 @@ void	ft_init_vars(t_cub3D *cub3d)
 	cub3d->map_x_max = 0;
     cub3d->map_y_max = 0;
 	cub3d->tile = 64;
+	cub3d->i=0;
+	cub3d->j=0;
+	cub3d->k=0;
+}
+void	ft_init_vars2(t_cub3D *cub3d)
+{
 	cub3d->ray = malloc(sizeof(t_rays));
 	cub3d->ray->distance = 0;
 	cub3d->ray->x_f_wall = 0;
@@ -157,6 +83,7 @@ void	ft_init_vars(t_cub3D *cub3d)
 	cub3d->right_angle_key = 0;
 }
 
+
 void	parsing_total(int ac, char **av, t_cub3D *cub3d)
 {
 	if (ac < 2)
@@ -168,14 +95,7 @@ void	parsing_total(int ac, char **av, t_cub3D *cub3d)
 	max_x_y(cub3d);
 }
 
-void	ft_mlx(t_cub3D *cub3d)
-{
-	cub3d->mlx = mlx_init();
-	cub3d->window = mlx_new_window(cub3d->mlx, cub3d->w_width, cub3d->w_height, "Cub3D");
-	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
-	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel, &cub3d->line_length,
-								&cub3d->endian);
-}
+
 
 int	main(int ac, char **av)
 {
@@ -187,6 +107,7 @@ int	main(int ac, char **av)
 	if (!protection)
 		return (1);	
 	ft_init_vars(&cub3d);
+	ft_init_vars2(&cub3d);
 	ft_mlx(&cub3d);
 	parsing_total(ac, av, &cub3d);
 	player_position(&cub3d);
