@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 04:48:03 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 05:04:19 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ typedef struct cub3D
 	double			rad_a;
 	int 			hit_h;
 	int 			hit_v;
+	int 			right_key;
+	int 			down_key;
+	int 			left_key;
+	int 			up_key;
+	int				left_angle_key;
+	int				right_angle_key;
 	struct s_rays	*ray;
 	struct s_textures	*textures;
 }	t_cub3D;
@@ -181,11 +187,13 @@ void	draw_line(t_cub3D *cub3d, int color);
 void	left(t_cub3D *cub3d);
 void	right(t_cub3D *cub3d);
 //------------------------------>movements/move.c
-int		key_player(int keycode, t_cub3D *cub3d);
+int		key_player(t_cub3D *cub3d);
 void	left_arrow(t_cub3D *cub3d);
 void	right_arrow(t_cub3D *cub3d);
 void	down_arrow(t_cub3D *cub3d);
 void	up_arrow(t_cub3D *cub3d);
 void    tex(t_cub3D *cub3d, char *path, unsigned int **tex);
+int		key_player_press(int keycode, t_cub3D *cub3d);
+int		key_player_release(int keycode, t_cub3D *cub3d);
 
 #endif

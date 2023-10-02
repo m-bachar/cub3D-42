@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 04:48:34 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 05:07:11 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	update(t_cub3D *cub3d)
 {
 	double	i;
 
+	key_player(cub3d);
 	i = cub3d->angle - 30;
 	mlx_destroy_image(cub3d->mlx, cub3d->img);
 	mlx_clear_window(cub3d->mlx, cub3d->window);
 	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
 	cub3d->addr = mlx_get_data_addr(cub3d->img, &cub3d->bits_per_pixel,
 			&cub3d->line_length, &cub3d->endian);
-	// draw_map(cub3d);
 	int j = 0;
 	int k = 0;
 	while (i < cub3d->angle + 30)
@@ -33,7 +33,6 @@ int	update(t_cub3D *cub3d)
 			cub3d->angle2 = cub3d->angle - 30;
 			j = 1;
 		}
-		// printf("ang == %f\n",cub3d->angle);
 		ft_normalize_angle2(cub3d);
 		cub3d->rad_a = deg_to_rad(cub3d->angle2);
 		ft_ray_facing(cub3d);
@@ -155,6 +154,12 @@ void	ft_init_vars(t_cub3D *cub3d)
 	cub3d->textures->f = malloc(sizeof(int) * 4);
 	cub3d->textures->c[3] = '\0';
 	cub3d->textures->f[3] = '\0';
+	cub3d->right_key = 0;
+	cub3d->left_key = 0;
+	cub3d->down_key = 0;
+	cub3d->up_key = 0;
+	cub3d->left_angle_key = 0;
+	cub3d->right_angle_key = 0;
 }
 
 void	parsing_total(int ac, char **av, t_cub3D *cub3d)
@@ -191,7 +196,8 @@ int	main(int ac, char **av)
 	parsing_total(ac, av, &cub3d);
 	player_position(&cub3d);
 	ft_find_angle(&cub3d);
-	mlx_hook(cub3d.window, 2, 1L << 0, &key_player, &cub3d);
+	mlx_hook(cub3d.window, 2,0, key_player_press, &cub3d);
+	mlx_hook(cub3d.window, 3,0, key_player_release, &cub3d);
 	mlx_loop_hook(cub3d.mlx, update, &cub3d);
 	mlx_loop(cub3d.mlx);
 	free_mem(cub3d.config);
