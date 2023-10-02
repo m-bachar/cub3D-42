@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 05:45:44 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/02 05:59:18 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,26 @@ typedef struct s_rays
 	int		ray_down;
 	int		ray_up;
 }	t_rays;
+
+typedef struct s_horiz
+{
+	double x_intercept;
+    double y_intercept;
+    double h_touch_x;
+    double h_touch_y;
+    double dx_step;
+    double dy_step;
+}	t_horiz;
+
+typedef struct s_vert
+{
+	double x_intercept;
+    double y_intercept;
+    double v_touch_x;
+    double v_touch_y;
+    double dx_step;
+    double dy_step;
+}	t_vert;
 
 typedef struct s_textures
 {
@@ -172,9 +192,13 @@ int		sizeof_map(char *map);
 
 		/*	Check_Horizental.c		*/
 void	check_horizental(t_cub3D *cub3d);
+void	check_horizental2(t_cub3D *cub3d, t_horiz *vars_h);
+void	init_vars_horiz(t_horiz *vars_h);
 
 		/*	Check_Vertical.c		*/
 void	check_vertical(t_cub3D *cub3d);
+void	check_vertical2(t_cub3D *cub3d, t_vert *vars_v);
+void	init_vars_vert(t_vert *vars_v);
 
 		/*	Rendering_Walls.c		*/
 int		ft_rgb(int r, int g, int b);
