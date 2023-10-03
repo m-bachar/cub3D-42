@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/03 16:16:47 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/03 22:30:50 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,20 @@ void	parsing_total(int ac, char **av, t_cub3D *cub3d)
 	check_player_surrounding2(cub3d->map);
 	max_x_y(cub3d);
 }
-
+void	f()
+{
+	system("leaks cub3D");
+}
 int	main(int ac, char **av)
 {
+	atexit(f);
 	t_cub3D	cub3d;
 	char	*protection;
 
 	protection = malloc(sizeof(char) * 0);
 	if (!protection)
 		return (1);
+	free(protection); //obouya | ?
 	ft_init_vars(&cub3d);
 	ft_init_vars2(&cub3d);
 	ft_mlx(&cub3d);
@@ -118,6 +123,8 @@ int	main(int ac, char **av)
 	mlx_hook(cub3d.window, 3, 0, key_player_release, &cub3d);
 	mlx_loop_hook(cub3d.mlx, update, &cub3d);
 	mlx_loop(cub3d.mlx);
-	free_mem(cub3d.config);
-	free_mem(cub3d.map);
+	// free_mem(cub3d.config);
+	// free_mem(cub3d.map);
+	// free(cub3d.ray);//obouya | ?
+	free_all(&cub3d);
 }

@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   move_stop_norm.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 05:17:49 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 05:24:08 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/03 22:29:04 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
+void	free_all(t_cub3D *cub3d)
+{
+	free_mem(cub3d->config);
+	free_mem(cub3d->map);
+	free(cub3d->ray);
+	free(cub3d->textures->c);
+	free(cub3d->textures->f);
+	free(cub3d->textures->no);
+	free(cub3d->textures->so);
+	free(cub3d->textures->we);
+	free(cub3d->textures->ea);
+	free(cub3d->textures);
+}
 
 int	key_player_press(int keycode, t_cub3D *cub3d)
 {
@@ -18,6 +32,8 @@ int	key_player_press(int keycode, t_cub3D *cub3d)
 	{
 		mlx_destroy_image(cub3d->mlx, cub3d->img);
 		mlx_clear_window(cub3d->mlx, cub3d->window);
+		mlx_destroy_window(cub3d->mlx, cub3d->window);
+		free_all(cub3d);
 		exit (0);
 	}
 	if (keycode == 2)

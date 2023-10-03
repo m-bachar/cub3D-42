@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 00:40:36 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/03 02:00:18 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/03 22:24:42 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ void	tex(t_cub3D *cub3d, char *path, unsigned int **tex)
 
 	wall_img.img = mlx_xpm_file_to_image(cub3d->mlx, path, &i, &j);
 	if (!wall_img.img || i != 64 || j != 64)
-		return (error("Error: Bad Image !\n")); //mbachar must  add a free function here
+		return (free_all(cub3d), error("Error: Bad Image !\n")); //mbachar must  add a free function here
 		 //in the return(free and destroy mlx) before exit
 	wall_img.addr = mlx_get_data_addr(wall_img.img, &wall_img.bits_per_pixel,
 			&wall_img.line_length, &wall_img.endian);
 	bytes_per_pixel = wall_img.bits_per_pixel / 8;
 	*tex = malloc(sizeof(unsigned int) * 64 * 64);
 	if (!(*tex))
-		return (error("Error: Malloc Error !\n")); ///mbachar must  add a free function here
+		return (free_all(cub3d), error("Error: Malloc Error !\n")); ///mbachar must  add a free function here
 		 //in the return(free and destroy mlx) before exit
 	i = -1;
 	while (++i < 64 * 64)

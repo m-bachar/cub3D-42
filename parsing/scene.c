@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 00:44:57 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/03 00:58:49 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/03 22:04:52 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	map_extension(char *map)
 	if (ft_strncmp("buc.", extension, 4))
 	{
 		free(extension);
-		free(map);
+		//free(map); why did y free here ??? u still didn t alloc map
 		error("Error: Map extension must be .cub !\n");
 	}
 	free(extension);
