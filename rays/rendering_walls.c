@@ -3,68 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   rendering_walls.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 00:40:36 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 22:58:55 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/03 02:00:18 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-int	ft_rgb(int r, int g, int b)
+void	find_color(t_cub3D *cub3d, t_3d_var *vars_3d)
 {
-	return (r << 16 | g << 8 | b);
+	if (cub3d->hit_h == 1)
+		vars_3d->x = fmod(cub3d->ray->x_f_wall, 64);
+	else if (cub3d->hit_v == 1)
+		vars_3d->x = fmod(cub3d->ray->y_f_wall, 64);
+	vars_3d->c = vars_3d->line + (vars_3d->w_height / 2) \
+	- (cub3d->w_height / 2);
+	vars_3d->c = vars_3d->c * ((double)64 / vars_3d->w_height);
+	vars_3d->color = vars_3d->d[(64 * vars_3d->c) + vars_3d->x];
 }
 
 void	draw_map_3d(t_cub3D *cub3d, int colomn)
 {
-	int	w_height;
-	int	wall_beg;
-	int	wall_end;
-	int	line;
-	int	color;
-	unsigned int 	*d;
+	t_3d_var	*vars_3d;
 
-	if (cub3d->hit_v && cub3d->ray->ray_right && !cub3d->ray->ray_left && !cub3d->hit_h)
-		d = cub3d->textures->ea;
-	else if (cub3d->hit_v && !cub3d->ray->ray_right && cub3d->ray->ray_left && !cub3d->hit_h)
-		d = cub3d->textures->we;
-	else if (cub3d->hit_h && !cub3d->ray->ray_up && cub3d->ray->ray_down && !cub3d->hit_v)
-		d = cub3d->textures->so;
-	else if (cub3d->hit_h && !cub3d->ray->ray_down &&  cub3d->ray->ray_up && !cub3d->hit_v)
-		d = cub3d->textures->no;
-	cub3d->ray->distance = cub3d->ray->distance * cos(deg_to_rad(cub3d->angle) - cub3d->rad_a);
-	color = 0;
-	w_height = (cub3d->w_width * cub3d->tile) / ((cub3d->ray->distance));
-	wall_beg = (cub3d->w_height / 2) - (w_height / 2);
-	wall_end = (cub3d->w_height / 2) + (w_height / 2);
-	if (wall_beg <= 0)
-		wall_beg = 0;
-	if (wall_end >= cub3d->w_height)
-		wall_end = cub3d->w_height;
-	line = 0;
-	while (line < cub3d->w_height - 1)
+	vars_3d = malloc(sizeof(t_3d_var));
+	init_vars_3d(vars_3d);
+	ft_store_image(cub3d, vars_3d);
+	wall_info_fish_eye(cub3d, vars_3d);
+	vars_3d->line = 0;
+	while (vars_3d->line < cub3d->w_height - 1)
 	{
-		if (line < wall_beg)
-			color = ft_rgb(cub3d->textures->c[0], cub3d->textures->c[1], cub3d->textures->c[2]);
-		else if ((line >= wall_beg) && (line <= wall_end - 1))
-		{
-			int				x=0;
-			unsigned int	c;
-			if (cub3d->hit_h == 1)
-				x = fmod(cub3d->ray->x_f_wall, 64);
-			else if (cub3d->hit_v == 1)
-				x = fmod(cub3d->ray->y_f_wall, 64);
-			c = line + (w_height / 2) - (cub3d->w_height / 2);
-			c = c * ((double)64 / w_height);
-			color = d[(64 * c) + x];
-		}
-		else if (line > wall_end)
-			color = ft_rgb(cub3d->textures->f[0], cub3d->textures->f[1], cub3d->textures->f[2]);
-		my_mlx_pixel_put(cub3d, colomn, line, color);
-		line++;
+		if (vars_3d->line < vars_3d->wall_beg)
+			vars_3d->color = ft_rgb(cub3d->textures->c[0], \
+			cub3d->textures->c[1], cub3d->textures->c[2]);
+		else if ((vars_3d->line >= vars_3d->wall_beg)
+			&& (vars_3d->line <= vars_3d->wall_end - 1))
+			find_color(cub3d, vars_3d);
+		else if (vars_3d->line > vars_3d->wall_end)
+			vars_3d->color = ft_rgb(cub3d->textures->f[0], \
+			cub3d->textures->f[1], cub3d->textures->f[2]);
+		my_mlx_pixel_put(cub3d, colomn, vars_3d->line, vars_3d->color);
+		vars_3d->line++;
 	}
+	free(vars_3d);
 }
 
 void	tex(t_cub3D *cub3d, char *path, unsigned int **tex)
@@ -73,17 +56,19 @@ void	tex(t_cub3D *cub3d, char *path, unsigned int **tex)
 	unsigned char	rgb[3];
 	int				bytes_per_pixel;
 	int				i;
-	int				y;
+	int				j;
 
-	wall_img.img = mlx_xpm_file_to_image(cub3d->mlx, path, &i, &y);
-	if (!wall_img.img || i != 64 || y != 64)
-		return (error("Error: Bad Image !\n")); //freee everything
+	wall_img.img = mlx_xpm_file_to_image(cub3d->mlx, path, &i, &j);
+	if (!wall_img.img || i != 64 || j != 64)
+		return (error("Error: Bad Image !\n")); //mbachar must  add a free function here
+		 //in the return(free and destroy mlx) before exit
 	wall_img.addr = mlx_get_data_addr(wall_img.img, &wall_img.bits_per_pixel,
 			&wall_img.line_length, &wall_img.endian);
 	bytes_per_pixel = wall_img.bits_per_pixel / 8;
 	*tex = malloc(sizeof(unsigned int) * 64 * 64);
 	if (!(*tex))
-		return (error("Error: Malloc Error !\n")); //free everything
+		return (error("Error: Malloc Error !\n")); ///mbachar must  add a free function here
+		 //in the return(free and destroy mlx) before exit
 	i = -1;
 	while (++i < 64 * 64)
 	{

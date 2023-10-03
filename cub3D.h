@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/03 00:59:11 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/03 01:56:16 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_textures
 	unsigned int	*we;
 	unsigned int	*ea;
 }	t_textures;
+
 typedef struct s_wall_d
 {
 	double	distance_h;
@@ -120,6 +121,18 @@ typedef struct s_wall_d
 	double	d_h1;
 	double	d_h2;
 }	t_wall_d;
+
+typedef struct s_3d_var
+{
+	int				w_height;
+	int				wall_beg;
+	int				wall_end;
+	int				line;
+	int				color;
+	unsigned int	*d;
+	int				x;
+	unsigned int	c;
+}	t_3d_var;
 
 typedef struct s_imgs
 {
@@ -214,6 +227,10 @@ void	init_vars_vert(t_vert *vars_v);
 int		ft_rgb(int r, int g, int b);
 void	draw_map_3d(t_cub3D *cub3d, int coloumn);
 void	tex(t_cub3D *cub3d, char *path, unsigned int **tex);
+void	init_vars_3d(t_3d_var *vars_3d);
+void	ft_store_image(t_cub3D *cub3d, t_3d_var *vars_3d);
+void	wall_info_fish_eye(t_cub3D *cub3d, t_3d_var *vars_3d);
+void	find_color(t_cub3D *cub3d, t_3d_var *vars_3d);
 
 		/*	Cub3D_Utils1.c		*/
 void	ft_ray_facing(t_cub3D *cub3d);

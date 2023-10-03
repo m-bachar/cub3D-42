@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/03 01:01:16 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/03 01:39:27 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	ft_init_vars(t_cub3D *cub3d)
 	cub3d->fov = 60;
 	cub3d->xp_c = 0;
 	cub3d->yp_c = 0;
-	cub3d->speed = 8;
+	cub3d->speed = 10;
 	cub3d->radius = 6;
 	cub3d->w_height = 720;
 	cub3d->w_width = 1080;
-	cub3d->rotation_speed = 3;
+	cub3d->rotation_speed = 4;
 	cub3d->flag = 0;
 	cub3d->wall_h_x = 0;
 	cub3d->wall_h_y = 0;
@@ -111,7 +111,6 @@ int	main(int ac, char **av)
 	ft_init_vars2(&cub3d);
 	ft_mlx(&cub3d);
 	parsing_total(ac, av, &cub3d);
-
 	player_position(&cub3d);
 	ft_find_angle(&cub3d);
 	mlx_hook(cub3d.window, 2, 0, key_player_press, &cub3d);
