@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:37:14 by benito            #+#    #+#             */
-/*   Updated: 2023/10/03 01:19:37 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/03 06:39:23 by benito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ char	*extract_config(char *fullmap)
 			i++;
 		if (counter == 6)
 			break ;
-		i++;
+		if (fullmap[i])
+			i++;
 	}
 	config = ft_substr(fullmap, 0, i);
 	return (config);
@@ -50,7 +51,8 @@ char	*extract_map(char *fullmap)
 			i++;
 		if (counter == 6)
 			break ;
-		i++;
+		if (fullmap[i])
+			i++;
 	}
 	map = ft_substr(fullmap, i, ft_strlen(fullmap));
 	return (map);
@@ -86,6 +88,11 @@ void	parse_map(char *map, t_cub3D *cub3d)
 
 	splitted = ft_split(map, '\n');
 	empty_line(map);
+	if (!splitted || !splitted[0])
+	{
+		free_mem(splitted);
+		error("Error: Missing Map !\n");
+	}
 	first_last_lines(splitted);
 	sides(splitted);
 	find_player(splitted);
