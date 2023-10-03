@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/03 01:56:16 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/03 15:46:06 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,4 +258,6 @@ void	get_min_wall_distance(t_cub3D *cub3d);
 void	init_vars_wall_dis(t_wall_d *dis);
 void	get_min_wall_distance_nr1(t_cub3D *cub3d, t_wall_d *dis);
 void	get_min_wall_distance_nr2(t_cub3D *cub3d, t_wall_d *dis);
+
+void	check_player_surrounding2(char **map);
 #endif

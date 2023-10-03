@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 05:12:11 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 04:29:00 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:21:45 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	first_last_lines(char **map)
 	while (map[0][j])
 	{
 		if (map[0][j] != '1' && iswhitespaces(map[0][j]))
-			error("Erro: Map must be surrounded by walls !1111\n");
+			error("Error: Map must be surrounded by walls !\n");
 		j++;
 	}
 	j = 0;

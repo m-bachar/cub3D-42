@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/03 01:39:27 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/03 15:46:44 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_init_vars(t_cub3D *cub3d)
 	cub3d->radius = 6;
 	cub3d->w_height = 720;
 	cub3d->w_width = 1080;
-	cub3d->rotation_speed = 4;
+	cub3d->rotation_speed = 5;
 	cub3d->flag = 0;
 	cub3d->wall_h_x = 0;
 	cub3d->wall_h_y = 0;
@@ -96,6 +96,9 @@ void	parsing_total(int ac, char **av, t_cub3D *cub3d)
 		error("Error: Too many arguments !\n");
 	parsing(av[1], cub3d);
 	fillmap(cub3d);
+	check_player_surrounding2(cub3d->map);
+	// for (int i = 0; i < doublearray_size(cub3d->map); i++)
+	// 	printf("%s\n", cub3d->map[i]);
 	max_x_y(cub3d);
 }
 

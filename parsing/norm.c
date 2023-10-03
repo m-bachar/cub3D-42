@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   norm.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 23:26:24 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/02 04:29:04 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/03 16:01:24 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	check_map_content(char **map)
 	}
 }
 
-void	check_player_surrounding(char **map)
+void	check_player_surrounding(char **map)///check # and fix heap buff overflow
 {
 	int	i;
 	int	j;
@@ -93,12 +93,35 @@ void	check_player_surrounding(char **map)
 		i = 0;
 		while (map[j][i])
 		{
-			if (!isplayer(map[j][i])
-			&& ((map[j][i + 1] != '1' && map[j][i + 1] != '0')
-			|| (map[j][i - 1] != '1' && map[j][i - 1] != '0')
-			|| (map[j + 1][i] != '1' && map[j + 1][i] != '0')
-			|| (map[j - 1][i] != '1' && map[j - 1][i] != '0')))
+			if (!isplayer(map[j][i]) && map[j][i]
+			&& ((map[j][i + 1] && map[j][i + 1] != '1' && map[j][i + 1] != '0')
+			|| (map[j][i - 1] && map[j][i - 1] != '1' && map[j][i - 1] != '0')
+			|| (map[j + 1][i] && map[j + 1][i] != '1' && map[j + 1][i] != '0')
+			|| (map[j - 1][i] && map[j - 1][i] != '1' && map[j - 1][i] != '0')))
 				error("Error: Player must be surrounded by walls or floor !\n");
+			i++;
+		}
+		j++;
+	}
+}
+
+void	check_player_surrounding2(char **map)// obouya added this function to check if player is surrounded by #
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (map[j])
+	{
+		i = 0;
+		while (map[j][i])
+		{
+			if (!isplayer(map[j][i]) && map[j][i]
+			&& ((map[j][i + 1] && map[j][i + 1] == '#')
+			|| (map[j][i - 1] && map[j][i - 1] == '#')
+			|| (map[j + 1][i] && map[j + 1][i] == '#')
+			|| (map[j - 1][i] && map[j - 1][i] == '#')))
+				error("Error: Player must be surrounded by walls or floor 2!\n");
 			i++;
 		}
 		j++;
