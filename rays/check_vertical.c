@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 23:03:30 by obouya            #+#    #+#             */
-/*   Updated: 2023/10/02 05:58:14 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/03 00:50:13 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	check_vertical2(t_cub3D *cub3d, t_vert *vars_v)
 	{
 		m_x = vars_v->v_touch_x / cub3d->tile;
 		m_y = vars_v->v_touch_y / cub3d->tile;
-		if (cub3d->map[m_y][m_x] && cub3d->map[m_y][m_x] == '1')
+		if ((cub3d->map[m_y][m_x] && (cub3d->map[m_y][m_x] == '1' 
+			|| cub3d->map[m_y][m_x] == ' '
+			|| cub3d->map[m_y][m_x] == '\t'
+			|| cub3d->map[m_y][m_x] == '#')) || (!cub3d->map[m_y][m_x]))
 		{
 			cub3d->wall_v_x = vars_v->v_touch_x;
 			cub3d->wall_v_y = vars_v->v_touch_y;

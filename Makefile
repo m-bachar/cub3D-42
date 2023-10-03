@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
+#    By: obouya <obouya@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/10/02 23:01:31 by mbachar          ###   ########.fr        #
+#    Updated: 2023/10/03 00:48:53 by obouya           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRC			= 	./movements/draw.c \
 INCLUDE		= 	cub3D.h
 CC			= 	cc
 OBJ			= 	$(SRC:.c=.o)
-CFLAGS		= 	-Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror -g -fsanitize=address
 
 all : $(CUB3D)
 

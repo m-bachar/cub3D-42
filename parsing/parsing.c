@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:37:14 by benito            #+#    #+#             */
-/*   Updated: 2023/10/02 04:33:46 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/03 00:57:38 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	parsing(char *av, t_cub3D *cub3d)
 	if (!fullmap || !fullmap[0])
 		error("Error: Empty file !\n");
 	map_extension(av);
+
 	config = extract_config(fullmap);
 	map = extract_map(fullmap);
 	if (!config[0] || !map[0])

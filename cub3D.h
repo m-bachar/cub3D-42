@@ -6,7 +6,7 @@
 /*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/03 00:20:49 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/03 00:59:11 by obouya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <limits.h>
 # include "./libft/libft.h"
 
-# define BUFFER_SIZE 1
+# define BUFFER_SIZE 100
 
 typedef struct cub3D
 {
