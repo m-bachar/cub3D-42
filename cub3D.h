@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/03 22:18:59 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/04 11:29:04 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@
 # include "./libft/libft.h"
 
 # define BUFFER_SIZE 100
+# define MAX_SIZE 1000000
 
 typedef struct cub3D
 {
 	char				**map;
+	char				**new_map;
 	int					map_x_max;
 	int					map_y_max;
 	char				**config;
@@ -148,6 +150,8 @@ void	left(t_cub3D *cub3d);
 void	right(t_cub3D *cub3d);
 
 		/*	Move_Stop_Norm.c		*/
+void	free_all(t_cub3D *cub3d);
+int		x_click(t_cub3D *cub3d);
 int		key_player_press(int keycode, t_cub3D *cub3d);
 int		key_player_release(int keycode, t_cub3D *cub3d);
 
@@ -185,6 +189,12 @@ void	read_and_store(char **config, t_cub3D *cub3d);
 void	parse_position(char *position, t_cub3D *cub3d);
 void	check_map_content(char **map);
 void	check_player_surrounding(char **map);
+
+		/*	Norm2.c			*/
+void	add_four_spaces(t_cub3D *cub3d, int *j, int *k);
+void	copy_and_increment(t_cub3D *cub3d, int *i, int *j, int *k);
+void	tabs_to_spaces(t_cub3D *cub3d);
+void	check_player_surrounding2(char **map);
 
 		/*	Parsing.c		*/
 char	*extract_config(char *fullmap);
@@ -259,6 +269,4 @@ void	init_vars_wall_dis(t_wall_d *dis);
 void	get_min_wall_distance_nr1(t_cub3D *cub3d, t_wall_d *dis);
 void	get_min_wall_distance_nr2(t_cub3D *cub3d, t_wall_d *dis);
 
-void	check_player_surrounding2(char **map);
-void	free_all(t_cub3D *cub3d);
 #endif

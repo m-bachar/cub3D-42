@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:25:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/10/02 06:30:10 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/03 23:37:07 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,6 @@ void	player_position(t_cub3D *cub3d)
 		j++;
 	}
 }
-
-// void	pixels(t_cub3D *cub3d, int color, int j, int i)
-// {
-// 	int	x;
-
-// 	cub3d->x = i * cub3d->tile;
-// 	cub3d->y = j * cub3d->tile;
-// 	x = cub3d->x;
-// 	while (cub3d->y < (j + 1) * cub3d->tile)
-// 	{
-// 		cub3d->x = x;
-// 		while (cub3d->x < (i + 1) * cub3d->tile)
-// 		{
-// 			my_mlx_pixel_put(cub3d, cub3d->x, cub3d->y, color);
-// 			cub3d->x++;
-// 		}
-// 		cub3d->y++;
-// 	}
-// }
 
 void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color)
 {

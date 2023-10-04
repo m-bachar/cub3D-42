@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/03 22:30:50 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/04 11:29:01 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_init_vars(t_cub3D *cub3d)
 	cub3d->fov = 60;
 	cub3d->xp_c = 0;
 	cub3d->yp_c = 0;
-	cub3d->speed = 8;
+	cub3d->speed = 10;
 	cub3d->radius = 6;
 	cub3d->w_height = 720;
 	cub3d->w_width = 1080;
@@ -95,24 +95,22 @@ void	parsing_total(int ac, char **av, t_cub3D *cub3d)
 	else if (ac > 2)
 		error("Error: Too many arguments !\n");
 	parsing(av[1], cub3d);
-	fillmap(cub3d);
-	check_player_surrounding2(cub3d->map);
 	max_x_y(cub3d);
+	fillmap(cub3d);
+	tabs_to_spaces(cub3d);
+	check_player_surrounding(cub3d->map);
+	check_player_surrounding2(cub3d->map);
 }
-void	f()
-{
-	system("leaks cub3D");
-}
+
 int	main(int ac, char **av)
 {
-	atexit(f);
 	t_cub3D	cub3d;
 	char	*protection;
 
 	protection = malloc(sizeof(char) * 0);
 	if (!protection)
 		return (1);
-	free(protection); //obouya | ?
+	free(protection);
 	ft_init_vars(&cub3d);
 	ft_init_vars2(&cub3d);
 	ft_mlx(&cub3d);
@@ -121,10 +119,8 @@ int	main(int ac, char **av)
 	ft_find_angle(&cub3d);
 	mlx_hook(cub3d.window, 2, 0, key_player_press, &cub3d);
 	mlx_hook(cub3d.window, 3, 0, key_player_release, &cub3d);
+	mlx_hook(cub3d.window, 17, 1L << 0, x_click, &cub3d);
 	mlx_loop_hook(cub3d.mlx, update, &cub3d);
 	mlx_loop(cub3d.mlx);
-	// free_mem(cub3d.config);
-	// free_mem(cub3d.map);
-	// free(cub3d.ray);//obouya | ?
 	free_all(&cub3d);
 }

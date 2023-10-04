@@ -3,22 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: obouya <obouya@student.42.fr>              +#+  +:+       +#+         #
+#    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/10/03 22:28:25 by obouya           ###   ########.fr        #
+#    Updated: 2023/10/04 11:30:06 by mbachar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CUB3D		= 	cub3D
 LIBFT		=	./libft/libft.a
 SRC			= 	./movements/draw.c \
-				./movements/move_stop.c \
 				./movements/move_stop_norm.c \
+				./movements/move_stop.c \
 				./movements/rad_deg_con.c \
 				./parsing/config.c \
 				./parsing/map.c \
 				./parsing/norm.c \
+				./parsing/norm2.c \
 				./parsing/parsing.c \
 				./parsing/scene.c \
 				./parsing/tools.c \
@@ -29,15 +30,15 @@ SRC			= 	./movements/draw.c \
 				./rays/rendering_walls.c \
 				./rays/rendering_walls2.c \
 				./rays/wall.c \
-				cub3D.c \
 				cub3d_utils1.c \
 				cub3d_utils2.c \
-				cub3d_utils3.c
+				cub3d_utils3.c \
+				cub3D.c
 
 INCLUDE		= 	cub3D.h
 CC			= 	cc
 OBJ			= 	$(SRC:.c=.o)
-CFLAGS		= 	-Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror
 
 all : $(CUB3D)
 

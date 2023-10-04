@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouya <obouya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 06:06:30 by obouya            #+#    #+#             */
-/*   Updated: 2023/10/03 16:16:18 by obouya           ###   ########.fr       */
+/*   Updated: 2023/10/03 23:39:45 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ void	fillmap(t_cub3D *cub3d)
 		j++;
 	}
 	new_map[j] = NULL;
-	free_mem(cub3d->map);// i added this free to handle leaks
+	free_mem(cub3d->map);
 	cub3d->map = new_map;
 }
