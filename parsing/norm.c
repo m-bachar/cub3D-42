@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 23:26:24 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/04 10:57:04 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/04 15:21:52 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	parse_position(char *position, t_cub3D *cub3d)
 		free_mem(splitted);
 		error("Error: Permission denied !\n");
 	}
-	else if (fd == -1)
+	else if (fd == -1 || splitted[2])
 	{
 		free_mem(splitted);
 		error("Error: XPM file not found !\n");

@@ -6,13 +6,47 @@
 #    By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/27 23:29:55 by mbachar           #+#    #+#              #
-#    Updated: 2023/10/04 12:30:21 by mbachar          ###   ########.fr        #
+#    Updated: 2023/10/04 15:06:34 by mbachar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CUB3D		= 	cub3D
-LIBFT		=	./libft/libft.a
-SRC			= 	./movements/draw.c \
+
+SRC			=	libft/ft_atoi.c \
+				libft/ft_bzero.c \
+				libft/ft_calloc.c \
+				libft/ft_isalnum.c \
+				libft/ft_isalpha.c \
+				libft/ft_isascii.c \
+				libft/ft_isdigit.c \
+				libft/ft_isprint.c \
+				libft/ft_itoa.c \
+				libft/ft_memchr.c \
+				libft/ft_memcmp.c \
+				libft/ft_memcpy.c \
+				libft/ft_memmove.c \
+				libft/ft_memset.c \
+				libft/ft_putchar_fd.c \
+				libft/ft_putendl_fd.c \
+				libft/ft_putnbr_fd.c \
+				libft/ft_putstr_fd.c \
+				libft/ft_split.c \
+				libft/ft_strchr.c \
+				libft/ft_strdup.c \
+				libft/ft_striteri.c \
+				libft/ft_strjoin.c \
+				libft/ft_strlcat.c \
+				libft/ft_strlcpy.c \
+				libft/ft_strlen.c \
+				libft/ft_strmapi.c \
+				libft/ft_strncmp.c \
+				libft/ft_strnstr.c \
+				libft/ft_strrchr.c \
+				libft/ft_strtrim.c \
+				libft/ft_substr.c \
+				libft/ft_tolower.c \
+				libft/ft_toupper.c \
+				./movements/draw.c \
 				./movements/move_stop_norm.c \
 				./movements/move_stop.c \
 				./movements/rad_deg_con.c \
@@ -33,7 +67,7 @@ SRC			= 	./movements/draw.c \
 				cub3d_utils1.c \
 				cub3d_utils2.c \
 				cub3d_utils3.c \
-				cub3D.c
+				cub3D.c \
 
 INCLUDE		= 	cub3D.h
 CC			= 	cc
@@ -46,15 +80,12 @@ all : $(CUB3D)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(CUB3D): $(OBJ)
-	cd ./libft && make
-	$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(CUB3D) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(CUB3D)
 
 clean :
-	cd ./libft && make clean
 	rm -fr $(OBJ)
 
 fclean :
-	cd ./libft && make fclean
 	rm -fr $(CUB3D)
 	rm -fr $(OBJ)
 

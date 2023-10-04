@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benito <benito@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 00:16:18 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/03 06:31:55 by benito           ###   ########.fr       */
+/*   Updated: 2023/10/04 15:44:04 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	count_elements(char **config)
 	counter = 0;
 	while (config[i])
 	{
-		if (!ft_strncmp("C", config[i], 1) || !ft_strncmp("F", config[i], 1)
+		if (((!ft_strncmp("C", config[i], 1) || !ft_strncmp("F", config[i], 1))
+				&& config[i][1] && !iswhitespaces(config[i][1]))
 			|| !ft_strncmp("NO", config[i], 2)
 			|| !ft_strncmp("SO", config[i], 2)
 			|| !ft_strncmp("WE", config[i], 2)

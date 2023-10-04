@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 08:14:15 by obouya            #+#    #+#             */
-/*   Updated: 2023/10/02 05:17:58 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/04 14:59:17 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ void	up_arrow(t_cub3D *cub3d)
 	c1 = cub3d->xp_c + dx;
 	c2 = cub3d->yp_c + dy;
 	if (cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile]
-		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != '1')
+		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != '1'
+		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != '#'
+		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != ' ')
 	{
 		cub3d->xp_c += dx;
 		cub3d->yp_c += dy;
@@ -47,7 +49,9 @@ void	right_arrow(t_cub3D *cub3d)
 	c1 = cub3d->xp_c + dx;
 	c2 = cub3d->yp_c + dy;
 	if (cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile]
-		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != '1')
+		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != '1'
+		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != ' '
+		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != '#')
 	{
 		cub3d->xp_c += dx;
 		cub3d->yp_c += dy;
@@ -68,7 +72,9 @@ void	left_arrow(t_cub3D *cub3d)
 	c1 = cub3d->xp_c + dx;
 	c2 = cub3d->yp_c + dy;
 	if (cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile]
-		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != '1')
+		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != '1'
+		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != ' '
+		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != '#')
 	{
 		cub3d->xp_c += dx;
 		cub3d->yp_c += dy;
@@ -89,7 +95,9 @@ void	down_arrow(t_cub3D *cub3d)
 	c1 = cub3d->xp_c - dx;
 	c2 = cub3d->yp_c - dy;
 	if (cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile]
-		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != '1')
+		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != '1'
+		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != ' '
+		&& cub3d->map[c2 / cub3d->tile][c1 / cub3d->tile] != '#')
 	{
 		cub3d->xp_c -= dx;
 		cub3d->yp_c -= dy;
