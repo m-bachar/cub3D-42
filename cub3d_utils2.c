@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 06:06:30 by obouya            #+#    #+#             */
-/*   Updated: 2023/10/03 23:39:45 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/04 11:45:30 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_mlx(t_cub3D *cub3d)
 {
 	cub3d->mlx = mlx_init();
 	cub3d->window = mlx_new_window(cub3d->mlx, cub3d->w_width,
-			cub3d->w_height, "Cub3D");
+			cub3d->w_height, "D3buC");
 	cub3d->img = mlx_new_image(cub3d->mlx, cub3d->w_width, cub3d->w_height);
 	cub3d->addr = mlx_get_data_addr(cub3d->img,
 			&cub3d->bits_per_pixel, &cub3d->line_length, &cub3d->endian);
