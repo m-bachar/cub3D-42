@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:22:22 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/04 16:10:01 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/04 17:03:38 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	parsing_total(int ac, char **av, t_cub3D *cub3d)
 		error("Error: Too many arguments !\n");
 	parsing(av[1], cub3d);
 	max_x_y(cub3d);
-	tabs_to_spaces(cub3d);
 	fillmap(cub3d);
 	check_player_surrounding(cub3d->map);
 	check_player_surrounding2(cub3d->map);

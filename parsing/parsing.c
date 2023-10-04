@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:37:14 by benito            #+#    #+#             */
-/*   Updated: 2023/10/03 23:39:07 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/04 16:52:58 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	parse_map(char *map, t_cub3D *cub3d)
 		free_mem(splitted);
 		error("Error: Missing Map !\n");
 	}
+	check_tabs(splitted);
 	first_last_lines(splitted);
 	sides(splitted);
 	find_player(splitted);

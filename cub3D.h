@@ -6,7 +6,7 @@
 /*   By: mbachar <mbachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 23:32:27 by mbachar           #+#    #+#             */
-/*   Updated: 2023/10/04 11:29:04 by mbachar          ###   ########.fr       */
+/*   Updated: 2023/10/04 17:02:03 by mbachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,8 +193,8 @@ void	check_player_surrounding(char **map);
 		/*	Norm2.c			*/
 void	add_four_spaces(t_cub3D *cub3d, int *j, int *k);
 void	copy_and_increment(t_cub3D *cub3d, int *i, int *j, int *k);
-void	tabs_to_spaces(t_cub3D *cub3d);
 void	check_player_surrounding2(char **map);
+void	check_tabs(char **map);
 
 		/*	Parsing.c		*/
 char	*extract_config(char *fullmap);
@@ -245,7 +245,6 @@ void	find_color(t_cub3D *cub3d, t_3d_var *vars_3d);
 		/*	Cub3D_Utils1.c		*/
 void	ft_ray_facing(t_cub3D *cub3d);
 void	player_position(t_cub3D *cub3d);
-void	pixels(t_cub3D *cub3d, int color, int j, int i);
 void	my_mlx_pixel_put(t_cub3D *cub3d, int x, int y, int color);
 
 		/*	Cub3D.c		*/
